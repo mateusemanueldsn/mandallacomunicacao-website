@@ -1,8 +1,0 @@
-DIRETRIZES DE GRAFISMOS MANDALLA
-
-1. O PORTAL
-    - Forma: Retângulo com cantos inferiores retos (0px) e cantos superiores totalmente arredondados (formato de arco/pílula pela metade).
-    - Variações:
-        - "Preenchido": Forma sólida, geralmente utilizando as cores da paleta da marca para criar blocos de destaque ou máscaras para imagens.
-        - "Linha" (Outlined): Apenas o contorno da forma, ideal para fundos sutis, demarcações elegantes ou composição geométrica de wireframe.
-    - Metáfora: O formato de arco lembra uma porta, um portal. Representa uma transição, uma passagem por onde as pessoas podem atravessar, entrar e admirar o que está do outro lado (o impacto, a nova comunicação gerada pela Mandalla).
