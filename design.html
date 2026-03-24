@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Estratégico | Mandalla Comunicação & Design</title>
+    <meta name="description"
+        content="Design com propósito e precisão. Na Mandalla, unimos técnica e sensibilidade para criar mapas estratégicos visuais.">
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .design-page {
+            background-color: var(--bg-color);
+        }
+
+        .hero-design {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            position: relative;
+            background-image: radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 70%);
+        }
+
+        .design-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-design h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -4px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-design mark {
+            background: none;
+            color: transparent;
+            -webkit-text-stroke: 1.5px #000;
+        }
+
+        .hero-design p {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* Structure Canvas (Visual element) */
+        .structure-canvas {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40%;
+            height: 500px;
+            border: 2px solid #000;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.05);
+        }
+
+        .human-touch {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: #000;
+            color: #fff;
+            padding: 1rem 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .details-section {
+            padding: 120px 5%;
+            border-top: 1px solid #000;
+        }
+
+        .details-header {
+            margin-bottom: 5rem;
+            text-align: left;
+        }
+
+        .details-header h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .grid-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            max-width: 1400px;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .detail-icon {
+            font-size: 2.5rem;
+            padding-top: 0.5rem;
+        }
+
+        .detail-info h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .detail-info p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 992px) {
+            .hero-design {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding-top: 150px;
+            }
+
+            .design-content {
+                max-width: 100%;
+            }
+
+            .hero-design p {
+                margin: 0 auto 3rem;
+            }
+
+            .structure-canvas {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                top: auto;
+                right: auto;
+                transform: none;
+                margin-top: 4rem;
+            }
+
+            .grid-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Interactive Infographic Styles */
+        .infographic-section {
+            padding: 120px 5%;
+            background: var(--bg-color);
+            border-top: 1px solid #000;
+            overflow: hidden;
+        }
+
+        .infographic-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .infographic-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .infographic-header mark {
+            background: none;
+            -webkit-text-stroke: 1.5px #000;
+            color: transparent;
+        }
+
+        .infographic-wrapper {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Central Mockup */
+        .central-mockup {
+            width: 250px;
+            height: 450px;
+            border: 2px solid #000;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+            box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .central-mockup:hover {
+            transform: scale(1.02) rotate(-1deg);
+        }
+
+        .mockup-header {
+            height: 45px;
+            border-bottom: 2px solid #000;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .mockup-body {
+            height: 200px;
+            background: #f0f0f0;
+            border-bottom: 2px solid #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 15px;
+        }
+
+        .mockup-post {
+            aspect-ratio: 1;
+            background: #eee;
+            border: 1px solid #ddd;
+        }
+
+        /* Floating Stat Cards */
+        .floating-card {
+            position: absolute;
+            background: #fff;
+            border: 2px solid #000;
+            padding: 1.5rem;
+            min-width: 200px;
+            z-index: 3;
+            transition: var(--transition);
+            box-shadow: 8px 8px 0px #000;
+        }
+
+        .floating-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 12px 12px 0px #000;
+            background: #000;
+            color: #fff;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .card-top-left {
+            top: 10%;
+            left: 10%;
+            animation: float-slow 4s infinite alternate ease-in-out;
+        }
+
+        .card-top-right {
+            top: 15%;
+            right: 10%;
+            animation: float-slow 5s infinite alternate-reverse ease-in-out;
+        }
+
+        .card-bottom-left {
+            bottom: 20%;
+            left: 5%;
+            animation: float-slow 4.5s infinite alternate ease-in-out;
+        }
+
+        .card-bottom-right {
+            bottom: 15%;
+            right: 5%;
+            animation: float-slow 3.8s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes float-slow {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .infographic-wrapper {
+                flex-direction: column;
+                height: auto;
+                gap: 2rem;
+            }
+
+            .floating-card {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+                width: 100%;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="design-page">
+    <!-- Navbar -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="Mandalla Logo" style="filter: grayscale(100%) contrast(100%);">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link active">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="branding.html">Branding</a></li>
+                            <li><a href="design.html">Design</a></li>
+                            <li><a href="conteudo.html">Conteúdo</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="historia.html">Nossa história</a></li>
+                            <li><a href="#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="#cases">Cases</a></li>
+                            <li><a href="depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="artigos.html">Artigos</a></li>
+                            <li><a href="ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio/feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="index.html#midias-digitais">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="contato.html" class="btn-primary">Contrate-nos</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-design">
+            <div class="design-content">
+                <h1 class="fade-up">
+                    Onde a técnica
+                    <mark>encontra o sentir.</mark>
+                </h1>
+                <p class="fade-up" style="transition-delay: 0.2s;">
+                    Na Mandalla, design é precisão matemática aliada à sensibilidade do olhar. Criamos mapas
+                    estratégicos
+                    visuais que traduzem a complexidade da tecnologia com o calor da conexão humana.
+                </p>
+                <div class="fade-up" style="transition-delay: 0.4s;">
+                    <a href="#portfoli" class="btn-primary">Ver nosso cuidado</a>
+                </div>
+            </div>
+
+            <div class="structure-canvas fade-up">
+                <div class="human-touch">Human Centered</div>
+            </div>
+        </section>
+
+        <section class="details-section border-top">
+            <div class="details-header">
+                <h2 class="fade-up">A obsessão pelos detalhes</h2>
+            </div>
+            <div class="grid-details">
+                <div class="detail-item fade-up">
+                    <div class="detail-icon"><i class="ph ph-bounding-box"></i></div>
+                    <div class="detail-info">
+                        <h4>Arquitetura Visual</h4>
+                        <p>Cada pixel é pensado para guiar a atenção e facilitar a compreensão, transformando informação
+                            em experiência.</p>
+                    </div>
+                </div>
+                <div class="detail-item fade-up" style="transition-delay: 0.1s;">
+                    <div class="detail-icon"><i class="ph ph-fingertip"></i></div>
+                    <div class="detail-info">
+                        <h4>Toque Humano</h4>
+                        <p>Não usamos apenas algoritmos. Nossas escolhas cromáticas e tipográficas são baseadas no que
+                            as pessoas sentem.</p>
+                    </div>
+                </div>
+                <div class="detail-item fade-up" style="transition-delay: 0.2s;">
+                    <div class="detail-icon"><i class="ph ph-pencil-line"></i></div>
+                    <div class="detail-info">
+                        <h4>Estética Wireframe</h4>
+                        <p>Valorizamos a estrutura. O design minimalista que revela a espinha dorsal da sua comunicação.
+                        </p>
+                    </div>
+                </div>
+                <div class="detail-item fade-up" style="transition-delay: 0.3s;">
+                    <div class="detail-icon"><i class="ph ph-lightning"></i></div>
+                    <div class="detail-info">
+                        <h4>Performance Ética</h4>
+                        <p>Design eficiente que respeita o tempo do usuário e o consumo de energia digital.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Editorial Design - DARK MODE -->
+        <section class="details-section" style="border-top: 1px solid #fff; background: #000; color: #fff;">
+            <div class="hero-design" style="min-height: auto; padding: 100px 5%;">
+                <div class="structure-canvas fade-up"
+                    style="order: 2; border-color: #fff; background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px); box-shadow: 15px 15px 0px #333;">
+                    <div style="font-family: serif; font-size: 8rem; opacity: 0.2; position: absolute; color: #fff;">&
+                    </div>
+                    <div class="human-touch"
+                        style="bottom: auto; top: -20px; right: auto; left: -20px; background: #fff; color: #000;">
+                        Layout System</div>
+                </div>
+                <div class="design-content fade-up" style="order: 1;">
+                    <span
+                        style="font-weight: 900; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; display: block; margin-bottom: 1rem; color: #888;">Onde
+                        o impresso ganha vida</span>
+                    <h2
+                        style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 0.9; letter-spacing: -2px; margin-bottom: 2rem; color: #fff;">
+                        Design <br>Editorial.</h2>
+                    <p style="font-size: 1.1rem; color: #aaa; margin-bottom: 2rem;">Transformamos dados e narrativas em
+                        publicações que convidam à leitura. Nossa expertise em design editorial abrange desde revistas e
+                        cartilhas educativas até relatórios de impacto complexos.</p>
+                    <ul style="margin-bottom: 3rem;">
+                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><i
+                                class="ph ph-check-circle" style="color: #fff;"></i> Revistas e Periódicos</li>
+                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><i
+                                class="ph ph-check-circle" style="color: #fff;"></i> Cartilhas de Orientação</li>
+                        <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><i
+                                class="ph ph-check-circle" style="color: #fff;"></i> Livros e E-books de Impacto</li>
+                    </ul>
+                    <a href="contato.html" class="btn-primary"
+                        style="background: #fff; color: #000; border-color: #fff; box-shadow: 4px 4px 0px #444;">Criar
+                        minha publicação</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Restored Section: Digital Media Interactive Infographic -->
+        <section class="infographic-section" id="midias-digitais">
+            <div class="infographic-header fade-up">
+                <span>Gestão Completa de Canais</span>
+                <h2>Mídias Digitais & <mark>Estratégia</mark></h2>
+                <p>Unificamos curadoria visual, tráfego pago e gestão estratégica para maximizar o seu impacto digital.
+                    Veja nossa performance em números.</p>
+            </div>
+
+            <div class="infographic-wrapper fade-up">
+                <div class="floating-card card-top-left">
+                    <span class="stat-value">+250%</span>
+                    <span class="stat-label">Alcance Orgânico</span>
+                </div>
+
+                <div class="floating-card card-top-right">
+                    <span class="stat-value">12.5%</span>
+                    <span class="stat-label">Engajamento Real</span>
+                </div>
+
+                <div class="central-mockup">
+                    <div class="mockup-header">@mandalla_impacto</div>
+                    <div class="mockup-body"></div>
+                    <div class="mockup-grid">
+                        <div class="mockup-post"></div>
+                        <div class="mockup-post"></div>
+                        <div class="mockup-post"></div>
+                        <div class="mockup-post"></div>
+                        <div class="mockup-post"></div>
+                        <div class="mockup-post"></div>
+                    </div>
+                </div>
+
+                <div class="floating-card card-bottom-left">
+                    <span class="stat-value">40k+</span>
+                    <span class="stat-label">Interações/Mês</span>
+                </div>
+
+                <div class="floating-card card-bottom-right">
+                    <span class="stat-value">3.5x</span>
+                    <span class="stat-label">ROI Tráfego Pago</span>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="contato.html" class="btn-primary">Impulsionar meu impacto</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="assets/logo.svg" alt="Mandalla Logo"
+                    style="height: 40px; filter: grayscale(100%); margin-bottom: 1rem;">
+                <p>Comunicação e Design para impacto socioambiental. Girando engrenagens de mudança positiva desde
+                    sempre.</p>
+                <div class="social-links">
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="historia.html">Nossa História</a></li>
+                    <li><a href="impacto.html">Impacto</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Soluções</h4>
+                <ul>
+                    <li><a href="branding.html">Branding</a></li>
+                    <li><a href="design.html">Design</a></li>
+                    <li><a href="conteudo.html">Conteúdo</a></li>
+
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+            &copy; 2024 Mandalla | Girando a mudança.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

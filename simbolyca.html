@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentoria Simbólyca | Sâmila Braga</title>
+    <meta name="description"
+        content="Mentoria para mulheres empreendedoras: conquiste método e coragem para sustentar sua marca autoral.">
+
+    <!-- Google Fonts: Outfit & Playfair Display for a premium touch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --simbolyca-accent: #000;
+            --simbolyca-soft: #f4f4f4;
+            --simbolyca-serif: 'Playfair Display', serif;
+        }
+
+        .simbolyca-page {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Hero Section */
+        .hero-simbolyca {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 151px 5% 100px;
+            background-image: radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.03) 0%, transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-simbolyca::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black, transparent);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content span.tag {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--simbolyca-serif);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-content h1 em {
+            font-weight: 400;
+            -webkit-text-stroke: 1px #000;
+            color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            max-width: 600px;
+            color: #444;
+            margin-bottom: 4rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle-frame {
+            width: 450px;
+            height: 450px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: rotateText 20s linear infinite;
+        }
+
+        .circle-frame::after {
+            content: 'RESGATE • ESTRUTURA • CORAGEM • SIGNIFICADO •';
+            position: absolute;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            width: 110%;
+            height: 110%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Manifest Section */
+        .section-manifest {
+            padding: 120px 5%;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        .manifest-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .manifest-container h2 {
+            font-family: var(--simbolyca-serif);
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 3rem;
+            font-weight: 900;
+        }
+
+        .manifest-container p {
+            font-size: 1.5rem;
+            opacity: 0.7;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* The Method Grid */
+        .section-method {
+            padding: 120px 5%;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: #000;
+            border: 2px solid #000;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .method-card {
+            background: #fff;
+            padding: 4rem;
+            transition: var(--transition);
+        }
+
+        .method-card:hover {
+            background: #f9f9f9;
+        }
+
+        .method-num {
+            font-family: var(--simbolyca-serif);
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            opacity: 0.1;
+            display: block;
+        }
+
+        .method-card h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        /* Clube Planeja & Age */
+        .section-club {
+            padding: 120px 5%;
+            background: #f4f4f4;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+
+        .club-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .club-info h2 {
+            font-family: var(--simbolyca-serif);
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            font-weight: 900;
+        }
+
+        .club-badge {
+            background: #000;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .club-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .club-features li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .section-cta-final {
+            padding: 151px 5%;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 2px solid #000;
+            padding: 6rem 4rem;
+            box-shadow: 20px 20px 0px #000;
+            background: #fff;
+        }
+
+        .cta-box h2 {
+            font-family: var(--simbolyca-serif);
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-simbolyca {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 1.5rem 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 2rem;
+        }
+
+        .btn-simbolyca:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0px #333;
+        }
+
+        @media (max-width: 992px) {
+
+            .hero-container,
+            .club-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p,
+            .club-info p {
+                margin: 0 auto 3rem;
+            }
+
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-simbolyca {
+                padding-top: 120px;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="simbolyca-page">
+    <!-- Navbar -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/simbolyca_logo.svg" alt="Simbólyca Logo"
+                    style="filter: grayscale(100%) contrast(100%);">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#manifest" class="nav-link">O Manifesto</a></li>
+                    <li><a href="#metodo" class="nav-link">A Trilha</a></li>
+                    <li><a href="#clube" class="nav-link">Planeja & Age</a></li>
+                    <li><a href="#jornada" class="nav-link">A Jornada</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#cta" class="btn-primary">Inscrições Abertas</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-simbolyca">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="tag fade-up">Mentoria para Marcas Autorais</span>
+                    <h1 class="fade-up">Seu negócio tem alma. <em>Agora, ele precisa de estrutura.</em></h1>
+                    <p class="fade-up" style="transition-delay: 0.2s;">
+                        Te dou método e coragem para sustentar sua jornada empreendedora. Uma mentoria desenhada para
+                        mulheres que desejam crescer sem perder a essência.
+                    </p>
+                    <div class="fade-up" style="transition-delay: 0.4s;">
+                        <a href="#cta" class="btn-simbolyca">Quero me tornar mentorada</a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-up" style="transition-delay: 0.6s;">
+                    <div class="circle-frame">
+                        <i class="ph ph-sparkle" style="font-size: 5rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-manifest" id="manifest">
+            <div class="manifest-container">
+                <span class="club-badge fade-up">O Manifesto da Simbólyca</span>
+                <h2 class="fade-up">Você sente que seu negócio "travou" mesmo tendo um propósito gigante?</h2>
+                <p class="fade-up" style="transition-delay: 0.2s;">
+                    A lacuna entre o sentir e o realizar é preenchida por <strong>método</strong>. Muitas marcas morrem
+                    não por falta de criatividade, mas por falta de uma espinha dorsal. Na Simbólyca, nós estruturamos o
+                    invisível para que seu impacto se torne real.
+                </p>
+            </div>
+        </section>
+
+        <section class="section-method" id="metodo">
+            <div class="fade-up" style="text-align: center; margin-bottom: 5rem;">
+                <h2 style="font-family: var(--simbolyca-serif); font-size: 3.5rem; font-weight: 900;">A Trilha Simbólyca
+                </h2>
+                <p style="font-size: 1.2rem; color: #666;">Como vamos transformar seu negócio em 3 grandes pilares:</p>
+            </div>
+            <div class="method-grid fade-up">
+                <div class="method-card">
+                    <span class="method-num">01</span>
+                    <h3>Resgate da Essência</h3>
+                    <p>Voltamos ao 'porquê' primordial. Limpamos os ruídos e definimos a mensagem única que só você pode
+                        entregar ao mundo.</p>
+                </div>
+                <div class="method-card">
+                    <span class="method-num">02</span>
+                    <h3>Estruturação Estratégica</h3>
+                    <p>Processos, fluxos e clareza. Transformamos sua intuição em um modelo de negócio sustentável e
+                        escalável.</p>
+                </div>
+                <div class="method-card">
+                    <span class="method-num">03</span>
+                    <h3>Posicionamento de Valor</h3>
+                    <p>Sua marca autoral ganha corpo e voz. Você deixa de competir por preço para ser desejada pelo
+                        significado.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-club" id="clube">
+            <div class="club-container">
+                <div class="club-visual fade-up">
+                    <div
+                        style="background: #000; color: #fff; padding: 4rem; position: relative; box-shadow: 15px 15px 0px rgba(0,0,0,0.1);">
+                        <h3 style="font-family: var(--simbolyca-serif); font-size: 2.5rem; margin-bottom: 1.5rem;">
+                            Planeja & Age</h3>
+                        <p style="opacity: 0.8; font-size: 1.1rem;">Não é apenas sobre ideias. É sobre o chão da
+                            fábrica. Onde a estratégia encontra a execução semanal.</p>
+                        <i class="ph ph-calendar-check"
+                            style="position: absolute; bottom: 20px; right: 20px; font-size: 4rem; opacity: 0.2;"></i>
+                    </div>
+                </div>
+                <div class="club-info fade-up" style="transition-delay: 0.2s;">
+                    <span class="club-badge">COMUNIDADE ATIVA</span>
+                    <h2>Clube Planeja & Age</h2>
+                    <p>O braço de execução da mentoria. Aqui, tiramos os projetos do papel através de encontros focados
+                        em planejamento prático e acompanhamento de metas.</p>
+                    <ul class="club-features">
+                        <li><i class="ph ph-users-three"></i> Encontros quinzenais de acompanhamento</li>
+                        <li><i class="ph ph-strategy"></i> Workshops de Planejamento Mensal</li>
+                        <li><i class="ph ph-chat-circle-dots"></i> Grupo de suporte e networking qualificado</li>
+                        <li><i class="ph ph-pencil-line"></i> Ferramentas exclusivas de gestão criativa</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-mentorship-details" id="jornada" style="padding: 120px 5%;">
+            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+                <div class="fade-up">
+                    <h2 style="font-family: var(--simbolyca-serif); font-size: 3rem; margin-bottom: 2rem;">A Jornada
+                        Conecta</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.7; color: #444;">A Mentoria Simbólyca não é um curso
+                        gravado. É uma experiência viva de troca e crescimento.</p>
+                    <div style="margin-top: 3rem;">
+                        <div style="margin-bottom: 2rem;">
+                            <strong>Acompanhamento Próximo</strong>
+                            <p>Sessões individuais e em grupo para tratar as dores específicas do seu momento.</p>
+                        </div>
+                        <div>
+                            <strong>Curadoria de Conteúdo</strong>
+                            <p>Acesso a materiais de apoio densos, sem enrolação, focados em aplicação imediata.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-up"
+                    style="background: #fdfdfd; border: 1px solid #000; padding: 3rem; transition-delay: 0.2s;">
+                    <span class="club-badge" style="background: #eee; color: #000;">SUA MENTORA</span>
+                    <h3 style="font-family: var(--simbolyca-serif); font-size: 2.5rem; margin: 1rem 0;">Sâmila Braga
+                    </h3>
+                    <p style="line-height: 1.6; margin-bottom: 2rem;">
+                        Diretora da Mandalla Comunicação, com mais de 15 anos de experiência entregando significado para
+                        marcas. Especialista em unir a sensibilidade criativa à precisão estratégica.
+                    </p>
+                    <p
+                        style="font-style: italic; border-left: 3px solid #000; padding-left: 1.5rem; font-size: 1.1rem;">
+                        "Minha missão é garantir que você não precise escolher entre ter um negócio rentável e ter uma
+                        marca com alma."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-cta-final" id="cta">
+            <div class="cta-box fade-up">
+                <span class="manifesto-tag" style="margin-bottom: 2rem;">ÚLTIMA CHAMADA</span>
+                <h2>Pronta para dar estrutura ao seu <span>propósito?</span></h2>
+                <p>As vagas para a nova turma são limitadas para garantir a profundidade do acompanhamento.</p>
+                <a href="contato.html" class="btn-simbolyca">Quero me inscrever agora</a>
+                <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.6;">Dúvidas? <a href="contato.html"
+                        style="color: #000; text-underline-offset: 4px;">Fale com a gente no WhatsApp</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="assets/simbolyca_logo.svg" alt="Simbólyca Logo"
+                    style="height: 40px; filter: grayscale(100%); margin-bottom: 1rem;">
+                <p>Mentoria Simbólyca por Sâmila Braga. Uma iniciativa Mandalla Comunicação.</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/simbolyca" target="_blank"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="index.html" style="font-weight: 900; color: #000;">← Voltar para Mandalla</a></li>
+                    <li><a href="historia.html">Nossa História</a></li>
+                    <li><a href="impacto.html">Impacto</a></li>
+                    <li><a href="artigos.html">Artigos</a></li>
+                    <li><a href="ebooks.html">E-books</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="contato.html">Suporte</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+            &copy; 2024 Mandalla | Simbólyca.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

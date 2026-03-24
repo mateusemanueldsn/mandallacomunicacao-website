@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-books | Mandalla - Conhecimento que Transforma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="branding.html">Branding</a></li>
+                            <li><a href="design.html">Design</a></li>
+                            <li><a href="conteudo.html">Conteúdo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="historia.html">Nossa história</a></li>
+                            <li><a href="index.html#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link active">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="artigos.html">Artigos</a></li>
+                            <li><a href="ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio/feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="index.html#midias-digitais">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section: E-books -->
+        <section class="ebooks-hero">
+            <div class="hero-container">
+                <div class="hero-content fade-up">
+                    <span class="manifesto-tag"
+                        style="border: 1px solid #000; padding: 5px 15px; font-size: 0.7rem; letter-spacing: 2px; font-weight: 900; margin-bottom: 1.5rem; display: inline-block;">BIBLIOTECA
+                        MANDALLA</span>
+                    <h1>Conhecimento <br><span>Compartilhado.</span></h1>
+                    <p>Compilamos nossa experiência em guias práticos e materiais educativos para ajudar sua marca a se
+                        comunicar de forma autêntica, sensível e independente.</p>
+                </div>
+                <div class="hero-visual fade-up" style="transition-delay: 0.2s;">
+                    <div class="ebook-geometric-stack">
+                        <div class="ebook-rect"></div>
+                        <div class="ebook-rect"></div>
+                        <div class="ebook-rect main">
+                            <i class="ph ph-notebook" style="font-size: 4rem; opacity: 0.2;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E-books Listing Section -->
+        <section class="section-ebooks-list">
+            <div class="container">
+                <div class="ebooks-grid">
+                    <!-- Featured E-book -->
+                    <a href="ebooks/guia-gravacao-mobile.html" class="ebook-card featured fade-up">
+                        <div class="ebook-preview">
+                            <span class="badge">DISPONÍVEL</span>
+                            <i class="ph ph-video-camera" style="font-size: 5rem; opacity: 0.1;"></i>
+                        </div>
+                        <div class="ebook-info">
+                            <span class="category">Guia Prático</span>
+                            <h3>Orientação para Gravação de Conteúdo</h3>
+                            <p>Um guia completo para clientes Mandalla: como se preparar, iluminar e gravar vídeos que
+                                conectam com sua audiência de forma profissional e verdadeira.</p>
+                            <div class="ebook-meta">
+                                <span><i class="ph ph-book-open"></i> Leitura Digital Interativa</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div style="text-align: center; padding: 60px 0;">
+            <img src="assets/logo.svg" alt="Mandalla Logo"
+                style="height: 30px; filter: grayscale(100%); margin-bottom: 1.5rem;">
+            <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2024 Mandalla | Girando a Mudança através do Saber.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
