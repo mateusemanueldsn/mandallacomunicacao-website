@@ -1324,12 +1324,17 @@ h4 {
     border-bottom: 2px solid #000;
 }
 
+.articles-container {
+    padding: 0 5%;
+    margin: 80px 0;
+}
+
 .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 0;
     max-width: 1400px;
-    margin: 80px auto;
+    margin: 0 auto;
     border: 1px solid #000;
 }
 

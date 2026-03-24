@@ -257,6 +257,28 @@
                 order: 1;
             }
         }
+        .partners-mini-grid div {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .partners-mini-grid div:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .partners-mini-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .partners-mini-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
     </style>
 </head>
 
@@ -325,13 +347,11 @@
                 <!-- Coluna Esquerda: Texto -->
                 <div class="branding-container">
                     <h1 class="fade-up">
-                        <span>Nossa</span> <span>missão</span> <span>é</span> <span
-                            style="text-decoration: underline;">conectar!</span>
+                        <span>Adiar</span> <span>o</span> <span>fim</span> <span
+                            style="text-decoration: underline;">do mundo.</span>
                     </h1>
                     <p class="fade-up" style="transition-delay: 0.2s;">
-                        Na Mandalla Comunicação & Design, buscamos criar soluções únicas em comunicação com
-                        sensibilidade e estratégia, sempre atentos às questões sociais. Acreditamos no poder
-                        transformador da comunicação e na abordagem interdisciplinar para maximizar resultados.
+                        Desde 2013, a Mandalla Comunicação & Design nasceu do desejo de conectar técnica, sensibilidade e estratégia para gerar impacto socioambiental real. Acreditamos que a comunicação é a coluna vertebral de toda marca consciente.
                     </p>
                 </div>
 
@@ -366,10 +386,93 @@
                         pela entrega pontual, sempre aliados a um serviço de excelência.
                     </p>
                     <p class="fade-up" style="transition-delay: 0.2s;">
-                        Desde agosto de 2013, temos o privilégio de atender empresas e instituições sociais em níveis
+                        Ao longo desses 13 anos, temos o privilégio de atender empresas e instituições sociais em níveis
                         local, nacional e internacional, guiados pela crença de que a comunicação é uma força capaz de
                         mobilizar e inspirar, utilizando suas ferramentas para promover ações estratégicas.
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Section -->
+        <section class="details-section" style="background: #fafafa;">
+            <div class="details-header">
+                <h2 class="fade-up">Liderança Feminina & <mark>Conexão</mark></h2>
+            </div>
+            <div class="grid-details">
+                <div class="detail-item fade-up">
+                    <div class="detail-icon"><i class="ph ph-flag"></i></div>
+                    <div class="detail-info">
+                        <h4>Monique Oliveira</h4>
+                        <p>Fundadora da Mandalla Comunicação & Design, iniciou a trajetória com o propósito de oferecer um olhar sensível e técnico para marcas com alma.</p>
+                    </div>
+                </div>
+                <div class="detail-item fade-up" style="transition-delay: 0.1s;">
+                    <div class="detail-icon"><i class="ph ph-arrows-clockwise"></i></div>
+                    <div class="detail-info">
+                        <h4>Sâmila Braga</h4>
+                        <p>Gestora atual da agência, deu continuidade ao legado, expandindo a visão estratégica e fortalecendo o compromisso socioambiental da Mandalla.</p>
+                    </div>
+                </div>
+                <div class="detail-item fade-up" style="transition-delay: 0.2s;">
+                    <div class="detail-icon"><i class="ph ph-intersect"></i></div>
+                    <div class="detail-info">
+                        <h4>Nathália Borges</h4>
+                        <p>Diretora responsável por guiar a criatividade e a execução técnica, garantindo que cada projeto entregue a excelência que define a Mandalla há mais de uma década.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trajectory & Partners Section -->
+        <section class="details-section" style="border-top: 1px solid #000;">
+            <div class="narrative-grid">
+                <div class="narrative-content">
+                    <h2 class="fade-up">13 Anos de <br>Trajetória Coletiva.</h2>
+                    <p class="fade-up">Nossa história é construída por parcerias que acreditam no poder da comunicação consciente para mover engrenagens globais.</p>
+                    
+                    <div class="partners-mini-grid fade-up" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem;">
+                        <div style="border: 1px solid #000; padding: 1.5rem; text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;">FGV</div>
+                        <div style="border: 1px solid #000; padding: 1.5rem; text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;">ONU / UNV</div>
+                        <div style="border: 1px solid #000; padding: 1.5rem; text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;">TOTVS</div>
+                        <div style="border: 1px solid #000; padding: 1.5rem; text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;">ITAÚ</div>
+                        <div style="border: 1px solid #000; padding: 1.5rem; text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;">SABESP</div>
+                        <div style="border: 1px solid #000; padding: 1.5rem; text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;">CBA</div>
+                    </div>
+                </div>
+                <div class="narrative-visual fade-up" style="height: 100%; min-height: 400px; display: flex; flex-direction: column; justify-content: center; padding: 3rem;">
+                    <span style="font-size: 6rem; font-weight: 900; line-height: 1; letter-spacing: -5px;">13+</span>
+                    <span style="font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Anos Impactando</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ecosystem Section -->
+        <section class="details-section" style="background: #000; color: #fff; border-top: 1px solid #fff;">
+            <div class="details-header">
+                <h2 class="fade-up" style="color: #fff;">Nosso Ecossistema <mark style="-webkit-text-stroke-color: #fff;">360°</mark></h2>
+            </div>
+            <div class="grid-details">
+                <div class="detail-item fade-up">
+                    <div class="detail-icon" style="color: #fff;"><i class="ph ph-flask"></i></div>
+                    <div class="detail-info">
+                        <h4 style="color: #fff;">Mandalla Lab</h4>
+                        <p style="color: #aaa;">Núcleo de inovação e pesquisa, onde testamos novas narrativas e tecnologias para o setor social.</p>
+                    </div>
+                </div>
+                <div class="detail-item fade-up" style="transition-delay: 0.1s;">
+                    <div class="detail-icon" style="color: #fff;"><i class="ph ph-eye"></i></div>
+                    <div class="detail-info">
+                        <h4 style="color: #fff;">Olhar 360</h4>
+                        <p style="color: #aaa;">Metodologia própria de curadoria visual e estratégica para uma comunicação consciente em todos os níveis.</p>
+                    </div>
+                </div>
+                <div class="detail-item fade-up" style="transition-delay: 0.2s;">
+                    <div class="detail-icon" style="color: #fff;"><i class="ph ph-house"></i></div>
+                    <div class="detail-info">
+                        <h4 style="color: #fff;">Casa El</h4>
+                        <p style="color: #aaa;">Nossa base física de criação e trocas, atuando como um hub para iniciativas de impacto complementares.</p>
+                    </div>
                 </div>
             </div>
         </section>

@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         :root {
-            --simbolyca-accent: #000;
+            --simbolyca-accent: #926ECC;
             --simbolyca-soft: #f4f4f4;
             --simbolyca-serif: 'Playfair Display', serif;
         }
@@ -273,7 +273,7 @@
 
         .btn-simbolyca {
             display: inline-block;
-            background: #000;
+            background: var(--simbolyca-accent);
             color: #fff;
             padding: 1.5rem 4rem;
             font-weight: 900;
@@ -288,6 +288,12 @@
         .btn-simbolyca:hover {
             transform: translate(-5px, -5px);
             box-shadow: 5px 5px 0px #333;
+        }
+
+        /* Navbar Override */
+        .simbolyca-page .btn-primary {
+            background: var(--simbolyca-accent);
+            color: #fff;
         }
 
         @media (max-width: 992px) {

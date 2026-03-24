@@ -564,6 +564,108 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* ODS Section */
+        .section-ods {
+            padding: 120px 5%;
+            background: #fff;
+            border-top: 1px solid #000;
+        }
+
+        .ods-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .ods-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .ods-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ods-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .ods-card {
+            border: 1px solid #000;
+            padding: 2.5rem 1.5rem;
+            background: #fff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .ods-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 10px 10px 0px #000;
+            background: #fcfcfc;
+        }
+
+        .ods-number {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+        }
+
+        .ods-icon {
+            font-size: 3rem;
+        }
+
+        .ods-card h3 {
+            font-size: 1.2rem;
+            font-weight: 850;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .ods-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ODS Specific Accents (inspired by Mandalla Palette) */
+        .ods-9 i { color: #FF6C40; } /* Energia/Ação */
+        .ods-10 i { color: #926ECC; } /* Inteligência/Diversidade */
+        .ods-13 i { color: #4CB2AB; } /* Regeneração/Clima */
+        .ods-15 i { color: #4CB2AB; } /* Vida Terrestre */
+        .ods-17 i { color: #000; }    /* Parcerias */
+
+        @media (max-width: 1200px) {
+            .ods-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ods-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ods-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -751,6 +853,79 @@
                     <p style="font-size: 0.85rem; font-style: italic; margin-top: 1rem; opacity: 0.7;">
                         * Sem a estética qualificada do design e o alcance da comunicação, o impacto morre no silêncio.
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-ods">
+            <div class="ods-header fade-up">
+                <span class="manifesto-tag">Agenda 2030</span>
+                <h2>Nossas Raízes na <br><span>Agenda Global.</span></h2>
+                <p>
+                    O compromisso da Mandalla com o "adiar do fim do mundo" não é abstrato. 
+                    Nossa atuação técnica e criativa impulsiona cinco Objetivos de Desenvolvimento Sustentável da ONU.
+                </p>
+            </div>
+
+            <div class="ods-grid">
+                <!-- ODS 9 -->
+                <div class="ods-card ods-9 fade-up" style="transition-delay: 0.1s;">
+                    <span class="ods-number">ODS 09</span>
+                    <div class="ods-icon">
+                        <i class="ph ph-factory"></i>
+                    </div>
+                    <div>
+                        <h3>Indústria, Inovação e Infraestrutura</h3>
+                        <p>Fortalecemos a infraestrutura de comunicação como ferramenta de inclusão e inovação regenerativa.</p>
+                    </div>
+                </div>
+
+                <!-- ODS 10 -->
+                <div class="ods-card ods-10 fade-up" style="transition-delay: 0.2s;">
+                    <span class="ods-number">ODS 10</span>
+                    <div class="ods-icon">
+                        <i class="ph ph-users-three"></i>
+                    </div>
+                    <div>
+                        <h3>Redução das Desigualdades</h3>
+                        <p>Damos voz a territórios e comunidades, democratizando o acesso a narrativas de alto impacto.</p>
+                    </div>
+                </div>
+
+                <!-- ODS 13 -->
+                <div class="ods-card ods-13 fade-up" style="transition-delay: 0.3s;">
+                    <span class="ods-number">ODS 13</span>
+                    <div class="ods-icon">
+                        <i class="ph ph-thermometer-hot"></i>
+                    </div>
+                    <div>
+                        <h3>Ação Contra a Mudança Global do Clima</h3>
+                        <p>Comunicação estratégica para mobilizar consciência e ações urgentes frente à crise climática.</p>
+                    </div>
+                </div>
+
+                <!-- ODS 15 -->
+                <div class="ods-card ods-15 fade-up" style="transition-delay: 0.4s;">
+                    <span class="ods-number">ODS 15</span>
+                    <div class="ods-icon">
+                        <i class="ph ph-tree"></i>
+                    </div>
+                    <div>
+                        <h3>Vida Terrestre</h3>
+                        <p>Design a serviço da regeneração dos ecossistemas e da proteção da biodiversidade.</p>
+                    </div>
+                </div>
+
+                <!-- ODS 17 -->
+                <div class="ods-card ods-17 fade-up" style="transition-delay: 0.5s;">
+                    <span class="ods-number">ODS 17</span>
+                    <div class="ods-icon">
+                        <i class="ph ph-handshake"></i>
+                    </div>
+                    <div>
+                        <h3>Parcerias e Meios de Implementação</h3>
+                        <p>Conectamos o setor criativo, empresas e causas para viabilizar projetos de impacto real.</p>
+                    </div>
                 </div>
             </div>
         </section>
