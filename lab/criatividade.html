@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criatividade Estratégica — Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .lab-logo {
+            width: 100%;
+            max-width: 240px;
+
+            display: block;
+        }
+
+        .nav-container {
+            flex-grow: 1;
+            padding: 0 1rem 2rem;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--lab-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+        }
+
+        .nav-link.active {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            padding: 5rem 8%;
+            max-width: 1200px;
+        }
+
+        .header {
+            margin-bottom: 4rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .creative-card {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .creative-card h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .ai-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tool-link {
+            border: 1px solid #000;
+            padding: 1rem;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+
+        .tool-link:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 3rem 5%;
+            }
+        }
+
+        #toolSearch:focus {
+            background: #fdfdfd;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+
+<body>    <aside class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggleSidebar"
+            style="position: absolute; right: -15px; top: 25px; width: 30px; height: 30px; background: #000; color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 101;"><i
+                class="ph ph-caret-left"></i></button>
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link active"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header reveal">
+            <span class="manifesto-tag">EXPANSÃO DE MENTE</span>
+            <h1>Criatividade <br>Estratégica.</h1>
+            <p>Diretrizes para desbloqueio criativo e aplicação de inteligência artificial em nossos fluxos.</p>
+        </header>
+
+        <section id="ia" class="creative-card">
+            <span class="manifesto-tag">INTELIGÊNCIA SENSÍVEL</span>
+            <h2>IA & O Imaginário Regenerativo</h2>
+            <p>Não usamos a IA para substituir o sentir, mas para amplificar a técnica. Nossa diretriz é criar imagens
+                que respirem o **Brasil Real**, fugindo de estéticas corporativas genéricas e abraçando a integração
+                entre tecnologia e natureza.</p>
+        </section>
+
+        <section id="atlas-prompts" class="creative-card">
+            <span class="manifesto-tag">FONTE DA VERDADE</span>
+            <h2>Atlas de Prompts Visuais</h2>
+            <p>Para garantir a unidade visual da Mandalla, todos os prompts devem seguir a estrutura modular de 5
+                camadas: **Pessoa + Tecnologia + Natureza + Território + Metáfora**.</p>
+
+            <div style="margin-top: 2rem; background: #f9f9f9; padding: 2rem; border-left: 4px solid #000;">
+                <h3 style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;">
+                    Estrutura Mestre (Prompt Base)</h3>
+                <code style="font-size: 0.85rem; line-height: 1.6; display: block; color: #444;">
+                    Photorealistic Brazilian [Northeastern/Urban] context, warm tropical climate, casual lightweight clothing (cotton t-shirt/tank top), natural Brazilian diversity, [OBJECT] integrated with [NATURE ELEMENT], [ACTION], cinematic lighting, 35mm film style, high detail, pure white background, brand palette colors #FF6C40 #926ECC #4CB2AB.
+                </code>
+            </div>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="border: 1px solid #ddd; padding: 1.5rem;">
+                    <h4 style="font-weight: 900; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1rem;">
+                        Germinação Digital</h4>
+                    <p style="font-size: 0.8rem; color: #666; font-style: italic;">"Smartphone where pothos vines and
+                        wheat spikes grow from the screen, small hummingbird nearby, pure white background..."</p>
+                </div>
+                <div style="border: 1px solid #ddd; padding: 1.5rem;">
+                    <h4 style="font-weight: 900; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1rem;">Voz
+                        da Terra</h4>
+                    <p style="font-size: 0.8rem; color: #666; font-style: italic;">"Studio microphone with its base made
+                        of roots and soil, mint leaves growing from the grille, warm natural light..."</p>
+                </div>
+                <div style="border: 1px solid #ddd; padding: 1.5rem;">
+                    <h4 style="font-weight: 900; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1rem;">
+                        Infraestrutura Viva</h4>
+                    <p style="font-size: 0.8rem; color: #666; font-style: italic;">"Fragment of a server rack with clear
+                        water and moss flowing from ports instead of cables, hyper-realistic, white background..."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="metaforas" class="creative-card">
+            <span class="manifesto-tag">NARRATIVA SIMBÓLICA</span>
+            <h2>Metáforas Visuais Estruturais</h2>
+            <p>As imagens da Mandalla não são apenas decorativas; elas contam histórias através de metáforas que
+                conectam tecnologia, natureza e território. Fugimos do literal para criar um universo simbólico potente.
+            </p>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-top: 3rem;">
+                <div>
+                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 1rem; text-transform: uppercase;">
+                        Comunicação como Raiz</h3>
+                    <p
+                        style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+                        As redes digitais e
+                        cabos de fibra óptica transformam-se em raízes que conectam territórios e comunidades,
+                        simbolizando a infraestrutura social invisível.</p>
+                    <div style="background: #f0f0f0; padding: 1.2rem; border-left: 3px solid var(--lab-border);">
+                        <p
+                            style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #444; letter-spacing: 1px;">
+                            Prompt Exemplar</p>
+                        <code
+                            style="font-size: 0.8rem; color: #666; font-style: italic; line-height: 1.4; display: block;">"Brazilian telecom technician opening network box where cables transform into plant roots, photorealistic cinematic lighting, ultra detailed textures, pure white background."</code>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 1rem; text-transform: uppercase;">
+                        Dados como Água</h3>
+                    <p
+                        style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+                        A informação flui como
+                        rios e canais, nutrindo o conhecimento e gerando vida por onde passa. Telas e teclados de onde
+                        brotam gotas e fluxos cristalinos.</p>
+                    <div style="background: #f0f0f0; padding: 1.2rem; border-left: 3px solid var(--lab-border);">
+                        <p
+                            style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #444; letter-spacing: 1px;">
+                            Prompt Exemplar</p>
+                        <code
+                            style="font-size: 0.8rem; color: #666; font-style: italic; line-height: 1.4; display: block;">"Laptop keyboard where clear water flows between keys like a river, photorealistic cinematic lighting, 35mm film style, high detail, pure white background."</code>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 1rem; text-transform: uppercase;">
+                        Impacto como Germinação</h3>
+                    <p
+                        style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+                        Projetos de impacto
+                        são sementes. Visualizamos o crescimento através de plantas reais (musgos, brotos, trepadeiras)
+                        que ocupam objetos tecnológicos.</p>
+                    <div style="background: #f0f0f0; padding: 1.2rem; border-left: 3px solid var(--lab-border);">
+                        <p
+                            style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #444; letter-spacing: 1px;">
+                            Prompt Exemplar</p>
+                        <code
+                            style="font-size: 0.8rem; color: #666; font-style: italic; line-height: 1.4; display: block;">"Smartphone resting on soil where flowers and roots grow around it, photorealistic cinematic lighting, #FF6C40 #926ECC #4CB2AB brand palette, pure white background."</code>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; font-weight: 900; margin-bottom: 1rem; text-transform: uppercase;">
+                        Redes como Ecossistema</h3>
+                    <p
+                        style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+                        A internet e as
+                        conexões humanas funcionando como micélio — uma rede oculta de colaboração e inteligência
+                        coletiva que sustenta a floresta social.</p>
+                    <div style="background: #f0f0f0; padding: 1.2rem; border-left: 3px solid var(--lab-border);">
+                        <p
+                            style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #444; letter-spacing: 1px;">
+                            Prompt Exemplar</p>
+                        <code
+                            style="font-size: 0.8rem; color: #666; font-style: italic; line-height: 1.4; display: block;">"Diverse Brazilian group connected by cables transforming into vines, network forming mycelium-like root structure, photorealistic cinematic lighting, pure white background."</code>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; padding: 2.5rem; background: #000; color: #fff;">
+                <h3
+                    style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 2px;">
+                    Narrativas Visuais Recorrentes</h3>
+                <ul
+                    style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                    <li>
+                        <strong
+                            style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #777; margin-bottom: 0.5rem;">Tecnologia
+                            que Floresce</strong>
+                        <p style="font-size: 0.85rem; line-height: 1.5;">Dispositivos eletrônicos onde a natureza retoma
+                            seu espaço.</p>
+                    </li>
+                    <li>
+                        <strong
+                            style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #777; margin-bottom: 0.5rem;">Voz
+                            da Comunidade</strong>
+                        <p style="font-size: 0.85rem; line-height: 1.5;">Microfones e rádios enraizados no solo fértil
+                            do território.</p>
+                    </li>
+                    <li>
+                        <strong
+                            style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #777; margin-bottom: 0.5rem;">Conhecimento
+                            que Brota</strong>
+                        <p style="font-size: 0.85rem; line-height: 1.5;">Livros, cadernos e telas como solo para a
+                            educação transformadora.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 3rem; display: flex; justify-content: center;">
+                <a href="dicionario-metaforas.html" style="display: inline-flex; align-items: center; gap: 12px; background: #000; color: #fff; padding: 1.5rem 3.5rem; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2.5px; transition: all 0.3s ease; border: 1.5px solid #000;" onmouseover="this.style.background='white'; this.style.color='#000';" onmouseout="this.style.background='#000'; this.style.color='#fff';">
+                    <i class="ph ph-book-open" style="font-size: 1.5rem;"></i> Acessar Dicionário de Metáforas
+                </a>
+            </div>
+        </section>
+
+        <section id="ferramentas" class="creative-card">
+            <span class="manifesto-tag">HUB DE RECURSOS</span>
+            <p>Curadoria de recursos e ferramentas para otimizar o fluxo criativo e garantir a qualidade técnica dos
+                ativos Mandalla.</p>
+
+            <div style="margin-top: 2rem; margin-bottom: 3rem; position: relative;">
+                <input type="text" id="toolSearch" placeholder="Pesquisar ferramentas ou categorias..." 
+                    style="width: 100%; padding: 1.2rem 1.5rem 1.2rem 3.5rem; border: 1.5px solid #000; font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 500; outline: none; transition: all 0.2s ease; border-radius: 0;">
+                <i class="ph ph-magnifying-glass" style="position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #000;"></i>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Referências</h3>
+                <div class="ai-tools">
+                    <a href="https://designi.com.br/" target="_blank" class="tool-link">Designi</a>
+                    <a href="https://www.behance.net/" target="_blank" class="tool-link">Behance</a>
+                    <a href="https://www.pinterest.com/" target="_blank" class="tool-link">Pinterest</a>
+                    <a href="https://dribbble.com/" target="_blank" class="tool-link">Dribbble</a>
+                    <a href="https://brandingstyleguides.com/" target="_blank" class="tool-link">Branding Style Guides</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Ferramentas de IA</h3>
+                <div class="ai-tools">
+                    <a href="https://chat.lmsys.org/" target="_blank" class="tool-link">LM Arena AI</a>
+                    <a href="https://fish.audio/" target="_blank" class="tool-link">Fish Audio AI</a>
+                    <a href="https://suno.com/" target="_blank" class="tool-link">Suno AI</a>
+                    <a href="https://www.promeai.com/" target="_blank" class="tool-link">Prome AI</a>
+                    <a href="https://meta.ai/" target="_blank" class="tool-link">Meta AI</a>
+                    <a href="https://www.seaart.ai/" target="_blank" class="tool-link">Seaart AI</a>
+                    <a href="https://notebooklm.google.com/" target="_blank" class="tool-link">Notebook LM</a>
+                    <a href="#" target="_blank" class="tool-link">Google Flow</a>
+                    <a href="#" target="_blank" class="tool-link">Google Whisky</a>
+                    <a href="#" target="_blank" class="tool-link">Google Pomelli</a>
+                    <a href="https://opal.so/" target="_blank" class="tool-link">Opal</a>
+                    <a href="https://chat.openai.com/" target="_blank" class="tool-link">ChatGPT</a>
+                    <a href="https://www.midjourney.com/" target="_blank" class="tool-link">Midjourney</a>
+                    <a href="https://krea.ai/" target="_blank" class="tool-link">Krea.ai</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Banco de Vídeos</h3>
+                <div class="ai-tools">
+                    <a href="https://coverr.co/" target="_blank" class="tool-link">coverr.co</a>
+                    <a href="https://www.videvo.net/" target="_blank" class="tool-link">videvo</a>
+                    <a href="https://pt.videezy.com/" target="_blank" class="tool-link">videezy</a>
+                    <a href="https://pixabay.com/pt/videos/" target="_blank" class="tool-link">pixabay</a>
+                    <a href="https://artgrid.io/" target="_blank" class="tool-link">artgrid</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Edição de Vídeos</h3>
+                <div class="ai-tools">
+                    <a href="https://www.unscreen.com/" target="_blank" class="tool-link">Unscreen</a>
+                    <a href="https://animoto.com/" target="_blank" class="tool-link">Animoto</a>
+                    <a href="https://www.flexclip.com/" target="_blank" class="tool-link">Flexclip</a>
+                    <a href="https://clipchamp.com/" target="_blank" class="tool-link">Clipchamp</a>
+                    <a href="https://www.animaker.com.br/" target="_blank" class="tool-link">Animaker</a>
+                    <a href="https://invideo.io/" target="_blank" class="tool-link">InVideo</a>
+                    <a href="https://promo.com/" target="_blank" class="tool-link">Promo</a>
+                    <a href="https://www.storyblocks.com/" target="_blank" class="tool-link">Storyblocks</a>
+                    <a href="https://runwayml.com/" target="_blank" class="tool-link">Runway</a>
+                    <a href="https://123apps.com/" target="_blank" class="tool-link">123apps</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Banco de Imagens</h3>
+                <div class="ai-tools">
+                    <a href="https://unsplash.com/" target="_blank" class="tool-link">Unsplash</a>
+                    <a href="https://www.freepik.com/" target="_blank" class="tool-link">Freepik</a>
+                    <a href="https://www.pexels.com/pt-br/" target="_blank" class="tool-link">Pexels</a>
+                    <a href="https://www.pngwing.com/pt" target="_blank" class="tool-link">Pngwing</a>
+                    <a href="https://www.brasilcoms.com.br/" target="_blank" class="tool-link">Brasil com S</a>
+                    <a href="https://www.cleanpng.com/" target="_blank" class="tool-link">Clean Png</a>
+                    <a href="https://pngtree.com/" target="_blank" class="tool-link">Png Tree</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Edição de Imagens</h3>
+                <div class="ai-tools">
+                    <a href="https://www.iloveimg.com/pt" target="_blank" class="tool-link">IloveIMG</a>
+                    <a href="https://www.remove.bg/pt-br" target="_blank" class="tool-link">RemoveBG</a>
+                    <a href="https://remini.ai/" target="_blank" class="tool-link">Remini Web</a>
+                    <a href="https://www.photopea.com/" target="_blank" class="tool-link">Photopea</a>
+                    <a href="https://www.everypixel.com/" target="_blank" class="tool-link">Everypixel</a>
+                    <a href="https://picwish.com/pt/" target="_blank" class="tool-link">PicWish</a>
+                    <a href="https://cleanup.pictures/" target="_blank" class="tool-link">Cleanup Pictures</a>
+                    <a href="https://pixlr.com/br/" target="_blank" class="tool-link">Pixlr</a>
+                    <a href="https://www.designify.com/" target="_blank" class="tool-link">Designify</a>
+                    <a href="https://clippingmagic.com/" target="_blank" class="tool-link">Clipping Magic</a>
+                    <a href="https://upscalepics.com/" target="_blank" class="tool-link">Upscalepics</a>
+                    <a href="https://zyro.com/br/ia/upscaler-de-imagem" target="_blank" class="tool-link">Zyro</a>
+                    <a href="https://palette.fm/" target="_blank" class="tool-link">Palette.fm</a>
+                    <a href="https://www.adobe.com/br/express/" target="_blank" class="tool-link">Adobe Express</a>
+                    <a href="https://juxtapose.knightlab.com/" target="_blank" class="tool-link">Juxtapose</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Cores</h3>
+                <div class="ai-tools">
+                    <a href="https://coolors.co/" target="_blank" class="tool-link">Coolors</a>
+                    <a href="https://color.adobe.com/" target="_blank" class="tool-link">Adobe Color</a>
+                    <a href="https://www.colourlovers.com/" target="_blank" class="tool-link">Colourlovers</a>
+                    <a href="https://encycolorpedia.com/" target="_blank" class="tool-link">Encycolorpedia</a>
+                    <a href="https://duo.alexpate.uk/" target="_blank" class="tool-link">Duo (Alex Pate)</a>
+                    <a href="https://meshgradient.com/" target="_blank" class="tool-link">Mesh Gradient</a>
+                    <a href="https://shadeswash.netlify.app/" target="_blank" class="tool-link">Shadeswash</a>
+                    <a href="https://colorbook.io/" target="_blank" class="tool-link">Colorbook.io</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Animações</h3>
+                <div class="ai-tools">
+                    <a href="https://www.onemotion.com/" target="_blank" class="tool-link">OneMotion</a>
+                    <a href="https://www.renderforest.com/" target="_blank" class="tool-link">Renderforest</a>
+                    <a href="https://rive.app/" target="_blank" class="tool-link">Rive</a>
+                    <a href="https://creativelab5.com/" target="_blank" class="tool-link">Animated Drawings</a>
+                    <a href="https://motionarray.com/" target="_blank" class="tool-link">Motionarray</a>
+                    <a href="https://jitter.video/" target="_blank" class="tool-link">Jitter</a>
+                    <a href="https://getmojo.video/" target="_blank" class="tool-link">Mojo</a>
+                    <a href="https://artboard.studio/" target="_blank" class="tool-link">Artboard Studio</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Texturas</h3>
+                <div class="ai-tools">
+                    <a href="https://ambientcg.com/" target="_blank" class="tool-link">ambientCG</a>
+                    <a href="https://www.poliigon.com/" target="_blank" class="tool-link">Poliigon</a>
+                    <a href="https://polyhaven.com/" target="_blank" class="tool-link">Poly Haven</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Patterns</h3>
+                <div class="ai-tools">
+                    <a href="http://thepatternlibrary.com/" target="_blank" class="tool-link">Pattern Library</a>
+                    <a href="https://tabbied.com/" target="_blank" class="tool-link">Tabbied</a>
+                    <a href="https://www.ls.graphics/products/paaatterns" target="_blank" class="tool-link">Paaatterns</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Formas</h3>
+                <div class="ai-tools">
+                    <a href="https://www.shapedivider.app/" target="_blank" class="tool-link">Shape Divider</a>
+                    <a href="https://blobs.app/" target="_blank" class="tool-link">Blob Generator</a>
+                    <a href="https://getwaves.io/" target="_blank" class="tool-link">Get Waves</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Ícones</h3>
+                <div class="ai-tools">
+                    <a href="https://www.reshot.com/" target="_blank" class="tool-link">Reshot</a>
+                    <a href="https://www.flaticon.com/br/" target="_blank" class="tool-link">Flaticon</a>
+                    <a href="https://fontawesome.com/" target="_blank" class="tool-link">Fontawesome</a>
+                    <a href="https://iconify.design/" target="_blank" class="tool-link">Iconify</a>
+                    <a href="https://icomoon.io/app" target="_blank" class="tool-link">IcoMoon App</a>
+                    <a href="https://www.shapefest.com/" target="_blank" class="tool-link">Shapefest</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Ilustrações</h3>
+                <div class="ai-tools">
+                    <a href="https://freshfolk.com/" target="_blank" class="tool-link">Fresh Folk</a>
+                    <a href="https://blush.design/" target="_blank" class="tool-link">Blush</a>
+                    <a href="https://www.drawkit.com/" target="_blank" class="tool-link">DrawKit</a>
+                    <a href="https://storyset.com/" target="_blank" class="tool-link">Storyset</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Mockups</h3>
+                <div class="ai-tools">
+                    <a href="https://smartmockups.com/" target="_blank" class="tool-link">Smart Mockups</a>
+                    <a href="https://previewed.app/" target="_blank" class="tool-link">Previewed</a>
+                    <a href="https://unsblast.com/" target="_blank" class="tool-link">Unsblast</a>
+                    <a href="https://mockupfree.co/" target="_blank" class="tool-link">Mockupfree.co</a>
+                    <a href="https://www.graphberry.com/" target="_blank" class="tool-link">Graphberry</a>
+                    <a href="https://www.graphicpear.com/" target="_blank" class="tool-link">Graphic Pear</a>
+                    <a href="https://goodmockups.com/" target="_blank" class="tool-link">Goodmockups</a>
+                    <a href="https://mrmockup.com/" target="_blank" class="tool-link">mrmockup</a>
+                    <a href="https://originalmockups.com/" target="_blank" class="tool-link">Original mockups</a>
+                    <a href="https://graphicburger.com/" target="_blank" class="tool-link">Graphic Burger</a>
+                    <a href="https://mockuphone.com/" target="_blank" class="tool-link">MockUPhone</a>
+                    <a href="https://contentdrip.com/" target="_blank" class="tool-link">Contentdrip</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Produtividade</h3>
+                <div class="ai-tools">
+                    <a href="https://www.kumospace.com/" target="_blank" class="tool-link">Kumospace</a>
+                    <a href="https://www.gather.town/" target="_blank" class="tool-link">Gather</a>
+                    <a href="https://www.autodraw.com/" target="_blank" class="tool-link">AutoDraw</a>
+                    <a href="https://trends.google.com/" target="_blank" class="tool-link">Google Trends</a>
+                    <a href="https://buzzsumo.com/" target="_blank" class="tool-link">BuzzSumo</a>
+                    <a href="https://www.shortcuts.design/" target="_blank" class="tool-link">Shortcuts</a>
+                    <a href="https://emojipedia.org/" target="_blank" class="tool-link">Emojipedia</a>
+                    <a href="https://www.google.com/" target="_blank" class="tool-link">Goggle</a>
+                    <a href="https://www.noisli.com/" target="_blank" class="tool-link">Noisli</a>
+                    <a href="https://pitch.com/" target="_blank" class="tool-link">Pitch</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Transferência de Arquivos</h3>
+                <div class="ai-tools">
+                    <a href="https://snapdrop.net/" target="_blank" class="tool-link">Snapdrop.net</a>
+                    <a href="https://justbeamit.com/" target="_blank" class="tool-link">JustBeamlt</a>
+                    <a href="https://fromsmash.com/" target="_blank" class="tool-link">Smash</a>
+                    <a href="https://wetransfer.com/" target="_blank" class="tool-link">Wetransfer</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Ferramentas Editoriais</h3>
+                <div class="ai-tools">
+                    <a href="https://www.invertexto.com/" target="_blank" class="tool-link">invertexto.com</a>
+                    <a href="https://languagetool.org/pt-BR" target="_blank" class="tool-link">LanguageTool</a>
+                    <a href="https://fakeyou.com/" target="_blank" class="tool-link">Fakeyou.com</a>
+                    <a href="https://fastformat.co/" target="_blank" class="tool-link">Fastformat</a>
+                    <a href="https://www.copy.ai/" target="_blank" class="tool-link">Copy.ai</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3
+                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    ✨ Tipografia</h3>
+                <div class="ai-tools">
+                    <a href="https://www.fontspace.com/" target="_blank" class="tool-link">Fontspace</a>
+                    <a href="https://www.1001freefonts.com/" target="_blank" class="tool-link">1001freefonts</a>
+                    <a href="https://www.fontfabric.com/" target="_blank" class="tool-link">Fontfabric</a>
+                    <a href="https://www.fontsquirrel.com/" target="_blank" class="tool-link">Fontsquirrel.com</a>
+                    <a href="https://www.urbanfonts.com/" target="_blank" class="tool-link">Urbanfonts</a>
+                    <a href="https://www.abstractfonts.com/" target="_blank" class="tool-link">Abstractfonts</a>
+                    <a href="https://fontesk.com/" target="_blank" class="tool-link">Fontesk</a>
+                    <a href="https://befonts.com/" target="_blank" class="tool-link">Befontes</a>
+                    <a href="https://www.typographicposters.com/" target="_blank" class="tool-link">Typographicposters</a>
+                    <a href="https://www.myfonts.com/pages/whatthefont" target="_blank" class="tool-link">WhatTheFont</a>
+                    <a href="https://www.dafont.com/pt/" target="_blank" class="tool-link">Dafont</a>
+                    <a href="https://velvetyne.fr/" target="_blank" class="tool-link">Velvetyne (Open Source)</a>
+                    <a href="https://typewolf.com/" target="_blank" class="tool-link">Typewolf</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab"
+                            style="height: 120px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da
+                        Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">
+                        Navegação</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="../index.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Mandalla
+                                Comunicação & Design</a></li>
+                        <li><a href="../simbolyca.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Simbólyca</a>
+                        </li>
+                        <li><a href="lab.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Dashboard
+                                Lab</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+                <span>Design Sensível & Estratégia Técnica</span>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Sistema de busca do Hub
+        const searchInput = document.getElementById('toolSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase().trim();
+                const toolSections = document.querySelectorAll('#ferramentas > div[style*="margin-top"]');
+                
+                toolSections.forEach(section => {
+                    const tools = section.querySelectorAll('.tool-link');
+                    const sectionHeader = section.querySelector('h3');
+                    if (!sectionHeader) return;
+                    
+                    const sectionTitle = sectionHeader.textContent.toLowerCase();
+                    let sectionHasMatch = sectionTitle.includes(query);
+                    let visibleInThisSection = 0;
+
+                    tools.forEach(tool => {
+                        const toolName = tool.textContent.toLowerCase();
+                        if (toolName.includes(query) || sectionHasMatch) {
+                            tool.style.display = 'block';
+                            visibleInThisSection++;
+                        } else {
+                            tool.style.display = 'none';
+                        }
+                    });
+
+                    // Mostra a seção se ela tiver o título batendo ou ferramentas visíveis
+                    if (visibleInThisSection > 0 || sectionHasMatch) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

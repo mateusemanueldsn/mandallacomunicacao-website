@@ -1,0 +1,38 @@
+MANDALLA - PADRÃO ESTÉTICO PARA REPRESENTAÇÕES INTERATIVAS
+======================================================
+
+Este documento estabelece as diretrizes visuais e técnicas para a criação de elementos interativos no site Mandalla, garantindo consistência com a identidade de "Comunicação com Alma" e "Design Sensível".
+
+1. FORMAS E ESTRUTURA
+---------------------
+- O Portal (Arch): Representa transição, acolhimento e entrada para o universo Mandalla. Deve ser uma forma de arco com topo arredondado (border-radius: 200px 200px 0 0).
+- Círculos de Mandalla: O uso de círculos concêntricos e formas circulares orgânicas (como a lótus) simboliza o girar das engrenagens da mudança positiva.
+- Linhas e Pontos (Nodes): Elementos técnicos de grid e "blueprint" que se conectam aos elementos orgânicos, representando o equilíbrio entre técnica e sensibilidade.
+
+2. CORES E OPACIDADE
+--------------------
+- Fundo: Translucidez é fundamental (backdrop-filter: blur).
+- Bordas: Linhas finas (1px) com opacidade reduzida (0.2 a 0.4) em branco ou cores da marca.
+- Sombras: drop-shadows suaves para dar profundidade e efeito de "vazamento" de luz.
+
+3. ANIMAÇÕES (SISTEMAS VIVOS)
+------------------------------
+- Pulso (Breathing): Elementos centrais devem ter um pulso constante e suave (pulse-feminine / breathing-silhouette).
+- Flutuação (Floating): Pequenos ícones e símbolos devem flutuar de forma assíncrona para criar sensação de leveza.
+- Rotação: Movimentos circulares lentos (rotate-gear) simbolizam processos e fluidez.
+
+4. INTERATIVIDADE E HOVER
+-------------------------
+- Reatividade: Ao passar o mouse (hover), o sistema deve "despertar". 
+  - Aceleração das batidas/pulsos.
+  - Leve escala (scale 1.1).
+  - Mudança sutil na rotação ou opacidade.
+- Performance: Utilizar CSS Transitions e Keyframes para suavidade.
+
+5. FUTURA INTEGRAÇÃO COM COLAGENS
+---------------------------------
+- As molduras (portais e círculos) foram desenhadas para servir como "portais de visualização" para as colagens manuais da Mandalla.
+- Ao adicionar imagens de colagem no futuro, elas devem ser posicionadas dentro desses frames (divs portal-frame ou mentoria-canvas), mantendo as camadas de linhas e pulsos interativos por cima ou por trás para manter a profundidade.
+
+------------------------------------------------------
+Diretriz criada pela Antigravity AI - Mandalla 2026.

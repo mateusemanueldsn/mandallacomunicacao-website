@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicação de Impacto | Mandalla Comunicação & Design</title>
+    <meta name="description"
+        content="Na Mandalla, usamos a comunicação como ferramenta para adiar o fim do mundo. Estratégias de impacto socioambiental positivo.">
+
+    <!-- Google Fonts: Outfit -->
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon_mandalla.png">
+    <style>
+        :root {
+            --impact-green: #e1e1e1;
+            /* Mantendo wireframe, mas podemos usar variações de cinza */
+        }
+
+        .impact-page {
+            background-color: var(--bg-color);
+        }
+
+        /* Hero Impact */
+        .hero-impact {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .impact-hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .impact-hero-content h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -4px;
+            margin-bottom: 2rem;
+        }
+
+        .impact-hero-content h1 span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1.5px #000;
+        }
+
+        .impact-hero-content p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 3rem;
+        }
+
+        /* Manifesto Box */
+        .manifesto-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            border-radius: var(--radius-round);
+        }
+
+        /* Estrutura Narrativa (Visual) */
+        .structure-impact {
+            position: relative;
+            height: 500px;
+            border: 2px solid #000;
+            background: #fff;
+            box-shadow: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .structure-impact::before {
+            content: 'ADIARE O FIM DO MUNDO';
+            position: absolute;
+            font-weight: 900;
+            font-size: 10rem;
+            opacity: 0.03;
+            white-space: nowrap;
+            transform: rotate(-45deg);
+        }
+
+        .circle-pulse {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse-ring 4s infinite ease-out;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+        }
+
+        /* Data Section */
+        .impact-stats {
+            padding: 100px 5%;
+            background: #fff;
+            border-top: 1px solid #000;
+        }
+
+        .stats-infographic {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 3rem 2rem;
+            border: 1px solid #000;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-10px);
+        }
+
+        .stat-item h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        /* ODS / Sustainability Goals */
+        .section-goals {
+            padding: 100px 5%;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 40%);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .goal-box {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 4rem;
+            position: relative;
+            box-shadow: none;
+        }
+
+        .goal-box h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .goal-box ul {
+            list-style: none;
+        }
+
+        .goal-box li {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .goal-box li i {
+            margin-top: 4px;
+        }
+
+        /* Impact Definition Section */
+        .section-impact-definition {
+            padding: 120px 5%;
+            background: #fdfdfd;
+            border-top: 1px solid #000;
+        }
+
+        .definition-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .definition-text h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 2.5rem;
+        }
+
+        .definition-text p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .connection-box {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 3rem;
+            position: relative;
+            box-shadow: none;
+        }
+
+        .connection-box h4 {
+            font-size: 1.5rem;
+            font-weight: 850;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .connection-item {
+            margin-bottom: 2rem;
+            padding-left: 20px;
+            border-left: 3px solid #000;
+        }
+
+        .connection-item strong {
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-cta-final {
+            padding: 150px 5%;
+            background-color: #000;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid #000;
+            text-align: left;
+        }
+
+        .section-cta-final::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .cta-inner-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -3px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-content h2 span {
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+            display: block;
+        }
+
+        .cta-content p {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            opacity: 0.7;
+            margin-bottom: 3.5rem;
+            max-width: 500px;
+        }
+
+        .cta-visual {
+            position: relative;
+            height: 450px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .strategic-map {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Background Grid for the Map */
+        .map-grid {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            transform: rotate(45deg);
+        }
+
+        .node-center {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 1px solid #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            z-index: 5;
+            box-shadow: none;
+            border-radius: var(--radius-round);
+        }
+
+        .node-center i {
+            font-size: 3rem;
+            color: #fff;
+            animation: core-glow 4s infinite alternate ease-in-out;
+        }
+
+        .node-orbit {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 6;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: var(--radius-round);
+        }
+
+        .node-orbit i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .node-orbit span {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 900;
+            opacity: 0.7;
+        }
+
+        /* Floating Positions */
+        .node-impact {
+            transform: translate(-140px, -110px);
+        }
+
+        .node-design {
+            transform: translate(140px, -110px);
+        }
+
+        .node-voice {
+            transform: translate(-140px, 110px);
+        }
+
+        .node-future {
+            transform: translate(140px, 110px);
+        }
+
+        .node-orbit:hover {
+            border-color: #fff;
+            transform: scale(1.1) translate(var(--tx), var(--ty));
+            /* Will handle in inline or classes if needed, for now just scale */
+        }
+
+        /* Overriding hover transform for specific nodes to keep their relative pos */
+        .node-impact:hover {
+            transform: translate(-140px, -110px) scale(1.1);
+        }
+
+        .node-design:hover {
+            transform: translate(140px, -110px) scale(1.1);
+        }
+
+        .node-voice:hover {
+            transform: translate(-140px, 110px) scale(1.1);
+        }
+
+        .node-future:hover {
+            transform: translate(140px, 110px) scale(1.1);
+        }
+
+        /* Strategic Link Lines (SVG) */
+        .strategic-links {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .strategic-links line {
+            stroke: rgba(255, 255, 255, 0.15);
+            stroke-width: 1;
+            stroke-dasharray: 4, 4;
+            animation: link-flow 30s linear infinite;
+        }
+
+        @keyframes core-glow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+            }
+
+            to {
+                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+            }
+        }
+
+        @keyframes link-flow {
+            to {
+                stroke-dashoffset: -200;
+            }
+        }
+
+        /* Tech markers around the center */
+        .tech-ring {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rotateText 60s linear infinite;
+        }
+
+        @keyframes rotateText {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-impact {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3.5rem;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            box-shadow: none;
+        }
+
+        .btn-impact:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: none;
+            background: #e1e1e1;
+        }
+
+        /* Source Footer Adjustments */
+        .source-footer {
+            text-align: center;
+            padding: 60px 5%;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 992px) {
+
+            .impact-hero-grid,
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-infographic {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-infographic {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="impact-page">
+    <!-- Navbar -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="branding.html">Branding</a></li>
+                            <li><a href="design.html">Design</a></li>
+                            <li><a href="conteudo.html">Conteúdo</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="historia.html">Nossa história</a></li>
+                            <li><a href="#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link active">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="#cases">Cases</a></li>
+                            <li><a href="depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="artigos.html">Artigos</a></li>
+                            <li><a href="ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio/feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="portfolio/midias-digitais.html">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="contato.html" class="btn-primary">Contrate-nos</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-impact">
+            <div class="impact-hero-grid">
+                <div class="impact-hero-content">
+                    <span class="manifesto-tag fade-up">O Manifesto da Urgência</span>
+                    <h1 class="fade-up">
+                        Design e Voz para
+                        <span>adiar o fim do mundo.</span>
+                    </h1>
+                    <p class="fade-up" style="transition-delay: 0.2s;">
+                        Não somos uma OSC e sim uma agência criativa, que bebe da fonte do impacto socioambiental.
+                        Usamos o <strong>Design</strong> e a <strong>Comunicação Estratégica</strong> como ferramentas
+                        potentes para refrear o abismo e conectar marcas à sua essência regenerativa.
+                    </p>
+                    <div class="fade-up" style="transition-delay: 0.4s;">
+                        <a href="contato.html" class="btn-primary">Fazer parte da mudança</a>
+                    </div>
+                </div>
+
+                <div class="structure-impact fade-up">
+                    <div class="circle-pulse">
+                        <i class="ph ph-planet" style="font-size: 3rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="impact-stats">
+            <div class="stats-infographic">
+                <div class="stat-item fade-up">
+                    <h2 class="stat-number" data-target="92" data-suffix="%">0%</h2>
+                    <p>Trocam de marca por causas ambientais</p>
+                </div>
+                <div class="stat-item fade-up" style="transition-delay: 0.1s;">
+                    <h2 class="stat-number" data-target="89" data-suffix="%">0%</h2>
+                    <p>Das indústrias já adotam práticas ESG</p>
+                </div>
+                <div class="stat-item fade-up" style="transition-delay: 0.2s;">
+                    <h2 class="stat-number" data-target="10" data-suffix="k">0k</h2>
+                    <p>Pesquisas anuais focadas em ciência ambiental</p>
+                </div>
+                <div class="stat-item fade-up" style="transition-delay: 0.3s;">
+                    <h2 class="stat-number" data-target="2030" data-suffix="">0</h2>
+                    <p>O limite para as metas globais da ONU</p>
+                </div>
+            </div>
+
+            <!-- Transparência de Dados -->
+            <div class="stats-references fade-up">
+                <p>
+                    <i class="ph ph-info"></i> <strong>Transparência:</strong> Dados baseados em relatórios da Nielsen
+                    (2023),
+                    CNI - Indústria Brasileira (2022), Scopus/Elsevier Environment Science e as Metas de Desenvolvimento
+                    Sustentável da ONU.
+                </p>
+            </div>
+        </section>
+
+        <section class="section-goals border-top">
+            <div class="goals-grid">
+                <div class="goal-box fade-up">
+                    <span class="manifesto-tag">Nossa Abordagem</span>
+                    <h3>A estética a serviço da vida.</h3>
+                    <p>O "Antropoceno" exige uma nova linguagem visual. Na Mandalla, não entregamos apenas impacto;
+                        entregamos <strong>soluções criativas</strong> que viabilizam o impacto:</p>
+                    <br>
+                    <ul>
+                        <li><i class="ph ph-pen-nib"></i> <strong>Design Sistêmico:</strong> Identidades visuais que
+                            comunicam responsabilidade e ética em cada traço.</li>
+                        <li><i class="ph ph-chat-centered-text"></i> <strong>Narrativas de Impacto:</strong>
+                            Transformamos dados técnicos de sustentabilidade em histórias que engajam.</li>
+                        <li><i class="ph ph-strategy"></i> <strong>Estratégia Criativa:</strong> Campanhas que ocupam
+                            espaços e mobilizam a opinião pública para causas reais.</li>
+                        <li><i class="ph ph-laptop"></i> <strong>Interfaces Sensíveis:</strong> Experiências digitais
+                            humanas que eliminam o ruído e focam na conexão.</li>
+                    </ul>
+                </div>
+
+                <div class="impact-narrative fade-up" style="transition-delay: 0.2s;">
+                    <h2 style="font-size: 2.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 2rem;">
+                        O impacto é o nosso guia, mas a <span>Comunicação e o Design</span> são o nosso motor.
+                    </h2>
+                    <p style="font-size: 1.2rem; line-height: 1.7; color: var(--text-muted);">
+                        Entendemos que para adiar o fim do mundo, precisamos qualificar a circulação de informações.
+                        Nossa expertise está em traduzir o propósito socioambiental em peças de design e narrativas que
+                        as pessoas realmente queiram ouvir e ver.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-impact-definition">
+            <div class="definition-grid">
+                <div class="definition-text fade-up">
+                    <span class="manifesto-tag"
+                        style="background:#000; color:#fff; padding: 5px 15px; font-size: 0.7rem; letter-spacing: 2px; font-weight: 900; margin-bottom: 1.5rem; display: inline-block;">DEFINIÇÃO
+                        ORIENTADA</span>
+                    <h2>O que chamamos de <br><span>Impacto Socioambiental?</span></h2>
+                    <p>
+                        Impacto socioambiental não é um selo ou uma campanha isolada; é o resultado tangível de ações
+                        que melhoram as condições de vida das pessoas e preservam a integridade dos ecossistemas.
+                    </p>
+                    <p>
+                        Na Mandalla, entendemos que o maior desafio das causas socioambientais é a **ressocialização da
+                        urgência**: tirar o tema do campo meramente técnico ou acadêmico e trazê-lo para o cotidiano,
+                        para a cultura e para as decisões de consumo.
+                    </p>
+                </div>
+
+                <div class="connection-box fade-up" style="transition-delay: 0.2s;">
+                    <h4>O Elo Invisível</h4>
+                    <div class="connection-item">
+                        <strong>Comunicação como Voz</strong>
+                        <p>O impacto só existe se ele for compreendido. A comunicação é a ferramenta que traduz a
+                            complexidade da regeneração em narrativas que movem as pessoas da inércia para a ação.</p>
+                    </div>
+                    <div class="connection-item">
+                        <strong>Design como Viabilizador</strong>
+                        <p>O Design não é enfeite, é estratégia. Ele dá forma visual ao propósito, criando interfaces e
+                            identidades que legitimam projetos de impacto e facilitam o processo de ressocialização de
+                            ideias fundamentais.</p>
+                    </div>
+                    <p style="font-size: 0.85rem; font-style: italic; margin-top: 1rem; opacity: 0.7;">
+                        * Sem a estética qualificada do design e o alcance da comunicação, o impacto morre no silêncio.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-sdg">
+            <div class="container">
+                <div class="sdg-header fade-up">
+                    <span class="manifesto-tag">Agenda 2030</span>
+                    <h2>Nossa conexão com as <span>Metas Globais.</span></h2>
+                    <p>A Mandalla alinha sua operação e estratégias criativas aos Objetivos de Desenvolvimento Sustentável da ONU, transformando propósito em metas tangíveis para um futuro regenerativo.</p>
+                </div>
+
+                <div class="sdg-grid">
+                    <!-- ODS 4 -->
+                    <div class="sdg-card ods-4 fade-up">
+                        <div class="sdg-card-content">
+                            <div class="sdg-number">4</div>
+                            <div class="sdg-title">Educação de Qualidade</div>
+                        </div>
+                        <i class="ph ph-book-open sdg-icon-bg"></i>
+                    </div>
+
+                    <!-- ODS 5 -->
+                    <div class="sdg-card ods-5 fade-up" style="transition-delay: 0.1s;">
+                        <div class="sdg-card-content">
+                            <div class="sdg-number">5</div>
+                            <div class="sdg-title">Igualdade de Gênero</div>
+                        </div>
+                        <i class="ph ph-gender-intersex sdg-icon-bg"></i>
+                    </div>
+
+                    <!-- ODS 8 -->
+                    <div class="sdg-card ods-8 fade-up" style="transition-delay: 0.2s;">
+                        <div class="sdg-card-content">
+                            <div class="sdg-number">8</div>
+                            <div class="sdg-title">Trabalho Decente</div>
+                        </div>
+                        <i class="ph ph-chart-line-up sdg-icon-bg"></i>
+                    </div>
+
+                    <!-- ODS 10 -->
+                    <div class="sdg-card ods-10 fade-up" style="transition-delay: 0.3s;">
+                        <div class="sdg-card-content">
+                            <div class="sdg-number">10</div>
+                            <div class="sdg-title">Redução das Desigualdades</div>
+                        </div>
+                        <i class="ph ph-equals sdg-icon-bg"></i>
+                    </div>
+
+                    <!-- ODS 12 -->
+                    <div class="sdg-card ods-12 fade-up" style="transition-delay: 0.4s;">
+                        <div class="sdg-card-content">
+                            <div class="sdg-number">12</div>
+                            <div class="sdg-title">Consumo e Produção Responsáveis</div>
+                        </div>
+                        <i class="ph ph-infinity sdg-icon-bg"></i>
+                    </div>
+
+                    <!-- ODS 13 -->
+                    <div class="sdg-card ods-13 fade-up" style="transition-delay: 0.5s;">
+                        <div class="sdg-card-content">
+                            <div class="sdg-number">13</div>
+                            <div class="sdg-title">Ação Contra a Mudança Global do Clima</div>
+                        </div>
+                        <i class="ph ph-potted-plant sdg-icon-bg"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-cta-final">
+            <div class="cta-inner-grid">
+                <div class="cta-content">
+                    <h2 class="fade-up">Vamos criar <span>comunicação que importa?</span></h2>
+                    <p class="fade-up" style="transition-delay: 0.2s;">
+                        Se o seu negócio bebe da fonte do impacto socioambiental, nós temos as ferramentas criativas
+                        para dar voz e forma a essa jornada.
+                    </p>
+                    <div class="fade-up" style="transition-delay: 0.4s;">
+                        <a href="contato.html" class="btn-impact">
+                            Iniciar Projeto Criativo
+                            <i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cta-visual fade-up" style="transition-delay: 0.6s;">
+                    <div class="strategic-map">
+                        <div class="map-grid"></div>
+                        <div class="tech-ring"></div>
+
+                        <!-- Center Core -->
+                        <div class="node-center">
+                            <i class="ph ph-lightning"></i>
+                        </div>
+
+                        <!-- Orbiting Strategic Nodes -->
+                        <div class="node-orbit node-impact">
+                            <i class="ph ph-planet"></i>
+                            <span>Impacto</span>
+                        </div>
+                        <div class="node-orbit node-design">
+                            <i class="ph ph-pen-nib"></i>
+                            <span>Design</span>
+                        </div>
+                        <div class="node-orbit node-voice">
+                            <i class="ph ph-broadcast"></i>
+                            <span>Voz Site</span>
+                        </div>
+                        <div class="node-orbit node-future">
+                            <i class="ph ph-rocket-launch"></i>
+                            <span>Futuro</span>
+                        </div>
+
+                        <!-- Connections -->
+                        <svg class="strategic-links">
+                            <!-- In a real app we'd use dynamic coordinates, here we use fixed values for the grid -->
+                            <line x1="50%" y1="50%" x2="calc(50% - 140px)" y2="calc(50% - 110px)" />
+                            <line x1="50%" y1="50%" x2="calc(50% + 140px)" y2="calc(50% - 110px)" />
+                            <line x1="50%" y1="50%" x2="calc(50% - 140px)" y2="calc(50% + 110px)" />
+                            <line x1="50%" y1="50%" x2="calc(50% + 140px)" y2="calc(50% + 110px)" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="assets/logo.svg" alt="Mandalla Logo" style="height: 40px;margin-bottom: 1rem;">
+                <p>Comunicação e Design para impacto socioambiental. Girando engrenagens de mudança positiva desde
+                    sempre.</p>
+                <div class="social-links">
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="historia.html">Nossa História</a></li>
+                    <li><a href="impacto.html">Impacto</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Soluções</h4>
+                <ul>
+                    <li><a href="branding.html">Branding</a></li>
+                    <li><a href="design.html">Design</a></li>
+                    <li><a href="conteudo.html">Conteúdo</a></li>
+                    <li><a href="index.html#mentoria">Mentoria Simbólyca</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+            &copy; 2026 Mandalla | Girando a mudança.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

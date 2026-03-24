@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipografia — Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        @font-face {
+            font-family: 'Boiling';
+            src: url('../assets/fonts/Boiling-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Boiling';
+            src: url('../assets/fonts/Boiling-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Boiling';
+            src: url('../assets/fonts/Boiling-Black.ttf') format('truetype');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            src: url('../assets/fonts/lato-bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Rasfire';
+            src: url('../assets/fonts/Rasfire-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Rasfire';
+            src: url('../assets/fonts/Rasfire-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../assets/fonts/Poppins-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+    </style>
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .lab-logo {
+            width: 100%;
+            max-width: 240px;
+
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            flex-grow: 1;
+            padding: 0 1rem 2rem;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--lab-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+        }
+
+        .nav-link.active {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            padding: 5rem 8%;
+            max-width: 1400px;
+            transition: margin-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Minimização do Menu */
+        .sidebar.minimized {
+            width: 80px;
+        }
+
+        .sidebar.minimized .nav-title,
+        .sidebar.minimized .nav-link span,
+        .sidebar.minimized .sidebar-header .lab-logo {
+            display: none;
+        }
+
+        .sidebar.minimized .sidebar-header::after {
+            content: "L";
+            font-weight: 900;
+            font-size: 2rem;
+        }
+
+        .sidebar.minimized .nav-link {
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .sidebar.minimized .nav-link i {
+            font-size: 1.5rem;
+        }
+
+        body.sidebar-minimized .main-content {
+            margin-left: 80px;
+        }
+
+        .toggle-sidebar {
+            position: absolute;
+            right: -15px;
+            top: 25px;
+            width: 30px;
+            height: 30px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 101;
+            transition: transform 0.3s ease;
+        }
+
+        .header {
+            margin-bottom: 4rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hub-section {
+            margin-bottom: 6rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #999;
+            margin-bottom: 2rem;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .typography-box {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 3rem;
+        }
+
+        .typo-label {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .typo-display {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                padding: 3rem 5%;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .typography-box {
+                padding: 1.5rem;
+            }
+
+            .typo-display {
+                font-size: 2.5rem;
+            }
+
+            .panel-info {
+                flex-direction: column;
+                gap: 1.5rem !important;
+            }
+
+            .panel-info-name {
+                font-size: 3rem !important;
+            }
+
+            .typography-box div {
+                gap: 1rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .font-tab-btn {
+                padding: 0.8rem 1rem;
+                font-size: 0.65rem;
+                flex-grow: 1;
+                text-align: center;
+                border-bottom: 1px solid #000;
+            }
+        }
+    </style>
+</head>
+
+<body>    <aside class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggleSidebar"
+            style="position: absolute; right: -15px; top: 25px; width: 30px; height: 30px; background: #000; color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 101;"><i
+                class="ph ph-caret-left"></i></button>
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header reveal">
+            <span class="manifesto-tag">IDENTIDADE VISUAL</span>
+            <h1>Tipografia.</h1>
+            <p>O sistema de fontes que estrutura nossa linguagem visual e técnica.</p>
+        </header>
+
+        <section id="tipografia" class="hub-section">
+            <div class="intro-text reveal" style="margin-bottom: 4rem; max-width: 800px;">
+                <p style="font-size: 1.25rem; line-height: 1.6; color: var(--lab-text-muted);">
+                    A tipografia é a infraestrutura do nosso pensamento. Ela não apenas carrega a mensagem, mas define o
+                    tom do nosso impacto. Cada família foi escolhida com propósito: da precisão geométrica à alma
+                    orgânica das nossas marcas.
+                </p>
+            </div>
+
+            <!-- Mandalla Section -->
+            <div class="brand-typo-group reveal" style="margin-bottom: 6rem;">
+                <h3
+                    style="font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; border-left: 4px solid #FF6C40; padding-left: 15px;">
+                    Ecossistema Mandalla</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                    <div class="typography-box">
+                        <span class="typo-label" style="color: #FF6C40;">Principal / Boiling (Local)</span>
+                        <div class="typo-display"
+                            style="font-family: 'Boiling', sans-serif; font-size: 3.5rem; font-weight: 900; margin-top: 1rem;">
+                            Mandalla</div>
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; line-height: 1.6;">Uma fonte
+                            proprietária de alto impacto. Representa a fervura de ideias e a transição constante.</p>
+                        <div
+                            style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 2rem; font-family: 'Boiling', sans-serif;">
+                            <span style="font-size: 1.5rem; font-weight: normal;">Regular</span>
+                            <span style="font-size: 1.5rem; font-weight: bold;">Bold</span>
+                            <span style="font-size: 1.5rem; font-weight: 900;">Black</span>
+                        </div>
+                    </div>
+                    <div class="typography-box">
+                        <span class="typo-label">Complementar / Lato (Local)</span>
+                        <div class="typo-display"
+                            style="font-family: 'Lato', sans-serif; font-size: 3rem; margin-top: 1rem;">Regeneração
+                        </div>
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; line-height: 1.6;">Sânscrita e
+                            humanista. Traz a estrutura necessária para a leitura fluida em corpos de texto.</p>
+                        <div
+                            style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 2rem; font-family: 'Lato', sans-serif;">
+                            <span style="font-size: 1.2rem; font-weight: 300;">Light</span>
+                            <span style="font-size: 1.2rem; font-weight: normal;">Regular</span>
+                            <span style="font-size: 1.2rem; font-weight: bold;">Bold</span>
+                            <span style="font-size: 1.2rem; font-weight: 900;">Black</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simbólyca Section -->
+            <div class="brand-typo-group reveal" style="margin-bottom: 6rem;">
+                <h3
+                    style="font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; border-left: 4px solid #926ECC; padding-left: 15px;">
+                    Ecossistema Simbólyca</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="typography-box">
+                        <span class="typo-label" style="color: #926ECC;">Principal / Rasfire (Local)</span>
+                        <div class="typo-display"
+                            style="font-family: 'Rasfire', serif; font-size: 3.5rem; margin-top: 1rem;">
+                            Simbólyca</div>
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; line-height: 1.6;">Espírito e
+                            fluidez. Uma fonte que carrega a alma da Simbólyca, conectando o simbólico ao visual.</p>
+                        <div
+                            style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 2rem; font-family: 'Rasfire', serif;">
+                            <span style="font-size: 1.5rem; font-weight: normal;">Regular</span>
+                            <span style="font-size: 1.5rem; font-weight: bold;">Bold</span>
+                        </div>
+                    </div>
+                    <div class="typography-box">
+                        <span class="typo-label">Complementar / Poppins (Local)</span>
+                        <div class="typo-display"
+                            style="font-family: 'Poppins', sans-serif; font-size: 3rem; margin-top: 1rem;">Equilíbrio
+                        </div>
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; line-height: 1.6;">Geometria pura.
+                            Moderna e versátil, garante a precisão técnica necessária.</p>
+                        <div
+                            style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 2rem; font-family: 'Poppins', sans-serif;">
+                            <span style="font-size: 1.2rem; font-weight: 300;">Light</span>
+                            <span style="font-size: 1.2rem; font-weight: normal;">Regular</span>
+                            <span style="font-size: 1.2rem; font-weight: 500;">Medium</span>
+                            <span style="font-size: 1.2rem; font-weight: bold;">Bold</span>
+                            <span style="font-size: 1.2rem; font-weight: 900;">Black</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interface Section -->
+            <div class="brand-typo-group reveal">
+                <h3
+                    style="font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; border-left: 4px solid #000; padding-left: 15px;">
+                    Interface Lab (UI)</h3>
+
+                <div class="typography-box"
+                    style="background: #000; color: #fff; padding: 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+                    <div style="max-width: 500px;">
+                        <span class="typo-label" style="color: #aaa;">Fonte do Sistema / Lato (Local)</span>
+                        <div class="typo-display"
+                            style="font-family: 'Lato', sans-serif; font-size: 3.5rem; font-weight: 900; margin-top: 1rem;">
+                            MANDALLA LAB</div>
+                    </div>
+                    <div
+                        style="font-family: 'Lato', sans-serif; font-size: 0.75rem; color: #444; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">
+                        LIGHT 300<br>REGULAR 400<br>MEDIUM 500<br>BOLD 700<br>BLACK 900
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weights & Styles -->
+            <div class="subfamilies-section reveal"
+                style="margin-top: 8rem; border-top: 1.5px solid #000; padding-top: 4rem;">
+                <h2
+                    style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin-bottom: 1rem;">
+                    Subfamílias &amp; Estilos</h2>
+
+                <style>
+                    .font-tabs {
+                        display: flex;
+                        flex-wrap: wrap;
+                        border-bottom: 1.5px solid #000;
+                        background: #f9f9f9;
+                    }
+
+                    .font-tab-btn {
+                        background: transparent;
+                        border: none;
+                        border-right: 1.5px solid #000;
+                        padding: 1rem 2rem;
+                        font-weight: 900;
+                        font-size: 0.75rem;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        letter-spacing: 1px;
+                        color: #666;
+                        font-family: 'Lato', sans-serif;
+                    }
+
+                    .font-tab-btn:last-child {
+                        border-right: none;
+                    }
+
+                    .font-tab-btn.active {
+                        background: #000;
+                        color: #fff;
+                    }
+
+                    .font-tab-btn:hover:not(.active) {
+                        background: #eee;
+                        color: #000;
+                    }
+
+                    .font-panel {
+                        display: none;
+                        padding: 5rem;
+                    }
+
+                    .font-panel.active {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 4rem;
+                    }
+
+                    .font-weight-row {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2.5rem;
+                    }
+
+                    .font-sample {
+                        line-height: 0.9;
+                        border-bottom: 1px solid #eee;
+                        padding-bottom: 1.5rem;
+                    }
+
+                    .font-sample-label {
+                        font-size: 0.65rem;
+                        font-weight: 900;
+                        text-transform: uppercase;
+                        letter-spacing: 2px;
+                        color: #aaa;
+                        margin-bottom: 0.5rem;
+                        display: block;
+                        font-family: 'Lato', sans-serif;
+                    }
+
+                    .font-sample-text {
+                        font-size: 3.5rem;
+                    }
+
+                    .font-sample-italic {
+                        font-style: italic;
+                    }
+
+                    .panel-info {
+                        grid-column: 1 / -1;
+                        border-bottom: 1.5px solid #000;
+                        padding-bottom: 2rem;
+                        margin-bottom: 1rem;
+                        display: flex;
+                        gap: 3rem;
+                        align-items: flex-start;
+                    }
+
+                    .panel-info-name {
+                        font-size: 5rem;
+                        font-weight: 900;
+                        line-height: 0.9;
+                        letter-spacing: -3px;
+                    }
+
+                    .panel-info-desc {
+                        font-size: 0.95rem;
+                        color: #666;
+                        line-height: 1.6;
+                        max-width: 400px;
+                        padding-top: 1rem;
+                        font-family: 'Lato', sans-serif;
+                    }
+
+                    .panel-tag {
+                        display: inline-block;
+                        padding: 3px 10px;
+                        font-size: 0.65rem;
+                        font-weight: 900;
+                        text-transform: uppercase;
+                        letter-spacing: 2px;
+                        margin-bottom: 1rem;
+                        display: block;
+                        font-family: 'Lato', sans-serif;
+                    }
+                </style>
+
+                <div style="background: #fff; border: none; padding: 0; margin-top: 4rem;">
+                    <div class="font-tabs">
+                        <button class="font-tab-btn active" data-tab="tab-boiling">A. BOILING (HEADING)</button>
+                        <button class="font-tab-btn" data-tab="tab-lato">B. LATO (BODY)</button>
+                        <button class="font-tab-btn" data-tab="tab-rasfire">C. RASFIRE (SIMBÓLYCA)</button>
+                        <button class="font-tab-btn" data-tab="tab-poppins">D. POPPINS (UI)</button>
+                    </div>
+
+                    <!-- Panel A: Boiling -->
+                    <div id="tab-boiling" class="font-panel active">
+                        <div class="panel-info" style="grid-column: 1 / -1;">
+                            <div>
+                                <span class="panel-tag" style="background: #FF6C40; color: #fff;">Mandalla ·
+                                    Principal</span>
+                                <div class="panel-info-name" style="font-family: 'Boiling', sans-serif;">Boiling</div>
+                            </div>
+                            <p class="panel-info-desc">Fonte proprietária de alto impacto. Representa a fervura
+                                constante de ideias e a transição entre o analógico e o digital da Mandalla.</p>
+                        </div>
+                        <div class="font-weight-row">
+                            <div class="font-sample">
+                                <span class="font-sample-label">Regular 400</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Boiling', sans-serif; font-weight: normal;">Comunicação</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Bold 700</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Boiling', sans-serif; font-weight: bold;">Comunicação</div>
+                            </div>
+                        </div>
+                        <div class="font-weight-row">
+                            <div class="font-sample">
+                                <span class="font-sample-label">Black 900</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Boiling', sans-serif; font-weight: 900;">Impacto</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Alphabet</span>
+                                <div
+                                    style="font-family: 'Boiling', sans-serif; font-size: 1.2rem; letter-spacing: 3px; line-height: 2;">
+                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel B: Lato -->
+                    <div id="tab-lato" class="font-panel">
+                        <div class="panel-info" style="grid-column: 1 / -1;">
+                            <div>
+                                <span class="panel-tag" style="background: #4CB2AB; color: #fff;">Mandalla ·
+                                    Complementar</span>
+                                <div class="panel-info-name" style="font-family: 'Lato', sans-serif; font-weight: 900;">
+                                    Lato</div>
+                            </div>
+                            <p class="panel-info-desc">Sânscrita e humanista. Traz a estrutura necessária para a leitura
+                                fluida em corpos de texto longos. Perfeita para UI e conteúdo editorial.</p>
+                        </div>
+                        <div class="font-weight-row">
+                            <div class="font-sample">
+                                <span class="font-sample-label">Light 300</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Lato', sans-serif; font-weight: 300;">Regeneração</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Light Italic</span>
+                                <div class="font-sample-text font-sample-italic"
+                                    style="font-family: 'Lato', sans-serif; font-weight: 300;">Regeneração</div>
+                            </div>
+                        </div>
+                        <div class="font-weight-row">
+                            <div class="font-sample">
+                                <span class="font-sample-label">Regular 400</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Lato', sans-serif; font-weight: normal;">Regeneração</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Bold 700</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Lato', sans-serif; font-weight: bold;">Regeneração</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Black 900</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Lato', sans-serif; font-weight: 900;">Regeneração</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel C: Rasfire -->
+                    <div id="tab-rasfire" class="font-panel">
+                        <div class="panel-info" style="grid-column: 1 / -1;">
+                            <div>
+                                <span class="panel-tag" style="background: #926ECC; color: #fff;">Simbólyca ·
+                                    Principal</span>
+                                <div class="panel-info-name" style="font-family: 'Rasfire', serif;">
+                                    Rasfire</div>
+                            </div>
+                            <p class="panel-info-desc">Espírito e fluidez. Uma fonte que carrega a alma da Simbólyca,
+                                conectando o simbólico ao visual. Usada em títulos e elementos de destaque da mentoria.
+                            </p>
+                        </div>
+                        <div class="font-weight-row">
+                            <div class="font-sample">
+                                <span class="font-sample-label">Regular</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Rasfire', serif; font-weight: normal;">Simbólyca</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Regular Italic</span>
+                                <div class="font-sample-text font-sample-italic"
+                                    style="font-family: 'Rasfire', serif; font-weight: normal;">Simbólyca</div>
+                            </div>
+                        </div>
+                        <div class="font-weight-row">
+                            <div class="font-sample">
+                                <span class="font-sample-label">Bold</span>
+                                <div class="font-sample-text" style="font-family: 'Rasfire', serif; font-weight: bold;">
+                                    Essência</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Alphabet</span>
+                                <div
+                                    style="font-family: 'Rasfire', serif; font-size: 1.2rem; letter-spacing: 3px; line-height: 2;">
+                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel D: Poppins -->
+                    <div id="tab-poppins" class="font-panel">
+                        <div class="panel-info" style="grid-column: 1 / -1;">
+                            <div>
+                                <span class="panel-tag" style="background: #926ECC; color: #fff;">Simbólyca ·
+                                    Complementar</span>
+                                <div class="panel-info-name"
+                                    style="font-family: 'Poppins', sans-serif; font-weight: 900;">Poppins</div>
+                            </div>
+                            <p class="panel-info-desc">Geometria pura. Moderna e versátil, garante a precisão técnica
+                                necessária para interfaces digitais, legendas e textos de apoio da Simbólyca.</p>
+                        </div>
+                        <div class="font-weight-row">
+                            <div class="font-sample">
+                                <span class="font-sample-label">Light 300</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Poppins', sans-serif; font-weight: 300;">Equilíbrio</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Regular 400</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Poppins', sans-serif; font-weight: normal;">Equilíbrio</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Medium 500</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Poppins', sans-serif; font-weight: 500;">Equilíbrio</div>
+                            </div>
+                        </div>
+                        <div class="font-weight-row">
+                            <div class="font-sample">
+                                <span class="font-sample-label">Bold 700</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Poppins', sans-serif; font-weight: bold;">Equilíbrio</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Black 900</span>
+                                <div class="font-sample-text"
+                                    style="font-family: 'Poppins', sans-serif; font-weight: 900;">Equilíbrio</div>
+                            </div>
+                            <div class="font-sample">
+                                <span class="font-sample-label">Alphabet</span>
+                                <div
+                                    style="font-family: 'Poppins', sans-serif; font-size: 1rem; letter-spacing: 2px; line-height: 2;">
+                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    document.querySelectorAll('.font-tab-btn').forEach(function (btn) {
+                        btn.addEventListener('click', function () {
+                            // remove active from all tabs and panels
+                            document.querySelectorAll('.font-tab-btn').forEach(function (b) { b.classList.remove('active'); });
+                            document.querySelectorAll('.font-panel').forEach(function (p) { p.classList.remove('active'); });
+                            // activate clicked tab and matching panel
+                            btn.classList.add('active');
+                            var targetId = btn.getAttribute('data-tab');
+                            document.getElementById(targetId).classList.add('active');
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- Guidelines -->
+            <div class="legibility-guidelines reveal"
+                style="margin-top: 8rem; border-top: 1.5px solid #000; padding-top: 4rem;">
+                <h2
+                    style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin-bottom: 3rem;">
+                    Legibilidade & Uso</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;">
+                            <i class="ph ph-check-circle" style="color: #22C55E; font-size: 1.5rem;"></i>
+                            <span style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase;">Confortável
+                                (1.5x)</span>
+                        </div>
+                        <div
+                            style="border: none; padding: 3rem; background: #fff; line-height: 1.6; font-family: 'Lato', sans-serif;">
+                            <div style="font-size: 2rem; font-weight: 900; line-height: 1.2;">O design sensível requer
+                                espaço para respirar.</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;">
+                            <i class="ph ph-x-circle" style="color: #FF6C40; font-size: 1.5rem;"></i>
+                            <span
+                                style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase;">Desconfortável
+                                (1.0x)</span>
+                        </div>
+                        <div
+                            style="border: none; padding: 3rem; background: #fff; line-height: 1; font-family: 'Lato', sans-serif;">
+                            <div style="font-size: 2.2rem; font-weight: 900; line-height: 0.9;">O bloqueio visual impede
+                                o giro.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Spacing Section -->
+            <div class="spacing-rules reveal" style="margin-top: 6rem; border-top: 1px solid #eee; padding-top: 4rem;">
+                <h3
+                    style="font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2.5rem;">
+                    Arquitetura do Espaço</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
+                    <div>
+                        <h4
+                            style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; color: #000; border-bottom: 1px solid #000; padding-bottom: 10px; display: inline-block;">
+                            Kerning (Pares Específicos)</h4>
+                        <p
+                            style="font-size: 0.95rem; color: var(--lab-text-muted); line-height: 1.7; margin-bottom: 2rem;">
+                            O
+                            <strong>Kerning</strong> é o ajuste fino do espaço entre <em>específicos pares</em> de
+                            caracteres. O objetivo é criar um equilíbrio visual rítmico, eliminando "buracos" ópticos
+                            que ocorrem naturally em combinações como "AV", "Wa" ou "Ty". Na Mandalla, o kerning
+                            óptico é obrigatório em logotipos e grandes títulos.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <!-- Confortável -->
+                            <div
+                                style="background: #fff; padding: 1.5rem; border: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                                <span
+                                    style="font-size: 3rem; font-family: 'Boiling', sans-serif; letter-spacing: -4px; line-height: 1;">AV</span>
+                                <span
+                                    style="font-size: 0.75rem; font-weight: 900; color: #22C55E; letter-spacing: 1px;">CORRETO</span>
+                            </div>
+                            <!-- Desconfortável -->
+                            <div
+                                style="background: #fff; padding: 1.5rem; border: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                                <span
+                                    style="font-size: 3rem; font-family: 'Boiling', sans-serif; letter-spacing: 5px; line-height: 1;">A
+                                    V</span>
+                                <span
+                                    style="font-size: 0.75rem; font-weight: 900; color: #FF6C40; letter-spacing: 1px;">BURACO
+                                    ÓPTICO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4
+                            style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; color: #000; border-bottom: 1px solid #000; padding-bottom: 10px; display: inline-block;">
+                            Tracking (Entreletra Global)</h4>
+                        <p
+                            style="font-size: 0.95rem; color: var(--lab-text-muted); line-height: 1.7; margin-bottom: 2rem;">
+                            Também conhecido
+                            como <strong>Tracking</strong>, refere-se ao ajuste <em>uniforme</em> do espaçamento em um
+                            grupo de letras ou bloco de texto. Usamos tracking ligeiramente positivo (+25 a +50) em
+                            títulos em caixa alta para conferir elegância e autoridade, enquanto em corpos de texto
+                            muito pequenos, um tracking levemente aberto ajuda na legibilidade.</p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <!-- Confortável -->
+                            <div
+                                style="background: #fff; padding: 1.5rem; border: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                                <span
+                                    style="font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 6px; line-height: 1;">PONTES</span>
+                                <span
+                                    style="font-size: 0.75rem; font-weight: 900; color: #22C55E; letter-spacing: 1px;">ELEGÂNCIA</span>
+                            </div>
+                            <!-- Desconfortável -->
+                            <div
+                                style="background: #fff; padding: 1.5rem; border: 1px solid #eee; display: flex; align-items: center; justify-content: space-between;">
+                                <span
+                                    style="font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -2px; line-height: 1;">PONTES</span>
+                                <span
+                                    style="font-size: 0.75rem; font-weight: 900; color: #FF6C40; letter-spacing: 1px;">AGLOMERAÇÃO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4
+                            style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; color: #000; border-bottom: 1px solid #000; padding-bottom: 10px; display: inline-block;">
+                            Leading (Entrelinha)</h4>
+                        <p
+                            style="font-size: 0.95rem; color: var(--lab-text-muted); line-height: 1.7; margin-bottom: 2rem;">
+                            A
+                            <strong>Entrelinha</strong> (ou Leading) é a distância vertical entre as linhas de base. É o
+                            que permite que o olho descanse e deslize para a próxima linha sem esforço. Para textos
+                            longos da Mandalla, recomendamos 150% do tamanho da fonte (ex: fonte 16px, entrelinha 24px).
+                            Espaço entre parágrafos deve ser generoso para separar ideias e dar ritmo à leitura.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <!-- Confortável -->
+                            <div style="background: #fff; padding: 1.5rem; border: 1px solid #eee; line-height: 1.7;">
+                                <div style="font-size: 1.2rem; color: #333; font-weight: 500;">Texto com ar
+                                    para<br>circular livremente.
+                                </div>
+                                <span
+                                    style="font-size: 0.7rem; font-weight: 900; color: #22C55E; margin-top: 10px; display: block; letter-spacing: 1px;">RITMO
+                                    FLUIDO</span>
+                            </div>
+                            <!-- Desconfortável -->
+                            <div style="background: #fff; padding: 1.5rem; border: 1px solid #eee; line-height: 0.85;">
+                                <div style="font-size: 1.2rem; color: #333; font-weight: 500;">Texto preso sem<br>espaço
+                                    para respirar.
+                                </div>
+                                <span
+                                    style="font-size: 0.7rem; font-weight: 900; color: #FF6C40; margin-top: 10px; display: block; letter-spacing: 1px;">PESO
+                                    EXCESSIVO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab"
+                            style="height: 120px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da
+                        Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">
+                        Navegação</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="../index.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Mandalla
+                                Comunicação & Design</a></li>
+                        <li><a href="../simbolyca.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Simbólyca</a>
+                        </li>
+                        <li><a href="lab.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Dashboard
+                                Lab</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid #ddd; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p style="font-size: 0.8rem; color: #999;">&copy; 2026 Mandalla Lab. Todos os direitos reservados.</p>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="https://simbolyca.com.br"
+                        style="text-decoration: none; color: #999; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Simbólyca</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+</body>
+
+</html>

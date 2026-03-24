@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produção de Vídeo — Fundamentos & Normas // Mandalla Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <style>
+        :root {
+            --doc-bg: #f4f4f4;
+            --page-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --mandalla-purple: #926ECC;
+            --mandalla-teal: #4CB2AB;
+            --safe-action: rgba(0, 255, 0, 0.3);
+            --safe-title: rgba(255, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--doc-bg);
+            color: var(--lab-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+
+        .main-content {
+            background-color: var(--page-bg);
+            width: 100%;
+            max-width: 1000px;
+            padding: 6rem 12%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        .doc-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #bbb;
+            margin-bottom: 2.5rem;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 12px;
+        }
+
+        .hub-section {
+            margin-bottom: 6rem;
+        }
+
+        /* Safe Zone Viewer */
+        .video-canvas {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border: 1px solid #000;
+            position: relative;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .safe-action-box {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            border: 1px dashed var(--safe-action);
+            pointer-events: none;
+        }
+
+        .safe-title-box {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            border: 1px dashed var(--safe-title);
+            pointer-events: none;
+        }
+
+        .social-hud-mockup {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0.5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.85rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            background: #000;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.7rem;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            font-weight: 700;
+        }
+
+        .codec-card {
+            padding: 1.5rem;
+            border: 1.5px solid #000;
+            margin-bottom: 1rem;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0 !important; }
+            .main-content { box-shadow: none !important; border: none !important; margin: 0 !important; max-width: 100% !important; width: 100% !important; padding: 3rem !important; }
+            .no-print { display: none !important; }
+            .video-canvas { border: 1px solid #ddd; }
+        }
+
+        @media (max-width: 768px) {
+            .main-content { padding: 4rem 8%; }
+            .doc-header-info { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+        <main class="main-content">
+        <!-- Floating Navigation -->
+        <div class="no-print" style="position: absolute; top: 3rem; right: 3rem; display: flex; gap: 10px;">
+            <a href="universo-marcas.html" style="text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-arrow-left"></i> Voltar ao Hub
+            </a>
+            <button onclick="window.print()" style="cursor: pointer; background: #000; color: #fff; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-download-simple"></i> Baixar Guia
+            </button>
+        </div>
+
+        <div class="doc-header-info">
+            <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 70px;">
+            <div style="text-align: right;">
+                <span style="display: block; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999;">Diretrizes de Movimento</span>
+                <span style="display: block; font-size: 1.1rem; font-weight: 800; text-transform: uppercase;">003 // Produção de Vídeo</span>
+            </div>
+        </div>
+
+        <header style="margin-bottom: 5rem;">
+            <span class="manifesto-tag">Norma de Pós-Produção</span>
+            <h1>Video<br>Production.</h1>
+            <p style="font-size: 1.25rem; color: #444; margin-top: 2rem; max-width: 750px; font-weight: 400; line-height: 1.5;">
+                A qualidade cinematográfica da Mandalla Lab depende do rigor técnico na edição. Este guia estabelece os parâmetros de zonas de segurança, codecs de alto desempenho e padrões de exportação para garantir uma entrega profissional em todas as plataformas.
+            </p>
+        </header>
+
+        <!-- Seção 01: Zonas de Segurança -->
+        <section class="hub-section">
+            <span class="section-title">01. ZONAS DE SEGURANÇA (SAFE ZONES)</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Elementos essenciais (títulos e ações) nunca devem tocar as bordas do vídeo para evitar cortes em diferentes dispositivos ou sobreposição de interfaces de redes sociais.</p>
+            
+            <div class="video-canvas">
+                <div class="safe-action-box"></div>
+                <div class="safe-title-box"></div>
+                <!-- Labels das Zonas -->
+                <div style="position: absolute; top: 6%; left: 6%; font-size: 0.6rem; color: var(--safe-action); font-weight: 900;">ACTION SAFE (90%)</div>
+                <div style="position: absolute; top: 11%; left: 11%; font-size: 0.6rem; color: var(--safe-title); font-weight: 900;">TITLE SAFE (80%)</div>
+                
+                <!-- Mockup de HUD Social -->
+                <div class="social-hud-mockup">
+                    <div style="width: 30px; height: 30px; border-radius: 50%; background: #333;"></div>
+                    <div style="width: 25px; height: 25px; background: #333;"></div>
+                    <div style="width: 25px; height: 25px; background: #333;"></div>
+                    <div style="width: 25px; height: 25px; background: #333;"></div>
+                </div>
+                <div style="position: absolute; bottom: 5%; left: 5%; width: 60%; height: 20px; background: rgba(51,51,51,0.5); border-radius: 10px;"></div>
+            </div>
+            <p style="font-size: 0.8rem; color: #999; text-align: center; font-style: italic;">*Nota: Respeite a "Safe Zone" do TikTok/Reels para evitar que a legenda e os botões de interação cubram informações importantes.</p>
+        </section>
+
+        <!-- Seção 02: Codecs & Workflow -->
+        <section class="hub-section">
+            <span class="section-title">02. CODECS & FLUXO DE TRABALHO</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Diferenciar entre arquivos de **aquisição/edição** e arquivos de **entrega final** é o que separa um amador de um editor profissional.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div class="codec-card">
+                    <h4 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: var(--mandalla-purple); border-bottom: 1px solid #eee; padding-bottom: 8px;">Intraframe (Edição/Master)</h4>
+                    <p style="font-size: 0.8rem; color: #666; margin-bottom: 1rem;">Comprime cada quadro individualmente. Arquivos grandes, mas extremamente leves para o processador.</p>
+                    <ul style="font-size: 0.75rem; font-weight: 900; list-style: none;">
+                        <li>• Apple ProRes 422</li>
+                        <li>• Avid DNxHR</li>
+                        <li>• GoPro CineForm</li>
+                    </ul>
+                </div>
+                <div class="codec-card">
+                    <h4 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: var(--mandalla-teal); border-bottom: 1px solid #eee; padding-bottom: 8px;">Interframe (Entrega/Streaming)</h4>
+                    <p style="font-size: 0.8rem; color: #666; margin-bottom: 1rem;">Comprime grupos de quadros (GOP). Arquivos pequenos, ideais para upload e visualização.</p>
+                    <ul style="font-size: 0.75rem; font-weight: 900; list-style: none;">
+                        <li>• H.264 (AVC)</li>
+                        <li>• H.265 (HEVC)</li>
+                        <li>• AV1</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 03: Padrões de Exportação -->
+        <section class="hub-section">
+            <span class="section-title">03. PADRÕES DE ENTREGA (DELIVERY)</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Configurações obrigatórias para a exportação final da Mandalla Lab em Full HD.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parâmetro</th>
+                        <th>Especificação Técnica</th>
+                        <th>Observação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Resolução</td>
+                        <td>1920 x 1080 (16:9)</td>
+                        <td>Full HD Progressivo</td>
+                    </tr>
+                    <tr>
+                        <td>Frame Rate</td>
+                        <td>23.976 fps ou 24 fps</td>
+                        <td>Estética Cinematográfica</td>
+                    </tr>
+                    <tr>
+                        <td>Container / Codec</td>
+                        <td>.MP4 / H.264</td>
+                        <td>Máxima compatibilidade</td>
+                    </tr>
+                    <tr>
+                        <td>Bitrate (VBR)</td>
+                        <td>Target: 15 Mbps / Max: 20 Mbps</td>
+                        <td>Equilíbrio Qualidade/Tamanho</td>
+                    </tr>
+                    <tr>
+                        <td>Áudio (AAC)</td>
+                        <td>48 kHz / 320 kbps / Stereo</td>
+                        <td>Padrão Broadcast</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Seção 04: Fundamentos de Corte -->
+        <section class="hub-section">
+            <span class="section-title">04. FUNDAMENTOS DE RITMO & CORTE</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div>
+                    <h4 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px;"><i class="ph ph-scissors"></i> J-Cuts & L-Cuts</h4>
+                    <p style="font-size: 0.8rem; color: #666;">Técnica de sobreposição de áudio onde o som entra antes da imagem (J) ou continua após a imagem (L). Essencial para fluidez narrativa.</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px;"><i class="ph ph-metronome"></i> Cutting on Action</h4>
+                    <p style="font-size: 0.8rem; color: #666;">Realizar o corte exatamente no meio de um movimento físico para tornar a transição invisível e natural.</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px;"><i class="ph ph-waves"></i> Color Consistency</h4>
+                    <p style="font-size: 0.8rem; color: #666;">Garantir que todos os clipes sigam a mesma correção de cor técnica (White Balance) antes da aplicação do 'Look' criativo.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #bbb; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+            <span>&copy; 2026 Mandalla Video Standards v1.0</span>
+            <span class="no-print">Impresso via Mandalla Lab Hub</span>
+        </footer>
+    </main>
+
+</body>
+
+</html>

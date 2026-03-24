@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramação Editorial — Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .lab-logo {
+            width: 100%;
+            max-width: 240px;
+
+            display: block;
+        }
+
+        .nav-container {
+            flex-grow: 1;
+            padding: 0 1rem 2rem;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--lab-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+        }
+
+        .nav-link.active {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            padding: 5rem 8%;
+            max-width: 1200px;
+        }
+
+        .header {
+            margin-bottom: 4rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .technical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .tech-card {
+            border: 1.5px solid #000;
+            padding: 2rem;
+            background: #fff;
+        }
+
+        .tech-card h3 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .tech-card ul {
+            list-style: square;
+            padding-left: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>    <aside class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggleSidebar"
+            style="position: absolute; right: -15px; top: 25px; width: 30px; height: 30px; background: #000; color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 101;"><i
+                class="ph ph-caret-left"></i></button>
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header reveal">
+            <span class="manifesto-tag">RIGOR E POESIA</span>
+            <h1>Diagramação <br>Editorial.</h1>
+            <p>Padrões técnicos para criação de e-books, relatórios e materiais impressos premium.</p>
+        </header>
+
+        <section id="grid" class="tech-card">
+            <h2>Grid Layout</h2>
+            <p>Nossos materiais editoriais sempre seguem grids de 12 colunas para flexibilidade ou 6 colunas para
+                leitura densa. A margem externa nunca deve ser inferior a 20mm para respiro e segurança.</p>
+        </section>
+
+        <div class="technical-grid">
+            <div class="tech-card reveal">
+                <h3>InDesign Setup</h3>
+                <ul>
+                    <li>Sangria: 3mm (all sides)</li>
+                    <li>Cores: CMYK (Coated FOGRA39)</li>
+                    <li>Imagens: 300 DPI (mínimo)</li>
+                    <li>Links: Sempre organizar em pastas</li>
+                </ul>
+            </div>
+            <div class="tech-card reveal">
+                <h3>Exportação</h3>
+                <ul>
+                    <li>PDF/X-1a para Impressão</li>
+                    <li>PDF Interativo para Digital</li>
+                    <li>Marcas de corte inclusas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer
+            style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab"
+                            style="height: 120px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da
+                        Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">
+                        Navegação</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="../index.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Mandalla
+                                Comunicação & Design</a></li>
+                        <li><a href="../simbolyca.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Simbólyca</a>
+                        </li>
+                        <li><a href="lab.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Dashboard
+                                Lab</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+                <span>Design Sensível & Estratégia Técnica</span>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>

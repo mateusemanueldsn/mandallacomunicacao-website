@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mídias Digitais | Portfólio Mandalla</title>
+    <meta name="description"
+        content="Cases de gestão de mídias digitais da Mandalla — antes, depois e métricas reais de engajamento.">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* ================================
+           PAGE HERO
+        ================================ */
+        .portfolio-hero {
+            padding: 180px 0 80px;
+            background: #fff;
+            border-bottom: 2px solid #000;
+        }
+
+        .portfolio-hero .eyebrow {
+            margin: 0 auto 2rem;
+            width: fit-content;
+            display: block;
+        }
+
+        .portfolio-hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ================================
+           CLIENT NAV (FILTER)
+        ================================ */
+        .client-nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 40px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .client-nav-btn {
+            padding: 0.8rem 2.2rem;
+            border: 1px solid #000;
+            background: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-round);
+        }
+
+        .client-nav-btn.active,
+        .client-nav-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* ================================
+           CASE SECTION (PER CLIENT)
+        ================================ */
+        .case-section {
+            padding: 100px 0;
+            border-bottom: 2px solid #000;
+        }
+
+        .case-section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* --- CASE HEADER --- */
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .case-client-info h2 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .case-meta-item {
+            border-left: 2px solid #000;
+            padding-left: 1rem;
+        }
+
+        .case-meta-item span {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 0.2rem;
+        }
+
+        .case-meta-item strong {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .client-logo-box {
+            border: 1px solid #000;
+            padding: 2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            min-width: 200px;
+        }
+
+        /* --- OBJECTIVES --- */
+        .case-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+            margin-bottom: 5rem;
+        }
+
+        .objectives-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .objectives-list li {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .objectives-list li i {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin-top: 2.5rem;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #eee;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        /* --- PHONE MOCKUP --- */
+        .phone-mockup-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            width: 180px;
+            border: 2px solid #000;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: none;
+            background: #f5f5f5;
+        }
+
+        .phone-screen-top {
+            height: 8px;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-screen-top::after {
+            content: '';
+            width: 40px;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+        }
+
+        .phone-screen {
+            background: #fff;
+            padding: 8px;
+        }
+
+        .phone-profile-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .phone-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ddd;
+            border: 1px solid #ccc;
+        }
+
+        .phone-username {
+            font-size: 0.5rem;
+            font-weight: 700;
+        }
+
+        .phone-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .phone-post {
+            aspect-ratio: 1;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-post i {
+            font-size: 0.8rem;
+            opacity: 0.3;
+        }
+
+        /* --- BEFORE / AFTER --- */
+        .before-after-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .ba-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .ba-label {
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .ba-before .phone-mockup {
+            filter: grayscale(100%);
+            opacity: 0.7;
+        }
+
+        /* --- POSTS GRID --- */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin-bottom: 5rem;
+        }
+
+        .post-thumb {
+            aspect-ratio: 1;
+            background: #f0f0f0;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .post-thumb:hover {
+            filter: grayscale(50%);
+        }
+
+        .post-thumb i {
+            font-size: 2.5rem;
+            opacity: 0.1;
+        }
+
+        .post-thumb.dark {
+            background: #000;
+        }
+
+        .post-thumb.dark i {
+            color: #fff;
+            opacity: 0.1;
+        }
+
+        .post-thumb.mid {
+            background: #888;
+        }
+
+        /* --- METRICS --- */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin-bottom: 5rem;
+            border: 1px solid #000;
+        }
+
+        .metric-card {
+            padding: 2.5rem 2rem;
+            border-right: 1px solid #000;
+            position: relative;
+        }
+
+        .metric-card:last-child {
+            border-right: none;
+        }
+
+        .metric-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-name {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .metric-value-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-value-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .metric-growth {
+            position: absolute;
+            top: 2rem;
+            right: 1.5rem;
+            background: #000;
+            color: #fff;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 900;
+        }
+
+        /* --- CTA --- */
+        .case-cta {
+            padding: 80px 0;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        .case-cta h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-cta p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-bottom: 3rem;
+        }
+
+        .btn-cta-white {
+            background: #fff;
+            color: #000;
+            padding: 1rem 2.8rem;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 1rem;
+            border: 1px solid #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-round);
+        }
+
+        .btn-cta-white:hover {
+            background: transparent;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* ================================
+           RESPONSIVE
+        ================================ */
+        @media (max-width: 992px) {
+
+            .case-grid-2,
+            .before-after-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .metric-card:nth-child(2) {
+                border-right: none;
+            }
+
+            .metric-card:nth-child(3) {
+                border-top: 1px solid #000;
+            }
+
+            .posts-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .case-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../branding.html">Branding</a></li>
+                            <li><a href="../design.html">Design</a></li>
+                            <li><a href="../conteudo.html">Conteúdo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../historia.html">Nossa história</a></li>
+                            <li><a href="../index.html#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="../clientes.html">Clientes</a></li>
+                            <li><a href="../depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../artigos.html">Artigos</a></li>
+                            <li><a href="../ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link active">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="midias-digitais.html">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="../contato.html" class="btn-primary">Contrate-nos</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="portfolio-hero" style="text-align: center;">
+        <div class="container fade-up">
+            <span class="eyebrow">PORTFÓLIO — MÍDIAS DIGITAIS</span>
+            <h1>Do abandono<br><span>ao engajamento.</span></h1>
+            <p>Cases reais de gestão, criação e estratégia para marcas que precisavam de mais do que posts — precisavam
+                de presença de verdade.</p>
+        </div>
+    </section>
+
+    <!-- CLIENT FILTER NAV -->
+    <div class="container">
+        <nav class="client-nav">
+            <button class="client-nav-btn active" onclick="scrollToCase('raizes')">Raízes Vivas</button>
+            <button class="client-nav-btn" onclick="scrollToCase('studio')">Studio Afeto</button>
+            <button class="client-nav-btn" onclick="scrollToCase('mercado')">Mercado da Gente</button>
+        </nav>
+    </div>
+
+    <main>
+
+        <!-- ============================================================
+         CASE 1: RAÍZES VIVAS
+    ============================================================ -->
+        <section class="case-section" id="raizes">
+            <div class="container">
+
+                <!-- Case Header -->
+                <div class="case-header fade-up">
+                    <div class="case-client-info">
+                        <span class="eyebrow">CASE 01 — MÍDIAS DIGITAIS</span>
+                        <h2>Raízes<br>Vivas</h2>
+                        <div class="case-meta">
+                            <div class="case-meta-item">
+                                <span>Segmento</span>
+                                <strong>ONG / Meio Ambiente</strong>
+                            </div>
+                            <div class="case-meta-item">
+                                <span>Período</span>
+                                <strong>Mar — Set 2024</strong>
+                            </div>
+                            <div class="case-meta-item">
+                                <span>Plataformas</span>
+                                <strong>Instagram · Facebook</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="client-logo-box">
+                        <span>RAÍZES<br><small
+                                style="font-weight:300;font-size:0.6em;letter-spacing:3px;">VIVAS</small></span>
+                    </div>
+                </div>
+
+                <!-- Objectives -->
+                <p class="section-label">Objetivos do cliente</p>
+                <div class="case-grid-2 fade-up">
+                    <div>
+                        <ul class="objectives-list">
+                            <li><i class="ph ph-arrow-right"></i> Aumentar engajamento orgânico com causas ambientais
+                                sem apelo ao sensacionalismo</li>
+                            <li><i class="ph ph-arrow-right"></i> Criar identidade visual coesa e reconhecível para o
+                                perfil institucional</li>
+                            <li><i class="ph ph-arrow-right"></i> Produzir conteúdo educativo sobre biodiversidade em
+                                linguagem acessível</li>
+                            <li><i class="ph ph-arrow-right"></i> Padronizar a frequência e o tom das publicações
+                                semanais</li>
+                            <li><i class="ph ph-arrow-right"></i> Ampliar o alcance para públicos urbanos engajados com
+                                sustentabilidade</li>
+                        </ul>
+                        <div class="color-palette" style="margin-top: 3rem;">
+                            <div class="color-swatch" style="background:#1a1a1a;"></div>
+                            <div class="color-swatch" style="background:#595959;"></div>
+                            <div class="color-swatch" style="background:#a0a0a0;"></div>
+                            <div class="color-swatch" style="background:#d6d6d6;"></div>
+                            <div class="color-swatch" style="background:#f5f5f5;"></div>
+                        </div>
+                    </div>
+                    <div class="phone-mockup-wrapper">
+                        <div class="phone-mockup" style="filter: grayscale(100%); opacity: 0.6;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar"></div>
+                                    <div>
+                                        <div class="phone-username">raizesvivas</div>
+                                        <div style="font-size:0.4rem; color:#aaa;">Perfil antes da Mandalla</div>
+                                    </div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                    <div class="phone-post"><i class="ph ph-image"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Before / After -->
+                <p class="section-label">Antes e Depois</p>
+                <div class="before-after-grid fade-up">
+                    <div class="ba-side ba-before">
+                        <span class="ba-label" style="opacity:0.4;">— ANTES —</span>
+                        <div class="phone-mockup" style="filter: grayscale(100%); opacity: 0.5; width: 200px;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar"></div>
+                                    <div class="phone-username">raizesvivas</div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.85rem; color:#aaa; text-align:center;">Sem identidade, sem
+                            frequência,<br>sem estratégia visual.</p>
+                    </div>
+                    <div class="ba-side">
+                        <span class="ba-label">— DEPOIS —</span>
+                        <div class="phone-mockup" style="width: 200px; box-shadow: none;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar" style="background:#333;"></div>
+                                    <div class="phone-username">raizesvivas</div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post dark"><i class="ph ph-leaf"></i></div>
+                                    <div class="phone-post"><i class="ph ph-plant"></i></div>
+                                    <div class="phone-post mid"><i class="ph ph-leaf"></i></div>
+                                    <div class="phone-post"><i class="ph ph-tree"></i></div>
+                                    <div class="phone-post dark"><i class="ph ph-flower"></i></div>
+                                    <div class="phone-post"><i class="ph ph-leaf"></i></div>
+                                    <div class="phone-post mid"><i class="ph ph-plant"></i></div>
+                                    <div class="phone-post dark"><i class="ph ph-tree"></i></div>
+                                    <div class="phone-post"><i class="ph ph-flower"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.85rem; color:#555; text-align:center;">Feed consistente, identidade
+                            visível,<br>conteúdo com propósito.</p>
+                    </div>
+                </div>
+
+                <!-- Posts Grid = Identidade Repaginada -->
+                <p class="section-label">Identidade visual repaginada — novos posts</p>
+                <div class="posts-grid fade-up">
+                    <div class="post-thumb dark"><i class="ph ph-leaf"></i></div>
+                    <div class="post-thumb"><i class="ph ph-plant"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-tree"></i></div>
+                    <div class="post-thumb"><i class="ph ph-flower"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-leaf"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-plant"></i></div>
+                    <div class="post-thumb"><i class="ph ph-tree"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-flower"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-leaf"></i></div>
+                    <div class="post-thumb"><i class="ph ph-plant"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-tree"></i></div>
+                    <div class="post-thumb"><i class="ph ph-flower"></i></div>
+                </div>
+
+                <!-- Metrics -->
+                <p class="section-label">Métricas de engajamento por post (feed)</p>
+                <div class="metrics-grid fade-up">
+                    <div class="metric-card">
+                        <div class="metric-growth">+1.091%</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Curtidas</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box">
+                                <span class="metric-value-label">Antes</span>
+                                <span class="metric-value">12</span>
+                            </div>
+                            <div class="metric-value-box">
+                                <span class="metric-value-label">Depois</span>
+                                <span class="metric-value">143</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+1.600%</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Comentários</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box">
+                                <span class="metric-value-label">Antes</span>
+                                <span class="metric-value">2</span>
+                            </div>
+                            <div class="metric-value-box">
+                                <span class="metric-value-label">Depois</span>
+                                <span class="metric-value">34</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+2.075%</div>
+                        <div class="metric-icon">?</div>
+                        <div class="metric-name">Compartilhamentos</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box">
+                                <span class="metric-value-label">Antes</span>
+                                <span class="metric-value">4</span>
+                            </div>
+                            <div class="metric-value-box">
+                                <span class="metric-value-label">Depois</span>
+                                <span class="metric-value">87</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+8</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Salvamentos</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box">
+                                <span class="metric-value-label">Antes</span>
+                                <span class="metric-value">0</span>
+                            </div>
+                            <div class="metric-value-box">
+                                <span class="metric-value-label">Depois</span>
+                                <span class="metric-value">52</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /container -->
+        </section>
+
+        <!-- ============================================================
+         CASE 2: STUDIO AFETO
+    ============================================================ -->
+        <section class="case-section" id="studio">
+            <div class="container">
+                <div class="case-header fade-up">
+                    <div class="case-client-info">
+                        <span class="eyebrow">CASE 02 — MÍDIAS DIGITAIS</span>
+                        <h2>Studio<br>Afeto</h2>
+                        <div class="case-meta">
+                            <div class="case-meta-item"><span>Segmento</span><strong>Saúde Mental / Psicologia</strong>
+                            </div>
+                            <div class="case-meta-item"><span>Período</span><strong>Jan — Jun 2024</strong></div>
+                            <div class="case-meta-item"><span>Plataformas</span><strong>Instagram · LinkedIn</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="client-logo-box">
+                        <span>STUDIO<br><small
+                                style="font-weight:300;font-size:0.6em;letter-spacing:3px;">AFETO</small></span>
+                    </div>
+                </div>
+
+                <p class="section-label">Objetivos do cliente</p>
+                <div class="case-grid-2 fade-up">
+                    <div>
+                        <ul class="objectives-list">
+                            <li><i class="ph ph-arrow-right"></i> Humanizar a comunicação clínica sem perder a
+                                autoridade profissional</li>
+                            <li><i class="ph ph-arrow-right"></i> Criar conteúdos de acolhimento e saúde mental em
+                                linguagem acessível</li>
+                            <li><i class="ph ph-arrow-right"></i> Atrair novos pacientes por meio das redes sociais</li>
+                            <li><i class="ph ph-arrow-right"></i> Desenvolver linguagem visual empática e profissional
+                            </li>
+                            <li><i class="ph ph-arrow-right"></i> Construir autoridade de marca no segmento de
+                                psicologia</li>
+                        </ul>
+                        <div class="color-palette" style="margin-top: 3rem;">
+                            <div class="color-swatch" style="background:#0d0d0d;"></div>
+                            <div class="color-swatch" style="background:#404040;"></div>
+                            <div class="color-swatch" style="background:#818181;"></div>
+                            <div class="color-swatch" style="background:#c9c9c9;"></div>
+                            <div class="color-swatch" style="background:#f8f8f8;"></div>
+                        </div>
+                    </div>
+                    <div class="phone-mockup-wrapper">
+                        <div class="phone-mockup" style="filter: grayscale(100%); opacity: 0.6;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar"></div>
+                                    <div>
+                                        <div class="phone-username">studioafeto</div>
+                                    </div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="section-label">Antes e Depois</p>
+                <div class="before-after-grid fade-up">
+                    <div class="ba-side">
+                        <span class="ba-label" style="opacity:0.4;">— ANTES —</span>
+                        <div class="phone-mockup" style="filter: grayscale(100%); opacity: 0.5; width: 200px;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar"></div>
+                                    <div class="phone-username">studioafeto</div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.85rem; color:#aaa; text-align:center;">Posts genéricos, pouco afeto<br>na
+                            comunicação visual.</p>
+                    </div>
+                    <div class="ba-side">
+                        <span class="ba-label">— DEPOIS —</span>
+                        <div class="phone-mockup" style="width: 200px; box-shadow: none;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar" style="background:#333;"></div>
+                                    <div class="phone-username">studioafeto</div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post"><i class="ph ph-heart"></i></div>
+                                    <div class="phone-post dark"><i class="ph ph-hands-praying"></i></div>
+                                    <div class="phone-post mid"><i class="ph ph-brain"></i></div>
+                                    <div class="phone-post dark"><i class="ph ph-heart"></i></div>
+                                    <div class="phone-post"><i class="ph ph-smiley"></i></div>
+                                    <div class="phone-post mid"><i class="ph ph-hands-praying"></i></div>
+                                    <div class="phone-post"><i class="ph ph-brain"></i></div>
+                                    <div class="phone-post dark"><i class="ph ph-heart"></i></div>
+                                    <div class="phone-post"><i class="ph ph-smiley"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.85rem; color:#555; text-align:center;">Comunicação empática, visual
+                            coeso<br>e autoridade de marca.</p>
+                    </div>
+                </div>
+
+                <p class="section-label">Identidade visual repaginada</p>
+                <div class="posts-grid fade-up">
+                    <div class="post-thumb"><i class="ph ph-heart"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-brain"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-hands-praying"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-smiley"></i></div>
+                    <div class="post-thumb"><i class="ph ph-heart"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-brain"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-hands-praying"></i></div>
+                    <div class="post-thumb"><i class="ph ph-smiley"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-heart"></i></div>
+                    <div class="post-thumb"><i class="ph ph-brain"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-hands-praying"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-smiley"></i></div>
+                </div>
+
+                <p class="section-label">Métricas de engajamento</p>
+                <div class="metrics-grid fade-up">
+                    <div class="metric-card">
+                        <div class="metric-growth">+1.112%</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Curtidas</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box"><span class="metric-value-label">Antes</span><span
+                                    class="metric-value">8</span></div>
+                            <div class="metric-value-box"><span class="metric-value-label">Depois</span><span
+                                    class="metric-value">97</span></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+2.700%</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Comentários</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box"><span class="metric-value-label">Antes</span><span
+                                    class="metric-value">1</span></div>
+                            <div class="metric-value-box"><span class="metric-value-label">Depois</span><span
+                                    class="metric-value">28</span></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+3.100%</div>
+                        <div class="metric-icon">?</div>
+                        <div class="metric-name">Compartilhamentos</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box"><span class="metric-value-label">Antes</span><span
+                                    class="metric-value">2</span></div>
+                            <div class="metric-value-box"><span class="metric-value-label">Depois</span><span
+                                    class="metric-value">64</span></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+8</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Salvamentos</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box"><span class="metric-value-label">Antes</span><span
+                                    class="metric-value">0</span></div>
+                            <div class="metric-value-box"><span class="metric-value-label">Depois</span><span
+                                    class="metric-value">78</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+         CASE 3: MERCADO DA GENTE
+    ============================================================ -->
+        <section class="case-section" id="mercado">
+            <div class="container">
+                <div class="case-header fade-up">
+                    <div class="case-client-info">
+                        <span class="eyebrow">CASE 03 — MÍDIAS DIGITAIS</span>
+                        <h2>Mercado<br>da Gente</h2>
+                        <div class="case-meta">
+                            <div class="case-meta-item"><span>Segmento</span><strong>Varejo / Alimentação</strong></div>
+                            <div class="case-meta-item"><span>Período</span><strong>Fev — Ago 2024</strong></div>
+                            <div class="case-meta-item"><span>Plataformas</span><strong>Instagram · WhatsApp</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="client-logo-box">
+                        <span>MERCADO<br><small style="font-weight:300;font-size:0.6em;letter-spacing:3px;">DA
+                                GENTE</small></span>
+                    </div>
+                </div>
+
+                <p class="section-label">Objetivos do cliente</p>
+                <div class="case-grid-2 fade-up">
+                    <div>
+                        <ul class="objectives-list">
+                            <li><i class="ph ph-arrow-right"></i> Aumentar visibilidade local nas redes sociais de forma
+                                orgânica</li>
+                            <li><i class="ph ph-arrow-right"></i> Criar campanhas promocionais com design profissional e
+                                acessível</li>
+                            <li><i class="ph ph-arrow-right"></i> Fidelizar clientes através de conteúdo recorrente e
+                                próximo</li>
+                            <li><i class="ph ph-arrow-right"></i> Estabelecer calendário editorial semanal e padronizar
+                                tom de voz</li>
+                            <li><i class="ph ph-arrow-right"></i> Aumentar volume de atendimento via WhatsApp captado
+                                pelo Instagram</li>
+                        </ul>
+                        <div class="color-palette" style="margin-top: 3rem;">
+                            <div class="color-swatch" style="background:#111;"></div>
+                            <div class="color-swatch" style="background:#555;"></div>
+                            <div class="color-swatch" style="background:#999;"></div>
+                            <div class="color-swatch" style="background:#e0e0e0;"></div>
+                            <div class="color-swatch" style="background:#fafafa;"></div>
+                        </div>
+                    </div>
+                    <div class="phone-mockup-wrapper">
+                        <div class="phone-mockup" style="filter: grayscale(100%); opacity: 0.6;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar"></div>
+                                    <div>
+                                        <div class="phone-username">mercadodagente</div>
+                                    </div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="section-label">Antes e Depois</p>
+                <div class="before-after-grid fade-up">
+                    <div class="ba-side">
+                        <span class="ba-label" style="opacity:0.4;">— ANTES —</span>
+                        <div class="phone-mockup" style="filter: grayscale(100%); opacity: 0.5; width: 200px;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar"></div>
+                                    <div class="phone-username">mercadodagente</div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                    <div class="phone-post"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.85rem; color:#aaa; text-align:center;">Fotos caseiras, sem padrão,<br>sem
+                            frequência.</p>
+                    </div>
+                    <div class="ba-side">
+                        <span class="ba-label">— DEPOIS —</span>
+                        <div class="phone-mockup" style="width: 200px; box-shadow: none;">
+                            <div class="phone-screen-top"></div>
+                            <div class="phone-screen">
+                                <div class="phone-profile-bar">
+                                    <div class="phone-avatar" style="background:#333;"></div>
+                                    <div class="phone-username">mercadodagente</div>
+                                </div>
+                                <div class="phone-grid">
+                                    <div class="phone-post dark"><i class="ph ph-storefront"></i></div>
+                                    <div class="phone-post"><i class="ph ph-shopping-bag"></i></div>
+                                    <div class="phone-post mid"><i class="ph ph-storefront"></i></div>
+                                    <div class="phone-post"><i class="ph ph-tag"></i></div>
+                                    <div class="phone-post dark"><i class="ph ph-shopping-bag"></i></div>
+                                    <div class="phone-post"><i class="ph ph-storefront"></i></div>
+                                    <div class="phone-post mid"><i class="ph ph-tag"></i></div>
+                                    <div class="phone-post dark"><i class="ph ph-shopping-bag"></i></div>
+                                    <div class="phone-post"><i class="ph ph-storefront"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.85rem; color:#555; text-align:center;">Feed organizado, promoções
+                            com<br>design e presença local forte.</p>
+                    </div>
+                </div>
+
+                <p class="section-label">Identidade visual repaginada</p>
+                <div class="posts-grid fade-up">
+                    <div class="post-thumb dark"><i class="ph ph-storefront"></i></div>
+                    <div class="post-thumb"><i class="ph ph-shopping-bag"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-tag"></i></div>
+                    <div class="post-thumb"><i class="ph ph-storefront"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-shopping-bag"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-tag"></i></div>
+                    <div class="post-thumb"><i class="ph ph-storefront"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-shopping-bag"></i></div>
+                    <div class="post-thumb"><i class="ph ph-tag"></i></div>
+                    <div class="post-thumb mid"><i class="ph ph-storefront"></i></div>
+                    <div class="post-thumb dark"><i class="ph ph-shopping-bag"></i></div>
+                    <div class="post-thumb"><i class="ph ph-tag"></i></div>
+                </div>
+
+                <p class="section-label">Métricas de engajamento</p>
+                <div class="metrics-grid fade-up">
+                    <div class="metric-card">
+                        <div class="metric-growth">+759%</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Curtidas</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box"><span class="metric-value-label">Antes</span><span
+                                    class="metric-value">22</span></div>
+                            <div class="metric-value-box"><span class="metric-value-label">Depois</span><span
+                                    class="metric-value">189</span></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+650%</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Comentários</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box"><span class="metric-value-label">Antes</span><span
+                                    class="metric-value">6</span></div>
+                            <div class="metric-value-box"><span class="metric-value-label">Depois</span><span
+                                    class="metric-value">45</span></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+836%</div>
+                        <div class="metric-icon">?</div>
+                        <div class="metric-name">Compartilhamentos</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box"><span class="metric-value-label">Antes</span><span
+                                    class="metric-value">11</span></div>
+                            <div class="metric-value-box"><span class="metric-value-label">Depois</span><span
+                                    class="metric-value">103</span></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-growth">+2.133%</div>
+                        <div class="metric-icon">??</div>
+                        <div class="metric-name">Salvamentos</div>
+                        <div class="metric-comparison">
+                            <div class="metric-value-box"><span class="metric-value-label">Antes</span><span
+                                    class="metric-value">3</span></div>
+                            <div class="metric-value-box"><span class="metric-value-label">Depois</span><span
+                                    class="metric-value">67</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- /main -->
+
+    <!-- CTA FINAL -->
+    <section class="case-cta">
+        <div class="container">
+            <h2>Que tal profissionalizar<br>suas mídias digitais?</h2>
+            <p>Deixa de ser mais um perfil no feed. Vamos criar uma presença digital que seja reconhecível, consistente
+                e com resultado real.</p>
+            <a href="../contato.html" class="btn-cta-white">Quero uma proposta <i class="ph ph-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="../assets/logo.svg" alt="Mandalla Logo"
+                        style="height: 40px;margin-bottom: 1rem;">
+                    <p>Comunicação e Design para impacto socioambiental.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                        <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Portfólio</h4>
+                    <ul>
+                        <li><a href="feito-com-carinho.html">Feito com carinho</a></li>
+                        <li><a href="midias-digitais.html">Mídias digitais</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Soluções</h4>
+                    <ul>
+                        <li><a href="../branding.html">Branding</a></li>
+                        <li><a href="../design.html">Design</a></li>
+                        <li><a href="../conteudo.html">Conteúdo</a></li>
+                        <li><a href="../contato.html">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="text-align: center; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+                &copy; 2026 Mandalla | Feito com carinho.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        function scrollToCase(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.querySelectorAll('.client-nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Highlight active nav button on scroll
+        const cases = ['raizes', 'studio', 'mercado'];
+        const btns = document.querySelectorAll('.client-nav-btn');
+        window.addEventListener('scroll', () => {
+            cases.forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= 200 && rect.bottom >= 200) {
+                    btns.forEach(b => b.classList.remove('active'));
+                    if (btns[i]) btns[i].classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+

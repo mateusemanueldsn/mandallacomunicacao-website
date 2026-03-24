@@ -1,0 +1,75 @@
+================================================================================
+RELATÓRIO TÉCNICO: STYLEGUIDE UNIFICADO "SENSITIVE SYSTEMA" (MANDALLA 2026)
+================================================================================
+Este documento detalha a fusão estética entre Caide.io, Netwrix e Griph-Art,
+criando um estilo único para a atualização em massa do ecossistema Mandalla.
+
+--------------------------------------------------------------------------------
+1. ANÁLISE COMPARATIVA DE ESTILOS (REFERÊNCIAS)
+--------------------------------------------------------------------------------
+
+A. CAIDE.IO (Soft Neubrutalism)
+   - Estrutura: Grid-system visível, blocos bem definidos.
+   - Bordas: Solid 1px #000 (Ausência de border-radius ou radius muito baixo).
+   - Sombras: Hard-offset (4px 4px 0 #000). Sem blur (estética brutalista).
+   - Fundo: Dot-matrix ou line-grids sutis sobre tons pastel.
+   - Tipografia: Geometric Sans (Inter/Outfit), alto contraste de peso.
+
+B. NETWRIX (Tech Professionalism)
+   - Estrutura: Arquitetura de informação complexa e hierarquizada.
+   - Elevação: Uso de profundidade através de gradientes profundos e blur sutil.
+   - Cores: Paleta "Cyber" (Deep Indigo + Electric Teal).
+   - Detalhes: Micro-interações sofisticadas e indicadores de estado ativos.
+   - Tipografia: Syne (Artística) + Hubot Sans (Técnica).
+
+C. GRIPH-ART (Dynamic Fluidity)
+   - Estrutura: Layouts não-lineares e sobreposições.
+   - Interação: Sistema de "Stacked Cards" (cartas empilhadas) com ativação por hover.
+   - Movimento: Transições suaves que revelam conteúdo progressivamente.
+
+--------------------------------------------------------------------------------
+2. O ESTILO ÚNICO: "SENSITIVE SYSTEMA"
+--------------------------------------------------------------------------------
+O estilo Mandalla 2026 será a síntese da precisão técnica (SYSTEMA) com a
+fluidez humana (SENSITIVE).
+
+A. SISTEMA DE CORES (PALETA UNIFICADA)
+   - Base Primária: #FFFFFF (Luz) e #000000 (Contraste Técnico).
+   - Acento Principal: #4CB2AB (Turquesa Mandalla - Vibrante).
+   - Tons de Apoio: #F8F9FA (Gelo) e #1A1A1A (Graphite).
+   - Overlay: rgba(76, 178, 171, 0.05) para áreas de foco.
+
+B. GRID & FUNDOS (BLUEPRINT CORE)
+   - Aplicação de grid lines de 20px ou 40px com opacidade 0.03.
+   - Divisores de seção usando linhas sólidas de 1px em vez de espaços vazios.
+   - Uso de "blueprint markers" (pequenas coordenadas ou números) nos cantos das seções.
+
+C. ELEMENTOS DE UI (DESIGN ATOMIZADO)
+   - Botões: Bordas de 1.5px sólidas. No hover: preenchimento total + deslocamento de 2px.
+   - Cards: Mix entre Caide (bordas duras) e Netwrix (conteúdo limpo). 
+     Sombra sólida Turquesa (#4CB2AB) em vez de preto.
+   - Inputs: Minimalistas, apenas linha inferior que se expande ao foco.
+
+D. TIPOGRAFIA (HIERARQUIA E CARÁTER)
+   - Títulos (H1, H2): Outfit (Black) - Espaçamento de letra negativo (-2%).
+   - Subtítulos: Syne (Regular/Bold) - Traz o lado artístico da Simbólyca.
+   - Corpo: Inter (400) - Foco em legibilidade técnica.
+   - Overlines: Monospace (uppercase) com tracking alto (4px).
+
+E. ANIMAÇÃO & INTERAÇÃO (FLOW)
+   - Stacked Cards: Aplicar o efeito Griph-Art em galerias de portfólio.
+   - Stagger Reveal: Elementos entram com 0.1s de diferença usando o cubic-bezier(.16, 1, .3, 1).
+   - Scroll Tracking: Navbars que mudam de espessura ou cor baseadas no progresso.
+
+--------------------------------------------------------------------------------
+3. DIRETRIZES DE IMPLEMENTAÇÃO EM MASSA
+--------------------------------------------------------------------------------
+1. GLOBAL RESET: Migrar todos os border-radius para 2px (quase reto).
+2. CSS VARIABLES: Centralizar todas as tokens de cor e espaçamento no styles.css.
+3. COMPONENTIZATION: Criar padrões universais para seções de "Texto + Imagem".
+4. LAB UNITY: O ambiente Mandalla Lab deve ser a expressão máxima do "SYSTEMA" 
+   (mais técnico), enquanto o site principal pende para o "SENSITIVE".
+
+================================================================================
+GERADO POR ANTIGRAVITY EM 10/03/2026 - RELATÓRIO DE ESTILO V1.0
+================================================================================

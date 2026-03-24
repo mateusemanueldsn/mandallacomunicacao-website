@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.I.V. — Manual de Identidade Visual // Mandalla Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <style>
+        :root {
+            --doc-bg: #f4f4f4;
+            --page-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --mandalla-purple: #926ECC;
+            --mandalla-orange: #FF6C40;
+            --mandalla-teal: #4CB2AB;
+            --grid-color: rgba(0, 150, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--doc-bg);
+            color: var(--lab-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .main-content {
+            background-color: var(--page-bg);
+            width: 100%;
+            max-width: 1000px;
+            padding: 6rem 12%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        .doc-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #bbb;
+            margin-bottom: 2.5rem;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 12px;
+        }
+
+        .hub-section {
+            margin-bottom: 6rem;
+        }
+
+        /* Technical Grid Style */
+        .technical-box {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+                               linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.85rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            background: #000;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.7rem;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            font-weight: 700;
+        }
+
+        .reduction-sample {
+            display: flex;
+            align-items: flex-end;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0 !important; }
+            .main-content { box-shadow: none !important; border: none !important; margin: 0 !important; max-width: 100% !important; width: 100% !important; padding: 3rem !important; }
+            .no-print { display: none !important; }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 4rem 8%;
+            }
+            .doc-header-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="main-content">
+        <!-- Floating Navigation -->
+        <div class="no-print" style="position: absolute; top: 3rem; right: 3rem; display: flex; gap: 10px;">
+            <a href="universo-marcas.html" style="text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-arrow-left"></i> Voltar ao Hub
+            </a>
+            <button onclick="window.print()" style="cursor: pointer; background: #000; color: #fff; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-download-simple"></i> Baixar M.I.V.
+            </button>
+        </div>
+
+        <div class="doc-header-info">
+            <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 70px;">
+            <div style="text-align: right;">
+                <span style="display: block; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999;">Documentação Técnica</span>
+                <span style="display: block; font-size: 1.1rem; font-weight: 800; text-transform: uppercase;">002 // M.I.V. Normativo</span>
+            </div>
+        </div>
+
+        <header style="margin-bottom: 5rem;">
+            <span class="manifesto-tag">Norma Técnica de Reprodução</span>
+            <h1>M.I.V.<br>Identidade Normativa.</h1>
+            <p style="font-size: 1.25rem; color: #444; margin-top: 2rem; max-width: 750px; font-weight: 400; line-height: 1.5;">
+                O Manual de Identidade Visual (M.I.V.) é o documento regulador da marca. Ele estabelece as métricas matemáticas e as especificações de cor para garantir a integridade da Mandalla em qualquer suporte de reprodução.
+            </p>
+        </header>
+
+        <!-- Seção 01: Grid Construtivo -->
+        <section class="hub-section">
+            <span class="section-title">01. GRID CONSTRUTIVO</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Nosso logotipo é construído sobre uma malha modular. O módulo 'X' define todas as proporções e relações de distância entre o símbolo e o logotipo.</p>
+            
+            <div class="technical-box">
+                <div style="position: relative; padding: 1rem; border: 1px solid #000; background: #fff;">
+                    <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 80px; position: relative; z-index: 2;">
+                    <!-- Simulando Grid Lines -->
+                    <div style="position: absolute; top:0; left:0; right:0; bottom:0; z-index: 1;">
+                        <div style="position: absolute; top: 20%; width: 100%; border-top: 1px solid rgba(255,0,0,0.3);"></div>
+                        <div style="position: absolute; top: 40%; width: 100%; border-top: 1px solid rgba(255,0,0,0.3);"></div>
+                        <div style="position: absolute; top: 60%; width: 100%; border-top: 1px solid rgba(255,0,0,0.3);"></div>
+                        <div style="position: absolute; top: 80%; width: 100%; border-top: 1px solid rgba(255,0,0,0.3);"></div>
+                    </div>
+                </div>
+                <!-- Medição Lateral -->
+                <div style="position: absolute; right: 10%; height: 80px; border-right: 1px solid #000; display: flex; align-items: center; padding-right: 10px;">
+                    <span style="font-size: 0.6rem; font-weight: 900; text-transform: uppercase; writing-mode: vertical-rl;">4X Altura</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 02: Cromia Técnica -->
+        <section class="hub-section">
+            <span class="section-title">02. CROMIA & ESPECIFICAÇÕES</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Tabelas de conversão oficiais para reprodução em sistemas Digital (Luz) e Impresso (Pigmento).</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cor / Nome</th>
+                        <th>HEX (Web)</th>
+                        <th>RGB (Digital)</th>
+                        <th>CMYK (Offset)</th>
+                        <th>Pantone®</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 15px; height: 15px; background: #000;"></div> Mandalla Black
+                        </td>
+                        <td>#000000</td>
+                        <td>0, 0, 0</td>
+                        <td>75, 68, 67, 90</td>
+                        <td>Black 6 C</td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 15px; height: 15px; background: #926ECC;"></div> Mandalla Purple
+                        </td>
+                        <td>#926ECC</td>
+                        <td>146, 110, 204</td>
+                        <td>53, 62, 0, 0</td>
+                        <td>265 C</td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 15px; height: 15px; background: #FF6C40;"></div> Mandalla Orange
+                        </td>
+                        <td>#FF6C40</td>
+                        <td>255, 108, 64</td>
+                        <td>0, 71, 78, 0</td>
+                        <td>172 C</td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 15px; height: 15px; background: #4CB2AB;"></div> Mandalla Teal
+                        </td>
+                        <td>#4CB2AB</td>
+                        <td>76, 178, 171</td>
+                        <td>68, 0, 39, 0</td>
+                        <td>326 C</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Seção 03: Redução Mínima -->
+        <section class="hub-section">
+            <span class="section-title">03. REDUÇÃO & LEGIBILIDADE</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Para preservar a leitura da marca, não é permitida a reprodução em tamanhos inferiores aos estabelecidos abaixo.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                <div>
+                    <h4 style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem;">Reprodução Impressa</h4>
+                    <div class="reduction-sample">
+                        <img src="../assets/lab_logo.svg" alt="" style="height: 15px;">
+                        <span style="font-size: 0.7rem; font-weight: 900; color: #999;">Mínimo: 15mm altura</span>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem;">Reprodução Digital</h4>
+                    <div class="reduction-sample">
+                        <img src="../assets/lab_logo.svg" alt="" style="height: 10px;">
+                        <span style="font-size: 0.7rem; font-weight: 900; color: #999;">Mínimo: 45px altura</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 04: Malha Gráfica -->
+        <section class="hub-section">
+            <span class="section-title">04. MALHA GRÁFICA (PATTERNS)</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Nossos grafismos são gerados a partir da desconstrução do 'M' da Mandalla, repetidos em ângulos de 45°.</p>
+            
+            <div style="height: 150px; border: 1px dashed #eee; display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; padding: 10px;">
+                <!-- Simulando um pattern minimalista -->
+                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
+                <div style="background: #000; transform: rotate(45deg);"></div>
+                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
+                <div style="background: var(--mandalla-purple); transform: rotate(45deg);"></div>
+                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
+                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
+                <div style="background: var(--mandalla-orange); transform: rotate(45deg);"></div>
+                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
+                <div style="background: #000; transform: rotate(45deg);"></div>
+                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
+            </div>
+        </section>
+
+        <div style="margin-top: 6rem; padding: 2rem; border: 1px solid #eee; display: flex; align-items: center; gap: 2rem;">
+            <i class="ph ph-warning-circle" style="font-size: 2rem; color: #999;"></i>
+            <p style="font-size: 0.8rem; color: #666; font-style: italic;">"Qualquer aplicação fora destas normas técnica deve ser previamente aprovada pelo conselho de design da Mandalla Lab."</p>
+        </div>
+
+        <footer style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #bbb; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+            <span>&copy; 2026 Mandalla Technical Manual v2.1</span>
+            <span class="no-print">Impresso via Mandalla Lab Hub</span>
+        </footer>
+    </main>
+</body>
+
+</html>

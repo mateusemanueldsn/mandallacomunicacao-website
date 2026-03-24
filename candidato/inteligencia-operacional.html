@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inteligência Operacional | Mandalla</title>
+    <meta name="description" content="Descubra a inteligência sensível por trás da nossa excelência operacional em design, branding e conteúdo.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_mandalla.png">
+
+    <style>
+        .page-internal-landing {
+            background-color: #fff;
+            color: #000;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section Split Layout */
+        .hero-internal {
+            padding: 180px 5% 100px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle at 80% 20%, rgba(146, 110, 204, 0.05) 0%, transparent 60%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -2px;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Portal of Intelligence Figure - Organic Refinement */
+        .portal-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 550px;
+        }
+
+        .portal-arch-wrapper {
+            position: relative;
+            width: 350px;
+            height: 450px;
+        }
+
+        .portal-arch {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.5);
+            border-bottom: none;
+            border-radius: 999px 999px 0 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .portal-arch::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 120%;
+            height: 1px;
+            background: rgba(0,0,0,0.2);
+            left: -10%;
+        }
+
+        /* Organic Lines (SVG) */
+        .organic-root {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .organic-path {
+            fill: none;
+            stroke: var(--roxo);
+            stroke-width: 0.5;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawRoot 10s ease-in-out infinite alternate;
+            opacity: 0.4;
+        }
+
+        @keyframes drawRoot {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Central Orb - Human Element */
+        .portal-orb {
+            width: 180px;
+            height: 180px;
+            border: 1px dashed rgba(146, 110, 204, 0.3);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle, rgba(146, 110, 204, 0.05) 0%, transparent 70%);
+        }
+
+        .portal-orb i {
+            font-size: 3rem;
+            color: var(--roxo);
+            animation: pulseOrb 3s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        /* The "Sensitive Sparkle" (Human Humanity) */
+        .sensitive-sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #fff, 0 0 30px var(--roxo);
+            animation: moveSparkle 8s linear infinite;
+        }
+
+        @keyframes moveSparkle {
+            0% { transform: rotate(0deg) translateX(70px) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: rotate(360deg) translateX(70px) rotate(-360deg); opacity: 0; }
+        }
+
+        /* Labels - Gestural Refinement (Hands of the system) */
+        .portal-label {
+            position: absolute;
+            background: var(--roxo);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: var(--radius-round);
+            font-size: 0.65rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(146, 110, 204, 0.3);
+            white-space: nowrap;
+            transition: var(--transition);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+        }
+
+        .portal-label i {
+            transition: transform 0.3s ease;
+        }
+
+        .portal-label:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            background: #000;
+        }
+
+        .label-processes { top: 0; left: 50%; transform: translate(-50%, -50%); }
+        
+        .label-patterns { 
+            bottom: 35%; 
+            left: 0%; 
+            transform: translate(-50%, 0); 
+            background: #000;
+        }
+        .label-patterns i { animation: handPoint 2s ease-in-out infinite; }
+
+        .label-tutorials { 
+            bottom: 35%; 
+            right: 0%; 
+            transform: translate(50%, 0); 
+            background: #000;
+        }
+        .label-tutorials i { animation: handGrasp 3s ease-in-out infinite; }
+
+        @keyframes handPoint {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-5px); }
+        }
+
+        @keyframes handGrasp {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Floating Markers - Nature connection dots */
+        .marker-box {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 4px;
+        }
+
+        .marker-box::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--roxo);
+            border-radius: 50%;
+        }
+
+        .m1 { top: -20px; left: 10%; }
+        .m2 { top: 40%; right: -30px; }
+        .m3 { bottom: 10%; left: -30px; }
+
+        /* Animations */
+        @keyframes rotateOrb {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseOrb {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Sections Depth */
+        .section-depth { padding: 120px 5%; background: #000; color: #fff; position: relative; }
+        
+        .depth-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; }
+        
+        .depth-card {
+            padding: 6rem 3rem 4rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+            border-radius: 999px 999px 0 0;
+        }
+
+        .depth-card:hover { background: rgba(255,255,255,0.03); border-color: var(--roxo); transform: translateY(-10px); }
+
+        .depth-icon { font-size: 3rem; color: var(--roxo); margin-bottom: 2rem; }
+
+        /* Section Opportunities */
+        .section-opportunities { padding: 150px 5%; position: relative; }
+
+        .opp-card {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 2px solid #000;
+            padding: 12rem 8rem 10rem;
+            text-align: center;
+            border-radius: 999px 999px 0 0;
+            background: #fff;
+            position: relative;
+        }
+
+        .opp-card h2 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .opp-card p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        .btn-vagas {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 1.5rem 4rem;
+            border-radius: var(--radius-round);
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-top: 3rem;
+            transition: var(--transition);
+        }
+
+        .btn-vagas:hover { transform: translateY(-5px); background: var(--roxo); }
+
+        @media (max-width: 992px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 3rem; }
+            .portal-visual { margin-top: 4rem; transform: scale(0.8); }
+            .depth-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body class="page-internal-landing">
+    <!-- Navbar -->
+    <header class="header scrolled">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="btn-secondary" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;"><i class="ph ph-house" style="margin-right: 8px;"></i> Voltar para Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-internal">
+            <div class="hero-container">
+                <div class="hero-content fade-up">
+                    <span class="eyebrow" style="background:#000; color:#fff; padding: 5px 15px; border-radius: var(--radius-round); font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; display: inline-block; margin-bottom: 2rem; border: none;">INTELIGÊNCIA LABORATÓRIO</span>
+                    <h1>A inteligência sensível por trás da nossa <br><span>excelência operacional.</span></h1>
+                    <p>O que entregamos como design, branding e conteúdo é apenas a ponta visível de uma estrutura profunda de processos regenerativos e metodologias autorais.</p>
+                </div>
+
+                <div class="portal-visual fade-up" style="transition-delay: 0.3s;">
+                    <div class="marker-box m1"></div>
+                    <div class="marker-box m2"></div>
+                    <div class="marker-box m3"></div>
+                    
+                    <div class="portal-arch-wrapper">
+                        <!-- Organic Connections (SVG Nature & Meaning) -->
+                        <svg class="organic-root" viewBox="0 0 350 450">
+                            <!-- Connection to PROCESSOS (Top) -->
+                            <path class="organic-path" d="M 175,225 L 175,0" />
+                            
+                            <!-- Connection to PADRÕES (Bottom Left) -->
+                            <path class="organic-path" d="M 175,225 Q 100,250 0,315" />
+                            
+                            <!-- Connection to TUTORIAIS (Bottom Right) -->
+                            <path class="organic-path" d="M 175,225 Q 250,250 350,315" />
+
+                            <!-- Bottom Roots -->
+                            <path class="organic-path" d="M 50,450 Q 75,350 175,225" opacity="0.2" />
+                            <path class="organic-path" d="M 300,450 Q 275,350 175,225" opacity="0.2" />
+                        </svg>
+
+                        <div class="portal-arch">
+
+                            <span class="portal-label label-processes"><i class="ph ph-brain" style="margin-right: 8px; font-size: 1rem;"></i> PROCESSOS</span>
+                            <span class="portal-label label-patterns"><i class="ph ph-hand-pointing" style="margin-right: 8px; font-size: 1rem;"></i> PADRÕES</span>
+                            <span class="portal-label label-tutorials"><i class="ph ph-hand-eye" style="margin-right: 8px; font-size: 1rem;"></i> TUTORIAIS</span>
+                            
+                            <div class="portal-orb">
+                                <div class="sensitive-sparkle"></div>
+                                <i class="ph ph-atom"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-depth">
+            <div class="depth-container">
+                <div class="depth-card fade-up">
+                    <div class="depth-icon"><i class="ph ph-cpu"></i></div>
+                    <h3>Design com Sentido</h3>
+                    <p>Mais do que estética, criamos sistemas visuais que funcionam como extensões orgânicas do propósito de cada marca.</p>
+                </div>
+                <div class="depth-card fade-up" style="transition-delay: 0.1s;">
+                    <div class="depth-icon"><i class="ph ph-strategy"></i></div>
+                    <h3>Branding Sistêmico</h3>
+                    <p>A alma do negócio traduzida em estratégia operacional, onde cada ponto de contato reforça o legado socioambiental.</p>
+                </div>
+                <div class="depth-card fade-up" style="transition-delay: 0.2s;">
+                    <div class="depth-icon"><i class="ph ph-broadcast"></i></div>
+                    <h3>Conteúdo Vivo</h3>
+                    <p>Nossas narrativas não apenas comunicam; elas criam pontes e fomentam comunidades reais em torno de causas urgentes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-opportunities">
+            <div class="opp-card fade-up">
+                <span class="eyebrow" style="background:var(--roxo); color:#fff; padding: 5px 15px; border-radius: var(--radius-round); font-weight: 900; font-size: 0.7rem; letter-spacing: 2px; display: inline-block; margin-bottom: 2rem; border: none;">GIRAR A MUDANÇA</span>
+                <h2>Gire com a gente.</h2>
+                <p>Estamos sempre em busca de talentos que possuam a inteligência sensível necessária para transformar crises em processos criativos de impacto.</p>
+                <a href="login-lab.html" class="btn-vagas">Acompanhar vagas futuras</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div style="text-align: center; padding: 4rem 0; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+                &copy; 2026 Mandalla | Inteligência Operacional.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Simple Intersection Observer for fade-up animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

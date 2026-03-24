@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História | Mandalla Comunicação & Design</title>
+    <meta name="description"
+        content="Conheça a trajetória da Mandalla: uma narrativa de diversas histórias conectadas pela comunicação estratégica.">
+
+    <!-- Google Fonts: Outfit -->
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon_mandalla.png">
+    <style>
+        /* Estilos específicos para a página de Branding (seção Hero) */
+        .branding-hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            background-color: var(--bg-color);
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            overflow: hidden;
+        }
+
+        .branding-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .branding-container {
+            text-align: left;
+            z-index: 2;
+        }
+
+        .branding-hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .branding-hero p {
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* Word Cloud Graph Styles */
+        .word-cloud-graph {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .graph-tag {
+            position: absolute;
+            text-decoration: none;
+            color: #000;
+            font-weight: 800;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 0.5rem 1rem;
+            background: #fff;
+            border: 1px solid #000;
+            box-shadow: none;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .graph-tag:hover {
+            transform: scale(1.2) translateZ(20px) !important;
+            background: #000;
+            color: #fff;
+            box-shadow: none;
+            z-index: 100;
+        }
+
+        /* Varied Sizes & Positions for Graph Feel */
+        .gt-1 {
+            font-size: 2.5rem;
+            top: 10%;
+            left: 0;
+            transform: rotate(-5deg);
+            z-index: 5;
+        }
+
+        .gt-2 {
+            font-size: 1.8rem;
+            top: 40%;
+            left: 20%;
+            transform: rotate(3deg);
+            z-index: 4;
+        }
+
+        .gt-3 {
+            font-size: 3.2rem;
+            top: 25%;
+            right: 5%;
+            transform: rotate(-2deg);
+            z-index: 6;
+        }
+
+        .gt-4 {
+            font-size: 1.5rem;
+            bottom: 15%;
+            left: 10%;
+            transform: rotate(5deg);
+            z-index: 3;
+        }
+
+        .gt-5 {
+            font-size: 2.2rem;
+            bottom: 20%;
+            right: 20%;
+            transform: rotate(-4deg);
+            z-index: 5;
+        }
+
+        /* Background Connecting Lines (Visual Decor) */
+        .graph-line {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .line-1 {
+            width: 2px;
+            height: 150px;
+            top: 20%;
+            left: 30%;
+            transform: rotate(45deg);
+        }
+
+        .line-2 {
+            width: 150px;
+            height: 2px;
+            top: 50%;
+            right: 10%;
+            transform: rotate(-20deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .branding-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .branding-container p {
+                margin: 0 auto 3rem;
+            }
+
+            .word-cloud {
+                height: auto;
+                padding-bottom: 4rem;
+            }
+        }
+
+
+        .branding-hero h1 span {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        /* Narrative Section */
+        .branding-narrative {
+            padding: 100px 5%;
+            background-color: #fff;
+            border-top: 1px solid #000;
+        }
+
+        .narrative-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 6rem;
+            align-items: start;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .narrative-visual {
+            position: relative;
+            height: 400px;
+            border: 2px solid #000;
+            background-image:
+                repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0.05) 1px, transparent 0, transparent 50%);
+            background-size: 10px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: none;
+        }
+
+        .narrative-visual::before {
+            content: 'DNA MANDALLA';
+            font-weight: 900;
+            font-size: 2rem;
+            letter-spacing: 5px;
+            color: rgba(0, 0, 0, 0.1);
+        }
+
+        .narrative-content {
+            text-align: left;
+        }
+
+        .narrative-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .narrative-content p {
+            font-size: 1.15rem;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .narrative-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .narrative-visual {
+                height: 250px;
+                order: 2;
+            }
+
+            .narrative-content {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar (Copiada da index para consistência) -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="branding.html">Branding</a></li>
+                            <li><a href="design.html">Design</a></li>
+                            <li><a href="conteudo.html">Conteúdo</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link active">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="historia.html">Nossa história</a></li>
+                            <li><a href="#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="#cases">Cases</a></li>
+                            <li><a href="depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="artigos.html">Artigos</a></li>
+                            <li><a href="ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio/feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="portfolio/midias-digitais.html">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="contato.html" class="btn-primary">Contrate-nos</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="branding-hero">
+            <div class="branding-grid">
+                <!-- Coluna Esquerda: Texto -->
+                <div class="branding-container">
+                    <h1 class="fade-up">
+                        <span>Nossa</span> <span>missão</span> <span>é</span> <span
+                            style="text-decoration: underline;">conectar!</span>
+                    </h1>
+                    <p class="fade-up" style="transition-delay: 0.2s;">
+                        Na Mandalla Comunicação & Design, buscamos criar soluções únicas em comunicação com
+                        sensibilidade e estratégia, sempre atentos às questões sociais. Acreditamos no poder
+                        transformador da comunicação e na abordagem interdisciplinar para maximizar resultados.
+                    </p>
+                </div>
+
+                <!-- Coluna Direita: Word Cloud Graph -->
+                <div class="word-cloud-graph fade-up" style="transition-delay: 0.3s;">
+                    <div class="graph-line line-1"></div>
+                    <div class="graph-line line-2"></div>
+
+                    <a href="#" class="graph-tag gt-1">Compromisso</a>
+                    <a href="#" class="graph-tag gt-2">Confiança</a>
+                    <a href="#" class="graph-tag gt-3">Sensibilidade</a>
+                    <a href="#" class="graph-tag gt-4">Organização</a>
+                    <a href="#" class="graph-tag gt-5">Estratégia</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="branding-narrative">
+            <div class="narrative-grid">
+                <!-- Coluna Esquerda: Visual Decorativo -->
+                <div class="narrative-visual fade-up">
+                    <!-- Elemento visual estilo wireframe -->
+                </div>
+
+                <!-- Coluna Direita: Texto Narrativo -->
+                <div class="narrative-content">
+                    <h2 class="fade-up">Uma narrativa de diversas histórias</h2>
+                    <p class="fade-up" style="transition-delay: 0.1s;">
+                        Nosso início se deu pelo desejo de atender a uma demanda do mercado: oferecer um serviço
+                        personalizado que respeita prazos e se destaca pelo cuidado no desenvolvimento. Em um setor
+                        saturado de agências de comunicação, queremos ser reconhecidos pela qualidade no atendimento e
+                        pela entrega pontual, sempre aliados a um serviço de excelência.
+                    </p>
+                    <p class="fade-up" style="transition-delay: 0.2s;">
+                        Desde agosto de 2013, temos o privilégio de atender empresas e instituições sociais em níveis
+                        local, nacional e internacional, guiados pela crença de que a comunicação é uma força capaz de
+                        mobilizar e inspirar, utilizando suas ferramentas para promover ações estratégicas.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="assets/logo.svg" alt="Mandalla Logo" style="height: 40px;margin-bottom: 1rem;">
+                <p>Comunicação e Design para impacto socioambiental. Girando engrenagens de mudança positiva desde
+                    sempre.</p>
+                <div class="social-links">
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="historia.html">Nossa História</a></li>
+                    <li><a href="impacto.html">Impacto</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Soluções</h4>
+                <ul>
+                    <li><a href="branding.html">Branding</a></li>
+                    <li><a href="design.html">Design</a></li>
+                    <li><a href="conteudo.html">Conteúdo</a></li>
+
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+            &copy; 2026 Mandalla | Girando a mudança.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

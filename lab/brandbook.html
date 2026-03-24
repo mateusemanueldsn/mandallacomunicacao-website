@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandbook // A Alma da Marca — Mandalla Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <style>
+        :root {
+            --doc-bg: #f4f4f4;
+            --page-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --mandalla-purple: #926ECC;
+            --mandalla-orange: #FF6C40;
+            --mandalla-teal: #4CB2AB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--doc-bg);
+            color: var(--lab-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .main-content {
+            background-color: var(--page-bg);
+            width: 100%;
+            max-width: 1000px;
+            padding: 6rem 12%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        .doc-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #bbb;
+            margin-bottom: 2.5rem;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 12px;
+        }
+
+        .hub-section {
+            margin-bottom: 6rem;
+        }
+
+        .soul-card {
+            padding: 2.5rem;
+            border: 1px solid #eee;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        .soul-card:hover {
+            background: #fff;
+            border-color: #000;
+        }
+
+        .mockup-item {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .mockup-visual {
+            aspect-ratio: 16/9;
+            background: #eee;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0 !important; }
+            .main-content { box-shadow: none !important; border: none !important; margin: 0 !important; max-width: 100% !important; width: 100% !important; padding: 3rem !important; }
+            .no-print { display: none !important; }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 4rem 8%;
+            }
+            .doc-header-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="main-content">
+        <!-- Floating Navigation -->
+        <div class="no-print" style="position: absolute; top: 3rem; right: 3rem; display: flex; gap: 10px;">
+            <a href="universo-marcas.html" style="text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-arrow-left"></i> Voltar ao Hub
+            </a>
+            <button onclick="window.print()" style="cursor: pointer; background: #000; color: #fff; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-download-simple"></i> Baixar Brandbook
+            </button>
+        </div>
+
+        <div class="doc-header-info">
+            <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 70px;">
+            <div style="text-align: right;">
+                <span style="display: block; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999;">Manifesto de Estratégia</span>
+                <span style="display: block; font-size: 1.1rem; font-weight: 800; text-transform: uppercase;">001 // Brandbook / A Alma da Marca</span>
+            </div>
+        </div>
+
+        <header style="margin-bottom: 5rem;">
+            <span class="manifest manifesto-tag">Fundamentação Estratégica</span>
+            <h1>Brandbook.<br>Propósito & Alma.</h1>
+            <p style="font-size: 1.25rem; color: #444; margin-top: 2rem; max-width: 750px; font-weight: 400; line-height: 1.5;">
+                O Brandbook é o repositório da essência Mandalla. Ele define quem somos, por que existimos e como nos comportamos diante do mundo, garantindo que a nossa mensagem seja autêntica em cada interação.
+            </p>
+        </header>
+
+        <!-- Seção 01: Alma da Marca -->
+        <section class="hub-section">
+            <span class="section-title">01. A ALMA DA MARCA</span>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                <div class="soul-card" style="border-left: 5px solid #000;">
+                    <h3 style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px;">Nossa Missão</h3>
+                    <p style="font-size: 1.05rem; color: #444;">Gerir inteligência criativa e sensibilidade técnica para impulsionar negócios que geram impacto positivo e sustentável na sociedade.</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="soul-card" style="border-left: 5px solid var(--mandalla-purple);">
+                        <h3 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;">Visão 2030</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Ser o principal hub de design estratégico do Brasil, reconhecido pela fusão entre tecnologia operacional e design sensível.</p>
+                    </div>
+                    <div class="soul-card" style="border-left: 5px solid var(--mandalla-orange);">
+                        <h3 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;">Nossos Valores</h3>
+                        <p style="font-size: 0.9rem; color: #666; line-height: 1.8;">
+                            • Empatia Técnica<br>
+                            • Transparência Radical<br>
+                            • Inovação Consciente<br>
+                            • Colaboração Sistêmica
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 02: Personalidade & Tom de Voz -->
+        <section class="hub-section">
+            <span class="section-title">02. PERSONALIDADE & TOM DE VOZ</span>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem;">
+                <div>
+                    <h3 style="font-size: 1rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                        <i class="ph ph-mask-happy"></i> Personalidade
+                    </h3>
+                    <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">A Mandalla é <strong>Intelectual mas Acessível</strong>. Somos o mentor que conhece a técnica, mas fala com o coração. Somos sérios na entrega, mas apaixonados no processo.</p>
+                    
+                    <div style="background: #f9f9f9; padding: 1.5rem; border-radius: 4px;">
+                        <span style="display: block; font-size: 0.75rem; font-weight: 900; color: #bbb; text-transform: uppercase; margin-bottom: 10px;">Atributos Core</span>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border: 1px solid #ddd; text-transform: uppercase;">Sensível</span>
+                            <span style="font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border: 1px solid #ddd; text-transform: uppercase;">Técnico</span>
+                            <span style="font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border: 1px solid #ddd; text-transform: uppercase;">Estratégico</span>
+                            <span style="font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border: 1px solid #ddd; text-transform: uppercase;">Humano</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 1rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                        <i class="ph ph-chat-centered-text"></i> Tom de Voz
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="padding: 1rem; border: 1px solid #e0f2f1; background: #f4faf9; border-left: 4px solid var(--mandalla-teal);">
+                            <strong style="display: block; font-size: 0.8rem; text-transform: uppercase; color: var(--mandalla-teal);">Diga:</strong>
+                            <p style="font-size: 0.85rem; color: #444;">"Nossas soluções são embasadas em dados e traduzidas para o design sensível."</p>
+                        </div>
+                        <div style="padding: 1rem; border: 1px solid #ffebee; background: #fff8f8; border-left: 4px solid #ff4d4d;">
+                            <strong style="display: block; font-size: 0.8rem; text-transform: uppercase; color: #ff4d4d;">Evite:</strong>
+                            <p style="font-size: 0.85rem; color: #444;">"A gente faz uns desenhos bonitos que o cliente gosta."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 03: Ecossistema de Aplicações -->
+        <section class="hub-section">
+            <span class="section-title">03. ECOSSISTEMA & APLICAÇÕES</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 3rem;">A marca ganha vida através de suas aplicações. Mantemos a coerência visual através de grids flexíveis e uma linguagem proprietária em todos os canais.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+                <div class="mockup-item">
+                    <div class="mockup-visual">
+                        <div style="width: 120px; height: 75px; background: #000; display: flex; align-items: center; justify-content: center;">
+                            <img src="../assets/lab_logo.svg" alt="" style="height: 15px; filter: invert(1);">
+                        </div>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase;">Papelaria</span>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-visual">
+                        <div style="width: 90px; height: 160px; background: #f4f4f4; border: 5px solid #000; border-radius: 10px; display: flex; flex-direction: column; align-items: center; padding-top: 20px;">
+                            <div style="width: 60px; height: 60px; background: var(--mandalla-purple); border-radius: 5px;"></div>
+                            <div style="width: 50px; height: 5px; background: #ddd; margin-top: 10px;"></div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase;">Social Media</span>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-visual">
+                        <div style="width: 140px; height: 40px; border: 1px solid #000; display: flex; align-items: center; padding: 0 10px; gap: 10px;">
+                            <div style="width: 15px; height: 15px; background: #000;"></div>
+                            <div style="width: 80px; height: 3px; background: #eee;"></div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase;">E-mail & Digital</span>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-visual">
+                        <div style="width: 140px; height: 100px; background: #fff; border: 2px solid #eee; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <div style="position: absolute; top:0; left:0; right:0; height: 10px; background: #000;"></div>
+                            <img src="../assets/lab_logo.svg" alt="" style="height: 12px; filter: grayscale(1);">
+                        </div>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase;">Apresentações</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promessa da Marca -->
+        <div style="margin-top: 8rem; text-align: center; border-top: 2px solid #000; padding-top: 4rem;">
+            <span style="display: block; font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 4px; color: #999; margin-bottom: 2rem;">Promessa Mandalla</span>
+            <h2 style="font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; line-height: 1.1; max-width: 800px; margin: 0 auto; letter-spacing: -2px;">"Transformar visão estratégica em impacto sensível, um pixel por vez."</h2>
+            
+            <div style="margin-top: 4rem; display: flex; justify-content: center; gap: 20px;">
+                <a href="styleguide.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; padding: 15px 30px; border: 1.5px solid #000; color: #000; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">
+                    Ver Styleguide <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <footer style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #bbb; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+            <span>&copy; 2026 Mandalla Brandbook v1.0</span>
+            <span class="no-print">Impresso via Mandalla Lab Hub</span>
+        </footer>
+    </main>
+</body>
+
+</html>

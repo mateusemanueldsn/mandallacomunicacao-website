@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feito com Carinho | Portfólio Mandalla</title>
+    <meta name="description"
+        content="Mural de projetos da Mandalla - Editorial e Mídias Digitais feitos com cuidado e alma.">
+
+    <!-- Google Fonts: Outfit -->
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Portfolio Specific Mural Styles */
+        .portfolio-hero {
+            padding: 180px 0 80px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .portfolio-hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .mural-section {
+            padding: 40px 0 120px;
+        }
+
+        .mural-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 250px;
+            gap: 20px;
+        }
+
+        .mural-item {
+            position: relative;
+            overflow: hidden;
+            background: #f5f5f5;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid #000;
+        }
+
+        /* Variable border radii for the Mandalla aesthetic */
+        .mural-item.style-1 {
+            border-radius: 60px 0 60px 0;
+        }
+
+        .mural-item.style-2 {
+            border-radius: 0 60px 0 60px;
+        }
+
+        .mural-item.style-3 {
+            border-radius: 60px 60px 0 0;
+        }
+
+        .mural-item.style-4 {
+            border-radius: 0 0 60px 60px;
+        }
+
+        .mural-item:hover {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        .mural-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.8));
+            z-index: 1;
+        }
+
+        .mural-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            transition: transform 0.5s ease, filter 0.5s ease;
+            filter: grayscale(100%);
+        }
+
+        .mural-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(70%);
+        }
+
+        .mural-item-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .mural-item-content h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .mural-item-content p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Grid Spans */
+        .mural-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .mural-item.tall {
+            grid-row: span 2;
+        }
+
+        .mural-item.wide {
+            grid-column: span 2;
+        }
+
+        .mural-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-view,
+        .btn-download {
+            background: #fff;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: var(--radius-round);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #000;
+        }
+
+        .btn-view:hover,
+        .btn-download:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .load-more-container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn-load-more {
+            background: transparent;
+            border: 1px solid #000;
+            padding: 1.2rem 3.5rem;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius-round);
+        }
+
+        .btn-load-more:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .hidden-project {
+            display: none !important;
+        }
+
+        /* Responsive Grid */
+        @media (max-width: 992px) {
+            .mural-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .mural-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: minmax(300px, auto);
+            }
+
+            .mural-item.large,
+            .mural-item.wide {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../branding.html">Branding</a></li>
+                            <li><a href="../design.html">Design</a></li>
+                            <li><a href="../conteudo.html">Conteúdo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../historia.html">Nossa história</a></li>
+                            <li><a href="../index.html#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="../clientes.html">Clientes</a></li>
+                            <li><a href="../index.html#cases">Cases</a></li>
+                            <li><a href="../depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../artigos.html">Artigos</a></li>
+                            <li><a href="../ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="../index.html#midias-digitais">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="../contato.html" class="btn-primary">Contrate-nos</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="portfolio-hero">
+            <div class="container fade-up">
+                <span class="eyebrow" style="margin: 0 auto 2rem; width: fit-content;">PORTFÓLIO</span>
+                <h1>Feito com <br><span>Carinho.</span></h1>
+                <p>Curadoria de projetos onde a técnica encontra a alma. Do editorial impresso à presença digital
+                    sensível.</p>
+            </div>
+        </section>
+
+        <section class="mural-section">
+            <div class="container">
+                <div class="mural-grid">
+
+                    <!-- Item 1: Large Editorial -->
+                    <div class="mural-item large style-1 fade-up">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=1974&auto=format&fit=crop"
+                            alt="Editorial Project">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Editorial</span>
+                            <h3>Relatório de Impacto 2023</h3>
+                            <p>Design editorial para uma das maiores ONGs de preservação da Amazônia.</p>
+                            <div class="mural-actions">
+                                <a href="#" class="btn-view"><i class="ph ph-eye"></i> Ler</a>
+                                <a href="#" class="btn-download"><i class="ph ph-download-simple"></i> PDF</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Tall Portrait (Mídias) -->
+                    <div class="mural-item tall style-2 fade-up" style="transition-delay: 0.1s;">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop"
+                            alt="Social Media">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Digital</span>
+                            <h3>Estratégia Simbólyca</h3>
+                            <p>Gestão de redes sociais focada em lidenrança feminina.</p>
+                            <div class="mural-actions">
+                                <a href="#" class="btn-view"><i class="ph ph-instagram-logo"></i> Ver</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Square (Editorial) -->
+                    <div class="mural-item style-3 fade-up" style="transition-delay: 0.2s;">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=2076&auto=format&fit=crop"
+                            alt="Book Design">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Impressos</span>
+                            <h3>Livro: Vozes da Rua</h3>
+                            <p>Projeto gráfico e diagramação de 200 páginas.</p>
+                            <div class="mural-actions">
+                                <a href="#" class="btn-download"><i class="ph ph-file-pdf"></i> Download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Horizontal (Digital) -->
+                    <div class="mural-item wide style-4 fade-up" style="grid-column: span 1; transition-delay: 0.3s;">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop"
+                            alt="Web Design">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Interface</span>
+                            <h3>Landing Page Impact</h3>
+                            <p>UX/UI focado em conversão de causas sociais.</p>
+                            <div class="mural-actions">
+                                <a href="#" class="btn-view"><i class="ph ph-browser"></i> Visitar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: Very Tall Left Portrait -->
+                    <div class="mural-item tall style-1 fade-up">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1531251445707-1f000e1e8b50?q=80&w=2036&auto=format&fit=crop"
+                            alt="Photography/Digital">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Curadoria</span>
+                            <h3>Acervo Mandalla</h3>
+                            <p>Direção de arte e fotografia para marcas humanas.</p>
+                            <div class="mural-actions">
+                                <a href="#" class="btn-view"><i class="ph ph-images"></i> Galeria</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6: Square Middle -->
+                    <div class="mural-item style-2 fade-up" style="transition-delay: 0.1s;">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1516414447565-b14be0adf13e?q=80&w=1973&auto=format&fit=crop"
+                            alt="Editorial">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Zine</span>
+                            <h3>Manual Lab Vol. 1</h3>
+                            <p>Projetos internos transformados em guia de processos.</p>
+                            <div class="mural-actions">
+                                <a href="#" class="btn-download"><i class="ph ph-download"></i> Baixar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 7: Wide Bottom -->
+                    <div class="mural-item wide style-3 fade-up" style="transition-delay: 0.2s;">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+                            alt="Dashboard/Digital">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Data Viz</span>
+                            <h3>Dashboard de Impacto</h3>
+                            <p>Visualização de dados sensível para relatórios anuais.</p>
+                            <div class="mural-actions">
+                                <a href="#" class="btn-view"><i class="ph ph-chart-bar"></i> Explorar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Projects (to be revealed by Load More) -->
+                    <div class="mural-item style-4 hidden-project">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=2071&auto=format&fit=crop"
+                            alt="New Project">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Digital</span>
+                            <h3>Projeto Novo 1</h3>
+                            <p>Mais uma entrega com carinho.</p>
+                            <div class="mural-actions"><a href="#" class="btn-view">Ver</a></div>
+                        </div>
+                    </div>
+
+                    <div class="mural-item wide style-1 hidden-project">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop"
+                            alt="New Project">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Editorial</span>
+                            <h3>Projeto Novo 2</h3>
+                            <p>Publicação exclusiva Mandalla.</p>
+                            <div class="mural-actions"><a href="#" class="btn-download">PDF</a></div>
+                        </div>
+                    </div>
+
+                    <div class="mural-item tall style-2 hidden-project">
+                        <div class="overlay"></div>
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
+                            alt="New Project">
+                        <div class="mural-item-content">
+                            <span class="hub-card-category" style="color:#fff; border-color:#fff;">Branding</span>
+                            <h3>Projeto Novo 3</h3>
+                            <p>Identidade visual com alma.</p>
+                            <div class="mural-actions"><a href="#" class="btn-view">Explorar</a></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="load-more-container fade-up">
+                    <button id="loadMoreBtn" class="btn-load-more">Ver Mais Projetos <i
+                            class="ph ph-plus-circle"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="../assets/logo.svg" alt="Mandalla Logo"
+                        style="height: 40px;margin-bottom: 1rem;">
+                    <p>Comunicação e Design para impacto socioambiental. Girando engrenagens de mudança positiva desde
+                        sempre.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                        <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="../index.html">Início</a></li>
+                        <li><a href="../historia.html">Nossa História</a></li>
+                        <li><a href="../impacto.html">Impacto</a></li>
+                        <li><a href="../clientes.html">Clientes</a></li>
+                        <li><a href="../artigos.html">Artigos</a></li>
+                        <li><a href="../ebooks.html">E-books</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Soluções</h4>
+                    <ul>
+                        <li><a href="../branding.html">Branding</a></li>
+                        <li><a href="../design.html">Design</a></li>
+                        <li><a href="../conteudo.html">Conteúdo</a></li>
+                        <li><a href="../simbolyca.html">Mentoria Simbólyca</a></li>
+                        <li><a href="../contato.html">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="text-align: center; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+                &copy; 2026 Mandalla | Girando a mudança.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Load More Functionality
+        document.getElementById('loadMoreBtn').addEventListener('click', function () {
+            const hiddenProjects = document.querySelectorAll('.hidden-project');
+            hiddenProjects.forEach((project, index) => {
+                setTimeout(() => {
+                    project.classList.remove('hidden-project');
+                    project.classList.add('fade-up', 'visible');
+                }, index * 100);
+            });
+            this.style.display = 'none'; // Hide button after loading all
+        });
+    </script>
+</body>
+
+</html>
+
+

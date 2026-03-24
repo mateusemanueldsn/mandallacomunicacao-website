@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logotipos — Mandalla Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .lab-logo {
+            width: 100%;
+            max-width: 240px;
+
+            display: block;
+        }
+
+        .nav-container {
+            flex-grow: 1;
+            padding: 0 1rem 2rem;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--lab-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+        }
+
+        .nav-link.active {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            padding: 5rem 8%;
+            max-width: 1200px;
+        }
+
+        .header {
+            margin-bottom: 4rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hub-section {
+            margin-bottom: 6rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #999;
+            margin-bottom: 2rem;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .color-swatch {
+            border: 1.5px solid #000;
+            padding: 1.5rem;
+            background: #fff;
+        }
+
+        .swatch-box {
+            height: 100px;
+            border: 1px solid #eee;
+            margin-bottom: 1rem;
+        }
+
+        .swatch-info {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .swatch-info code {
+            display: block;
+            margin-top: 5px;
+            color: #666;
+            font-family: monospace;
+        }
+
+        .typography-box {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 3rem;
+        }
+
+        .typo-sample {
+            margin-bottom: 3rem;
+        }
+
+        .typo-label {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .typo-display {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .typo-body {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggleSidebar"
+            style="position: absolute; right: -15px; top: 25px; width: 30px; height: 30px; background: #000; color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 101;"><i
+                class="ph ph-caret-left"></i></button>
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header style="padding: 4rem 0; border-bottom: 2px solid #000; margin-bottom: 3rem;">
+            <span class="manifesto-tag" style="background:#000; color:#fff;">RECURSOS TÉCNICOS</span>
+            <h1
+                style="font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; letter-spacing: -3px; line-height: 1; margin: 1rem 0;">
+                LOGOTIPOS.</h1>
+            <p>Orientações e diretrizes técnicas do elemento que sintetiza o DNA da marca. Uma imersão completa
+                desde a
+                fundamentação semântica e comportamental até o rigor da construção visual.</p>
+        </header>
+
+        <section id="diretrizes" class="hub-section reveal">
+            <span class="section-title">CONCEITOS FUNDAMENTAIS</span>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; margin-top: 2rem; margin-bottom: 5rem;">
+
+                <!-- Fundamentos Wheeler e Consolo -->
+                <div style="background: #fff; padding: 3rem; border: 1.5px solid var(--lab-border);">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 2rem;">
+                        <i class="ph ph-books" style="font-size: 2.5rem; color: #000;"></i>
+                        <h2
+                            style="font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">
+                            Fundamentos e Expressão da Marca</h2>
+                    </div>
+                    <p style="font-size: 1rem; line-height: 1.6; color: #444; margin-bottom: 2.5rem;">A Mandalla carrega
+                        em sua base técnica e cultural os princípios de duas autoras consagradas que estudaram o
+                        branding a fundo. Isso fundamenta a credibilidade do nosso trabalho e comprova que a identidade
+                        de uma marca precisa ir muito além do desenho: ela deve apelar aos sentidos, possuir uma voz
+                        própria e se comportar ativamente no mundo.</p>
+
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                        <div style="padding: 1.5rem; background: #f9f9f9; border-left: 3px solid #000;">
+                            <h4
+                                style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem;">
+                                <i class="ph ph-shapes"></i> Pilar Tangível (Visual)
+                            </h4>
+                            <p style="font-size: 0.85rem; color: #666; line-height: 1.5;">A tipologia semântica, a
+                                marca
+                                pictórica (símbolo) e a codificação cromática. Elementos que o público pode ver e
+                                reconhecer instantaneamente, gerando emoção e associação direta.</p>
+                        </div>
+                        <div style="padding: 1.5rem; background: #f9f9f9; border-left: 3px solid #926ECC;">
+                            <h4
+                                style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem;">
+                                <i class="ph ph-megaphone"></i> Pilar Expressivo (Verbal/Sensorial)
+                            </h4>
+                            <p style="font-size: 0.85rem; color: #666; line-height: 1.5;">A identidade verbal e o
+                                vocabulário da marca, como ela conduz suas narrativas, e os aspectos sensoriais (som,
+                                textura, embalagem, arquitetura) que envolvem o usuário.</p>
+                        </div>
+                        <div style="padding: 1.5rem; background: #f9f9f9; border-left: 3px solid #FF6C40;">
+                            <h4
+                                style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem;">
+                                <i class="ph ph-users-three"></i> Pilar Comportamental
+                            </h4>
+                            <p style="font-size: 0.85rem; color: #666; line-height: 1.5;">O posicionamento ético, a
+                                política profunda de impacto socioambiental e a forma verdadeira e transparente como a
+                                marca se relaciona com a sociedade e seus colaboradores.</p>
+                        </div>
+                    </div>
+
+                    <!-- Fontes da Pesquisa -->
+                    <div
+                        style="padding: 1.5rem; border: 1px dashed #ddd; border-radius: 4px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 2rem;">
+                        <i class="ph ph-info" style="font-size: 1.2rem; color: #666; margin-top: 3px;"></i>
+                        <p style="font-size: 0.85rem; color: #666; line-height: 1.6; margin: 0;">
+                            <strong style="color: #000;">Transparência Bibliográfica:</strong> Síntese embasada e
+                            cruzada a partir dos estudos de <strong style="color: #000;">Alina Wheeler</strong>
+                            <em>(Design de Identidade da Marca)</em> e <strong style="color: #000;">Cecília
+                                Consolo</strong> <em>(Marcas: Design Estratégico)</em>, unindo a tangibilidade visual
+                            obrigatória ao Guia de Expressão comportamental.
+                        </p>
+                    </div>
+                    <p style="font-size: 1rem; line-height: 1.6; color: #444; margin-bottom: 1.5rem;">Transpomos toda a
+                        fundamentação teórica em caminhos criativos distintos. Através de <strong>linhas visuais
+                            estratégicas</strong>, apresentamos as soluções formais que darão voz ao DNA da marca e ao
+                        briefing do projeto.</p>
+                    <a href="#"
+                        style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1.5px solid #000; color: #000; text-decoration: none; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Ver
+                        Estudo de Logotipo <i class="ph ph-arrow-right"></i></a>
+                    <br /><br /><br />
+
+                    <!-- Tipologias de Logotipo -->
+                    <div style="margin-bottom: 4rem;">
+                        <h3
+                            style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #bbb; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; margin-bottom: 2rem;">
+                            Tipologias de Logotipo</h3>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                            <div style="padding: 1.2rem; border: 1px solid #eee; background: #fff;">
+                                <h4
+                                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #000;">
+                                    Monograma</h4>
+                                <p style="font-size: 0.75rem; color: #777; line-height: 1.4;">Foco nas iniciais da
+                                    marca. Ideal para nomes longos ou marcas de tradição (ex: IBM, LV).</p>
+                            </div>
+                            <div style="padding: 1.2rem; border: 1px solid #eee; background: #fff;">
+                                <h4
+                                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #000;">
+                                    Wordmark</h4>
+                                <p style="font-size: 0.75rem; color: #777; line-height: 1.4;">Baseado apenas em
+                                    tipografia customizada para o nome (ex: Google, Coca-Cola).</p>
+                            </div>
+                            <div style="padding: 1.2rem; border: 1px solid #eee; background: #fff;">
+                                <h4
+                                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #000;">
+                                    Símbolo Pictórico</h4>
+                                <p style="font-size: 0.75rem; color: #777; line-height: 1.4;">Ícones que representam
+                                    objetos reais através de desenhos (ex: Apple, Twitter).</p>
+                            </div>
+                            <div style="padding: 1.2rem; border: 1px solid #eee; background: #fff;">
+                                <h4
+                                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #000;">
+                                    Abstrato</h4>
+                                <p style="font-size: 0.75rem; color: #777; line-height: 1.4;">Símbolos geométricos que
+                                    transmitem conceitos e sensações (ex: Nike, Pepsi).</p>
+                            </div>
+                            <div style="padding: 1.2rem; border: 1px solid #eee; background: #fff;">
+                                <h4
+                                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #000;">
+                                    Marca Combinada</h4>
+                                <p style="font-size: 0.75rem; color: #777; line-height: 1.4;">A união versátil entre
+                                    símbolo e tipografia. É o padrão de maior legibilidade.</p>
+                            </div>
+                            <div style="padding: 1.2rem; border: 1px solid #eee; background: #fff;">
+                                <h4
+                                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #000;">
+                                    Mascote</h4>
+                                <p style="font-size: 0.75rem; color: #777; line-height: 1.4;">Personagens ilustrados que
+                                    criam conexão emocional e humanizada com o público.</p>
+                            </div>
+                            <div style="padding: 1.2rem; border: 1px solid #eee; background: #fff;">
+                                <h4
+                                    style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; color: #000;">
+                                    Emblema</h4>
+                                <p style="font-size: 0.75rem; color: #777; line-height: 1.4;">O nome da marca inserido
+                                    dentro de um selo, brasão ou distintivo (ex: Starbucks, BMW).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Níveis de Documentação -->
+                    <div style="background: #000; color: #fff; padding: 3rem;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 2rem;">
+                            <i class="ph ph-files" style="font-size: 2.5rem; color: #fff;"></i>
+                            <h2
+                                style="font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">
+                                Documentação Estratégica</h2>
+                        </div>
+                        <p
+                            style="font-size: 0.95rem; line-height: 1.6; color: #ccc; margin-bottom: 2.5rem; max-width: 800px;">
+                            A Mandalla trabalha com um ecossistema de documentações estratégicas para proteger, guiar
+                            e inspirar o uso da marca e de seus ativos em todos os pontos de contato.</p>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+
+                            <!-- Brandbook -->
+                            <div
+                                style="border-top: 2px solid #fff; padding-top: 1.5rem; display: flex; flex-direction: column; align-items: flex-start;">
+                                <h4
+                                    style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 8px; font-weight: 900; color: #fff;">
+                                    O Brandbook</h4>
+                                <p style="font-size: 0.85rem; color: #aaa; line-height: 1.5;">O Livro da Marca. É o
+                                    documento cultural e inspiracional. Apresenta o Propósito, o Manifesto, os Valores e
+                                    a
+                                    Visão Sistêmica. Serve para comover parceiros, alinhar a equipe e atrair
+                                    investidores
+                                    com a alma da marca.</p>
+                                <a href="brandbook.html"
+                                    style="margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid #333; color: #fff; text-decoration: none; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Ver
+                                    Modelo <i class="ph ph-arrow-right"></i></a>
+                            </div>
+
+                            <!-- MIV -->
+                            <div
+                                style="border-top: 2px solid #926ECC; padding-top: 1.5rem; display: flex; flex-direction: column; align-items: flex-start;">
+                                <h4
+                                    style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 8px; font-weight: 900; color: #926ECC;">
+                                    M.I.V.</h4>
+                                <p style="font-size: 0.85rem; color: #aaa; line-height: 1.5;">O Manual de Identidade
+                                    Visual.
+                                    É o documento estritamente técnico e normativo. Contém grid construtivo complexo,
+                                    regras
+                                    rígidas de redução e paleta pantone. Feito para designers, agências parceiras e
+                                    birôs
+                                    gráficos.</p>
+                                <a href="miv.html"
+                                    style="margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid #333; color: #fff; text-decoration: none; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Ver
+                                    Modelo <i class="ph ph-arrow-right"></i></a>
+                            </div>
+
+                            <!-- Styleguide -->
+                            <div
+                                style="border-top: 2px solid #FF6C40; padding-top: 1.5rem; display: flex; flex-direction: column; align-items: flex-start;">
+                                <h4
+                                    style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 8px; font-weight: 900; color: #FF6C40;">
+                                    O Styleguide</h4>
+                                <p style="font-size: 0.85rem; color: #aaa; line-height: 1.5;">O Guia de Estilos Prático.
+                                    Um
+                                    entregável menor, rápido e acessível, ideal para o dia a dia do cliente. Traz apenas
+                                    os
+                                    essenciais: cores em RGB/Hex, combinações de tipografia, aplicações diretas e
+                                    grafismos
+                                    básicos.</p>
+                                <a href="styleguide.html"
+                                    style="margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid #333; color: #fff; text-decoration: none; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Ver
+                                    Modelo <i class="ph ph-arrow-right"></i></a>
+                            </div>
+
+                            <!-- Naming -->
+                            <div
+                                style="border-top: 2px solid #4CB2AB; padding-top: 1.5rem; display: flex; flex-direction: column; align-items: flex-start;">
+                                <h4
+                                    style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 8px; font-weight: 900; color: #4CB2AB;">
+                                    Naming</h4>
+                                <p style="font-size: 0.85rem; color: #aaa; line-height: 1.5;">A identidade verbal da
+                                    marca.
+                                    Tipologias de nomes, os 8 critérios de eficácia e o processo completo de criação e
+                                    registro — desde o briefing até o INPI.</p>
+                                <a href="naming.html"
+                                    style="margin-top: 1.5rem; display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid #4CB2AB; color: #4CB2AB; text-decoration: none; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Ver
+                                    Modelo <i class="ph ph-arrow-right"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab"
+                            style="height: 120px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da
+                        Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">
+                        Navegação</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="../index.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Mandalla
+                                Comunicação & Design</a></li>
+                        <li><a href="../simbolyca.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Simbólica</a>
+                        </li>
+                        <li><a href="lab.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Dashboard
+                                Lab</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+                <span>Design Sensível & Estratégia Técnica</span>
+            </div>
+        </footer>
+    </main>
+</body>

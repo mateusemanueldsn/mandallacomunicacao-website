@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-book: Método Mandalla de Prompts | Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        :root {
+            --phone-width: 380px;
+            --phone-height: 750px;
+        }
+
+        body {
+            background: #fff;
+            color: #000;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 5%;
+            display: grid;
+            grid-template-columns: var(--phone-width) 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        /* Phone Container */
+        .phone-wrapper {
+            position: relative;
+            width: var(--phone-width);
+            height: var(--phone-height);
+            z-index: 10;
+        }
+
+        .phone-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 12px solid #000;
+            border-radius: 40px;
+            background: #fff;
+            box-shadow: none;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        /* Speaker/Notch */
+        .phone-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #000;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 100;
+        }
+
+        /* Scrollable Container (Estilo PDF) */
+        .book-scroll-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none;
+        }
+
+        .book-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            scroll-snap-align: start;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+
+        /* Content Styles */
+        .ebook-chapter-tag {
+            font-size: 0.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #000;
+            padding: 3px 10px;
+            width: fit-content;
+        }
+
+        .ebook-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .spec-item {
+            padding: 1.5rem;
+            border: 1px dashed #000;
+            margin-bottom: 1rem;
+        }
+
+        .spec-item h4 {
+            font-size: 0.7rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .spec-item p {
+            font-size: 1rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .recommendation-box {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #000;
+            font-size: 0.9rem;
+            background: #fdfdfd;
+        }
+
+        .recommendation-box.recommended {
+            border-left-color: #00c853;
+        }
+
+        .prompt-box {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+            color: #333;
+            border: 1px solid #eee;
+        }
+
+        /* Right Column Info */
+        .ebook-summary-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .summary-content h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            letter-spacing: -3px;
+        }
+
+        .summary-content p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 600px;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .features-list i {
+            font-size: 1.5rem;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #000;
+            color: #fff !important;
+            border: none;
+            padding: 24px 44px;
+            font-weight: 900;
+            text-decoration: none;
+            box-shadow: none;
+            transition: 0.3s;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-download:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: none;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translate(-50%, 0);
+            }
+
+            40% {
+                transform: translate(-50%, -10px);
+            }
+
+            60% {
+                transform: translate(-50%, -5px);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+            }
+
+            .summary-content p,
+            .btn-download {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .features-list {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Início</a></li>
+                    <li><a href="../ebooks.html" class="nav-link active">E-books</a></li>
+                    <li><a href="../artigos.html" class="nav-link">Artigos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Left: Phone Simulator -->
+        <div class="phone-wrapper visible">
+            <div class="phone-frame">
+                <div class="book-scroll-container">
+
+                    <!-- Page 1: Cover -->
+                    <div class="page" id="p1">
+                        <span class="ebook-chapter-tag">Capa</span>
+                        <h1 class="ebook-title" style="font-size: 2.8rem; margin-top: 40px;">O Método <br>Mandalla de
+                            <br><span>Prompts.</span>
+                        </h1>
+                        <p style="margin-top: 30px; font-weight: 500;">A arte de transformar estratégia de marca em
+                            imagens de impacto.</p>
+                        <div class="scroll-indicator"><i class="ph ph-caret-double-down"></i></div>
+                        <div style="margin-top: auto; border-top: 1px solid #eee; padding-top: 20px;">
+                            <p style="font-size: 0.7rem; font-weight: 900;">MANDALLA COMUNICAÇÃO & DESIGN</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 2: As 6 Camadas -->
+                    <div class="page" id="p2">
+                        <span class="ebook-chapter-tag">O Método</span>
+                        <h2 class="ebook-title">As 6 Camadas</h2>
+                        <ul style="list-style: none; padding: 0; font-weight: 600; line-height: 2;">
+                            <li>01. Contexto da marca</li>
+                            <li>02. Pessoas representadas</li>
+                            <li>03. Elementos visuais principais</li>
+                            <li>04. Metáfora ou narrativa</li>
+                            <li>05. Estética visual</li>
+                            <li>06. Direção cultural</li>
+                        </ul>
+                        <div class="recommendation-box">
+                            "Todo prompt deve nascer de uma estratégia de marca, não apenas de estética."
+                        </div>
+                    </div>
+
+                    <!-- Page 3: Identidade -->
+                    <div class="page" id="p3">
+                        <span class="ebook-chapter-tag">Camada 01</span>
+                        <h2 class="ebook-title">Identidade & Nicho</h2>
+                        <p>Defina o propósito e a transformação buscada.</p>
+                        <div class="spec-item">
+                            <h4>Propósito</h4>
+                            <p>Qual valor precisa aparecer visualmente?</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Nicho</h4>
+                            <p>Educação, Impacto, Tecnologia, Saúde...</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 4: Estrutura do Prompt -->
+                    <div class="page" id="p4">
+                        <span class="ebook-chapter-tag">Construção</span>
+                        <h2 class="ebook-title">A Estrutura</h2>
+                        <p>A ordem dos fatores altera o produto:</p>
+                        <div class="spec-item" style="border-style: solid;">
+                            <p>Pessoa + Ação + Tecnologia + Elemento Simbólico + Estética + Contexto Cultural</p>
+                        </div>
+                        <div class="recommendation-box recommended">
+                            Dica: Use sempre o fundo branco puro para manter a linguagem de laboratório.
+                        </div>
+                    </div>
+
+                    <!-- Page 5: Estética Mandalla -->
+                    <div class="page" id="p5">
+                        <span class="ebook-chapter-tag">Visual</span>
+                        <h2 class="ebook-title">Estética Base</h2>
+                        <p>Consistência é a chave do Universo Mandalla.</p>
+                        <div class="prompt-box">
+                            photorealistic, cinematic lighting, 35mm film style, ultra detailed textures, pure white
+                            background
+                        </div>
+                        <div class="recommendation-box">
+                            Evite: Estética norte-americana ou roupas de inverno.
+                        </div>
+                    </div>
+
+                    <!-- Page 6: Exemplo PrÃ¡tico -->
+                    <div class="page" id="p6">
+                        <span class="ebook-chapter-tag">Exemplo</span>
+                        <h2 class="ebook-title">Em Ação</h2>
+                        <p>Educador no Nordeste:</p>
+                        <div class="prompt-box">
+                            young Brazilian educator using smartphone where small plants grow from the screen, warm
+                            tropical climate, casual clothing, cinematic lighting, white background
+                        </div>
+                    </div>
+
+                    <!-- Page 7: Elementos -->
+                    <div class="page" id="p7">
+                        <span class="ebook-chapter-tag">Guia</span>
+                        <h2 class="ebook-title">Combinações</h2>
+                        <p>Combine para criar impacto:</p>
+                        <div class="spec-item">
+                            <h4>Humanos</h4>
+                            <p>Ativistas, Agricultores, Estudantes, Técnicos.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Simbólicos</h4>
+                            <p>Sementes, Raízes, Água, Musgo, Pedras.</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 8: Checklist -->
+                    <div class="page" id="p8">
+                        <span class="ebook-chapter-tag">Final</span>
+                        <h2 class="ebook-title">Checklist</h2>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; font-weight: 600; line-height: 2;">
+                            <li><i class="ph ph-check-square"></i> Propósito representado?</li>
+                            <li><i class="ph ph-check-square"></i> Cores da marca presentes?</li>
+                            <li><i class="ph ph-check-square"></i> Público atendido?</li>
+                            <li><i class="ph ph-check-square"></i> Contexto cultural OK?</li>
+                            <li><i class="ph ph-check-square"></i> Metáfora visual clara?</li>
+                        </ul>
+                        <div
+                            style="margin-top: auto; padding: 15px; text-align: center; background: #000; color: #fff; font-weight: 900; font-size: 0.7rem; border-radius: 4px;">
+                            BORA GIRAR!
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Summary & Download -->
+        <div class="ebook-summary-col visible">
+            <div class="summary-content">
+                <h2>O Guia das <br>Imagens Vivas.</h2>
+                <p>Neste e-book, revelamos as camadas estratégicas que utilizamos para criar o universo visual da
+                    Mandalla. Aprenda a dominar o método que transforma prompts de IA em narrativas poderosas.</p>
+            </div>
+
+            <ul class="features-list">
+                <li><i class="ph ph-check-circle" style="color: #00c853;"></i> Narrativas visuais proprietárias</li>
+                <li><i class="ph ph-check-circle" style="color: #00c853;"></i> Consistência total de marca</li>
+                <li><i class="ph ph-check-circle" style="color: #00c853;"></i> Engenharia Estratégica de prompts</li>
+            </ul>
+
+            <div class="download-box">
+                <a href="#" class="btn-download">
+                    <i class="ph ph-file-pdf"></i>
+                    <span>Baixar E-book Completo</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div style="text-align: center; padding: 40px;">
+            <img src="../assets/logo.svg" alt="Mandalla Logo" style="height: 30px;margin-bottom: 2rem;">
+            <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Mandalla | Experiência Digital.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

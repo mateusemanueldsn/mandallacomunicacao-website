@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branding Consciente | Mandalla Comunicação & Design</title>
+    <meta name="description"
+        content="Branding com alma e propósito socioambiental. Na Mandalla, conectamos marcas à sua essência regenerativa.">
+
+    <!-- Google Fonts: Outfit -->
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon_mandalla.png">
+    <style>
+        .branding-page {
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+
+        .hero-branding {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            position: relative;
+            background-image: radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.02) 0%, transparent 70%);
+        }
+
+        .branding-core {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .branding-text h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 0.95;
+            letter-spacing: -4px;
+            margin-bottom: 2rem;
+            font-weight: 900;
+        }
+
+        .branding-text h1 span {
+            display: block;
+            color: var(--coral);
+        }
+
+        .branding-text p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 550px;
+            margin-bottom: 3rem;
+            font-family: var(--font-body);
+        }
+
+        /* Purpose Mesh (New Visual) */
+        .branding-visual-container {
+            position: relative;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image:
+                radial-gradient(circle at center, rgba(0, 0, 0, 0.01) 0%, transparent 70%);
+        }
+
+        .purpose-mesh {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Central Core */
+        .mesh-core {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            z-index: 10;
+            box-shadow: none;
+        }
+
+        .mesh-core span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+
+        .mesh-core .coord {
+            font-size: 0.5rem;
+            opacity: 0.5;
+            margin-top: 5px;
+        }
+
+        /* Words as Schematic Nodes */
+        .mesh-node {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #000;
+            padding: 0.6rem 1.2rem;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 5;
+            white-space: nowrap;
+            border-radius: var(--radius-round);
+        }
+
+        .mesh-node:hover {
+            transform: scale(1.1) translate(-2px, -2px);
+            box-shadow: none;
+            background: #000;
+            color: #fff;
+        }
+
+        /* Technical Lines */
+        .mesh-line {
+            position: absolute;
+            border-top: 1px dashed rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            transform-origin: left center;
+        }
+
+        /* Positioning Nodes */
+        .mn-1 {
+            top: 10%;
+            right: -20px;
+        }
+
+        .mn-2 {
+            top: 20%;
+            left: -40px;
+        }
+
+        .mn-3 {
+            bottom: 15%;
+            right: 0;
+        }
+
+        .mn-4 {
+            bottom: 5%;
+            left: 0;
+        }
+
+        /* Coordinate Decoration */
+        .mesh-node::before {
+            content: attr(data-coord);
+            position: absolute;
+            top: -15px;
+            left: 0;
+            font-size: 0.5rem;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        .section-purpose {
+            padding: 100px 5%;
+            background: #fff;
+            border-top: 1px solid #000;
+        }
+
+        .purpose-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .purpose-card {
+            border: 1px solid #000;
+            padding: 3rem;
+            box-shadow: none;
+            transition: var(--transition);
+        }
+
+        .purpose-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: none;
+            background-color: #fafafa;
+        }
+
+        .purpose-card i {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .purpose-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .purpose-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Impact Data Section */
+        .section-impact-data {
+            padding: 100px 5%;
+            background-color: var(--bg-color);
+            border-top: 1px solid #000;
+        }
+
+        .data-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .data-card {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 3rem;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-circle {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            position: relative;
+            background-image: conic-gradient(#000 calc(var(--percent) * var(--progress, 0)), transparent 0);
+            transition: --progress 2s cubic-bezier(0.2, 0.6, 0.2, 1);
+        }
+
+        @property --progress {
+            syntax: '<number>';
+            initial-value: 0;
+            inherits: false;
+        }
+
+        .data-card:hover {
+            --progress: 1;
+        }
+
+        /* Auto-animate when in view via script.js intersection observer */
+        .data-card.animate-stats {
+            --progress: 1;
+        }
+
+        .stat-circle::after {
+            content: '';
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .data-source {
+            grid-column: 1 / -1;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 4rem;
+            opacity: 0.6;
+            font-style: italic;
+        }
+
+        .stat-circle span {
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .animate-stats .stat-circle span {
+            opacity: 1;
+        }
+
+        .data-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .data-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Final CTA Section */
+        .section-cta-final {
+            padding: 120px 5%;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-container h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .cta-container h2 span {
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+        }
+
+        .cta-container p {
+            font-size: 1.4rem;
+            margin-bottom: 4rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .btn-white {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #fff;
+            color: #000;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid #fff;
+            transition: var(--transition);
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: #fff;
+        }
+
+        @media (max-width: 992px) {
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .branding-core {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .branding-text p {
+                margin: 0 auto 3rem;
+            }
+
+            .purpose-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="branding-page">
+    <!-- Navbar -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link active">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="branding.html">Branding</a></li>
+                            <li><a href="design.html">Design</a></li>
+                            <li><a href="conteudo.html">Conteúdo</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="historia.html">Nossa história</a></li>
+                            <li><a href="#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="#cases">Cases</a></li>
+                            <li><a href="depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="artigos.html">Artigos</a></li>
+                            <li><a href="ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio/feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="portfolio/midias-digitais.html">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="contato.html" class="btn-primary">Contrate-nos</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-branding">
+
+            
+            <div class="branding-core">
+                <div class="branding-text">
+                    <h1 class="fade-up">
+                        Branding que
+                        <span>respira propósito.</span>
+                    </h1>
+                    <p class="fade-up" style="transition-delay: 0.2s;">
+                        Para nós, uma marca não é apenas uma imagem. É um organismo vivo que pulsa valores e regenera
+                        conexões. Apoiamos negócios de impacto socioambiental a traduzirem sua essência em impacto real.
+                    </p>
+                    <div class="fade-up" style="transition-delay: 0.4s;">
+                        <a href="contato.html" class="btn-primary">Criar minha identidade</a>
+                    </div>
+                </div>
+
+                <div class="branding-visual-container fade-up">
+                    <div class="purpose-mesh">
+                        <div class="mesh-core">
+                            <span>Alma</span>
+                            <div class="coord">REF: 001.MND</div>
+                        </div>
+
+                        <!-- Decoration Lines (Static Mapa EstratÃ©gico) -->
+                        <div class="mesh-line" style="width: 200px; transform: rotate(-30deg); top: 50%; left: 50%;">
+                        </div>
+                        <div class="mesh-line" style="width: 250px; transform: rotate(150deg); top: 50%; left: 50%;">
+                        </div>
+                        <div class="mesh-line" style="width: 180px; transform: rotate(60deg); top: 50%; left: 50%;">
+                        </div>
+                        <div class="mesh-line" style="width: 220px; transform: rotate(-120deg); top: 50%; left: 50%;">
+                        </div>
+
+                        <div class="mesh-node mn-1" data-coord="LAT: -23.55">Impacto Positivo</div>
+                        <div class="mesh-node mn-2" data-coord="LNG: -46.63">Consciência</div>
+                        <div class="mesh-node mn-3" data-coord="ID: REG.04">Estratégia Humana</div>
+                        <div class="mesh-node mn-4" data-coord="VER: 2024.S">Transparência</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-purpose border-top" style="position: relative; background-color: var(--pastel-yellow);">
+
+            <div class="purpose-grid">
+                <div class="purpose-card fade-up">
+                    <i class="ph ph-heart-break"></i>
+                    <h3>Sensibilidade</h3>
+                    <p>Ouvimos o que está nas entrelinhas. Entendemos a dor e o sonho por trás de cada projeto de
+                        impacto.</p>
+                </div>
+                <div class="purpose-card fade-up" style="transition-delay: 0.1s;">
+                    <i class="ph ph-tree-evergreen"></i>
+                    <h3>Regeneração</h3>
+                    <p>Branding que não apenas ocupa espaço, mas que contribui para o ecossistema onde está inserido.
+                    </p>
+                </div>
+                <div class="purpose-card fade-up" style="transition-delay: 0.2s;">
+                    <i class="ph ph-intersect"></i>
+                    <h3>Interconexão</h3>
+                    <p>Unimos a técnica do design à profundidade da estratégia social para maximizar sua voz no mundo.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-impact-data" style="position: relative;">
+
+            <div class="data-header">
+                <h2 class="fade-up">O Impacto em Números</h2>
+                <p class="fade-up" style="transition-delay: 0.2s; font-family: var(--font-body);">
+                    Dados globais de 2024 confirmam: o branding consciente não é apenas ética, é sobrevivência de
+                    mercado.
+                </p>
+            </div>
+            <div class="data-grid">
+                <div class="data-card fade-up animate-stats" style="--percent: 92%;">
+                    <div class="stat-circle"><span>92<small>%</small></span></div>
+                    <h4>Lealdade Ativa</h4>
+                    <p>Dos consumidores admitem trocar de marca por uma que demonstre compromisso socioambiental real.
+                    </p>
+                </div>
+                <div class="data-card fade-up animate-stats" style="transition-delay: 0.1s; --percent: 66%;">
+                    <div class="stat-circle"><span>66<small>%</small></span></div>
+                    <h4>Valor Percebido</h4>
+                    <p>Dos clientes aceitam pagar mais caro por produtos de marcas com propósito transparente.</p>
+                </div>
+                <div class="data-card fade-up animate-stats" style="transition-delay: 0.2s; --percent: 87%;">
+                    <div class="stat-circle"><span>87<small>%</small></span></div>
+                    <h4>Decisão de Compra</h4>
+                    <p>Das escolhas de consumo são baseadas na garantia de práticas sustentáveis da empresa.</p>
+                </div>
+                <div class="data-source fade-up">
+                    Fontes: Psico-Smart Strategic Branding 2024, Cone Communications Purpose Study, Edelman Trust
+                    Barometer Special Report.
+                </div>
+            </div>
+        </section>
+
+        <section class="section-cta-final">
+            <div class="cta-container">
+                <h2 class="fade-up">Sua marca pode ser a <span>força da mudança.</span></h2>
+                <p class="fade-up" style="transition-delay: 0.2s;">
+                    Não entregue apenas um logo. Entregue um manifesto. Na Mandalla, transformamos seu compromisso
+                    socioambiental em uma narrativa que conecta, convence e regenera.
+                </p>
+                <div class="fade-up" style="transition-delay: 0.4s;">
+                    <a href="contato.html" class="btn-white">Agendar Consultoria de Impacto</a>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo.svg" alt="Mandalla Logo" style="height: 40px;margin-bottom: 1rem;">
+                    <p>Comunicação e Design para impacto socioambiental. Girando engrenagens de mudança positiva desde
+                        sempre.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                        <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="historia.html">Nossa História</a></li>
+                        <li><a href="impacto.html">Impacto</a></li>
+                        <li><a href="clientes.html">Clientes</a></li>
+                        <li><a href="artigos.html">Artigos</a></li>
+                        <li><a href="ebooks.html">E-books</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Soluções</h4>
+                    <ul>
+                        <li><a href="branding.html">Branding</a></li>
+                        <li><a href="design.html">Design</a></li>
+                        <li><a href="conteudo.html">Conteúdo</a></li>
+
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="text-align: center; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+                &copy; 2026 Mandalla | Girando a mudança.
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+</body>
+
+</html>

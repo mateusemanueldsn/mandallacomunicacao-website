@@ -1,0 +1,208 @@
+===========================================================================
+MANDALLA COMUNICAÇÃO & DESIGN — PORTFÓLIO MÍDIAS DIGITAIS
+ESTRUTURA DO TEMPLATE DE CASE DE PROJETO DIGITAL
+Baseado na análise da imagem de referência interna
+Gerado em: 04/03/2026
+===========================================================================
+
+OBJETIVO DO DOCUMENTO
+----------------------
+Este relatório define a estrutura padrão que cada projeto de mídias digitais
+deve apresentar na página de portfólio "Mídias Digitais" do site Mandalla.
+Serve como guia para o preenchimento de novos clientes reais futuramente.
+
+===========================================================================
+ESTRUTURA DO CASE (7 BLOCOS)
+===========================================================================
+
+BLOCO 1 — IDENTIFICAÇÃO DO PROJETO
+------------------------------------
+Objetivo: Apresentar o cliente e categorizar o projeto.
+
+Campos:
+  - [LOGO DO CLIENTE] — Logotipo ou nome do cliente
+  - [TAG CATEGORIA] — "Mídias Digitais" (fixo)
+  - [NOME DO PROJETO] — Título descritivo do case
+  - [SEGMENTO DO CLIENTE] — Ex: ONG, Saúde, Cultura, Educação, etc.
+  - [PERÍODO DE ATUAÇÃO] — Ex: Jan/2024 – Dez/2024
+  - [PLATAFORMAS ATENDIDAS] — Ex: Instagram, LinkedIn, TikTok
+
+------------------------------------
+
+BLOCO 2 — OBJETIVOS DO CLIENTE
+------------------------------------
+Objetivo: Comunicar os desafios e metas que o cliente trouxe para a Mandalla.
+
+Campos:
+  - [MOCKUP INICIAL] — Print do perfil do cliente antes da intervenção
+  - [PALETA DE CORES ORIGINAL] — Swatches das cores do cliente (antes)
+  - [OBJETIVO 1] — Frase curta descrevendo meta principal
+  - [OBJETIVO 2] — Frase curta descrevendo meta secundária
+  - [OBJETIVO 3] — Desafio específico de comunicação
+  - [OBJETIVO 4] — Desafio de consistência visual
+  - [OBJETIVO 5] — Desafio de engajamento ou alcance
+
+Obs: máximo 5 objetivos por case. Frases curtas e diretas.
+
+------------------------------------
+
+BLOCO 3 — ANTES E DEPOIS (COMPARATIVO VISUAL)
+------------------------------------
+Objetivo: Mostrar a transformação do perfil com impacto visual claro.
+
+Campos:
+  - [MOCKUP ANTES] — Print/mockup do feed do Instagram antes
+  - [MOCKUP DEPOIS] — Print/mockup do feed do Instagram depois
+  - [LEGENDA ANTES] — Texto curto descrevendo o estado anterior
+  - [LEGENDA DEPOIS] — Texto curto descrevendo o resultado
+
+Obs: Os mockups devem ser no formato de celular vertical (iPhone frame).
+     Usar filtro grayscale no "antes" para evidenciar a transformação.
+
+------------------------------------
+
+BLOCO 4 — IDENTIDADE VISUAL REPAGINADA
+------------------------------------
+Objetivo: Exibir o novo sistema visual aplicado ao conteúdo de redes sociais.
+
+Campos:
+  - [GRID DE POSTS] — Mínimo 6 posts da nova fase (formato quadrado 1:1)
+  - [PALETA DE CORES NOVA] — Swatches das novas cores definidas para o cliente
+  - [TIPOGRAFIA USADA] — Nome das fontes escolhidas (ex: Outfit, Lato, etc.)
+  - [ELEMENTOS GRÁFICOS] — Descrição do estilo gráfico (traços, formas, ícones)
+
+Obs: O grid deve ser composto de no mínimo 2 linhas de 3 posts.
+     Manter proporção 1:1 para todos os posts.
+
+------------------------------------
+
+BLOCO 5 — MÉTRICAS DE ENGAJAMENTO
+------------------------------------
+Objetivo: Demonstrar o impacto quantitativo da gestão Mandalla com dados reais ou estimados.
+
+Campos por métrica (4 métricas padrão):
+
+  MÉTRICA 1 — CURTIDAS (❤️)
+    - [ANTES] Número antes
+    - [DEPOIS] Número depois
+    - [CRESCIMENTO] Percentual de crescimento (ex: +127%)
+
+  MÉTRICA 2 — COMENTÁRIOS (💬)
+    - [ANTES] Número antes
+    - [DEPOIS] Número depois
+    - [CRESCIMENTO] Percentual de crescimento
+
+  MÉTRICA 3 — COMPARTILHAMENTOS (↗)
+    - [ANTES] Número antes
+    - [DEPOIS] Número depois
+    - [CRESCIMENTO] Percentual de crescimento
+
+  MÉTRICA 4 — SALVAMENTOS (🔖)
+    - [ANTES] Número antes
+    - [DEPOIS] Número depois
+    - [CRESCIMENTO] Percentual de crescimento
+
+  MÉTRICA EXTRA OPCIONAL — ALCANCE MÉDIO POR POST
+    - [ANTES] Número antes
+    - [DEPOIS] Número depois
+    - [CRESCIMENTO] Percentual de crescimento
+
+Nota: Se não houver dados reais, usar incremento estimado baseado
+      na evolução de conteúdo e consistência aplicada.
+
+------------------------------------
+
+BLOCO 6 — GALERIA COMPLEMENTAR (OPCIONAL)
+------------------------------------
+Objetivo: Mostrar campanhas específicas, Stories, Reels ou ações pontuais.
+
+Campos:
+  - [TIPO DE CONTEÚDO] — Ex: Stories, Reels, Carrossel
+  - [DESCRIÇÃO DA CAMPANHA] — 2-3 linhas
+  - [IMAGENS] — 2 a 4 peças representativas
+
+------------------------------------
+
+BLOCO 7 — CALL TO ACTION (CTA FIXO)
+------------------------------------
+Objetivo: Converter o visitante em lead após ver o case.
+
+Campos:
+  - [HEADLINE CTA] — "Que tal profissionalizar suas mídias digitais?"
+  - [SUBTEXTO] — Frase de reforço sobre o serviço
+  - [BOTÃO] — "Quero uma proposta" → link para contato.html
+
+===========================================================================
+CLIENTES FICTÍCIOS PARA PÁGINA INICIAL (A SER SUBSTITUÍDO)
+===========================================================================
+
+CLIENTE 1 — Raízes Vivas (ONG Ambiental)
+  Segmento: Terceiro Setor / Meio Ambiente
+  Período: Mar/2024 – Set/2024
+  Plataformas: Instagram, Facebook
+  Objetivos (fictícios):
+    - Aumentar engajamento orgânico com causas ambientais
+    - Criar identidade visual coesa e reconhecível
+    - Produzir conteúdo educativo acessível
+    - Padronizar postagens e frequência de publicação
+    - Ampliar alcance para novos públicos engajados
+  Métricas (fictícias):
+    Curtidas: 12 → 143 (+1.091%)
+    Comentários: 2 → 34 (+1.600%)
+    Compartilhamentos: 4 → 87 (+2.075%)
+    Salvamentos: 0 → 52 (novo)
+
+CLIENTE 2 — Studio Afeto (Psicologia & Bem-estar)
+  Segmento: Saúde Mental / Serviços
+  Período: Jan/2024 – Jun/2024
+  Plataformas: Instagram, LinkedIn
+  Objetivos (fictícios):
+    - Humanizar a comunicação clínica
+    - Criar conteúdos de acolhimento e saúde mental acessível
+    - Atrair novos pacientes pelo digital
+    - Desenvolver linguagem visual empática e profissional
+    - Aumentar autoridade da marca no segmento
+  Métricas (fictícias):
+    Curtidas: 8 → 97 (+1.112%)
+    Comentários: 1 → 28 (+2.700%)
+    Compartilhamentos: 2 → 64 (+3.100%)
+    Salvamentos: 0 → 78 (novo)
+
+CLIENTE 3 — Mercado da Gente (Comércio Local)
+  Segmento: Varejo / Alimentação
+  Período: Fev/2024 – Ago/2024
+  Plataformas: Instagram, WhatsApp Business
+  Objetivos (fictícios):
+    - Aumentar visibilidade local nas redes sociais
+    - Criar campanhas promocionais com design profissional
+    - Fidelizar clientes através de conteúdo recorrente
+    - Estabelecer calendário editorial semanal
+    - Aumentar volume de mensagens no WhatsApp via Instagram
+  Métricas (fictícias):
+    Curtidas: 22 → 189 (+759%)
+    Comentários: 6 → 45 (+650%)
+    Compartilhamentos: 11 → 103 (+836%)
+    Salvamentos: 3 → 67 (+2.133%)
+
+===========================================================================
+OBSERVAÇÕES GERAIS
+===========================================================================
+
+1. Todos os dados marcados entre colchetes [CAMPO] são variáveis a serem
+   preenchidos com dados reais dos projetos futuramente.
+
+2. A linguagem visual da página deve manter o padrão wireframe do site:
+   branco, preto, cinza, sem cores saturadas até a fase de brand total.
+
+3. Os mockups de celular devem ser gerados com templates neutros
+   (sem marca Apple/Android) para uso comercial sem restrições.
+
+4. Os posts da galeria devem ser convertidos para grayscale na
+   visualização do portfólio (igual ao Feito com Carinho).
+
+5. O template de case deve ser reutilizável — cada novo cliente
+   apenas preenche os 7 blocos sem alterar a estrutura da página.
+
+===========================================================================
+FIM DO RELATÓRIO
+===========================================================================

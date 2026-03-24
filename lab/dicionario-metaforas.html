@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>Dicionário de Metáforas — Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+            --accent-purple: #926ECC;
+            --accent-teal: #4CB2AB;
+            --accent-coral: #FF6C40;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar & Layout */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0; top: 0;
+            display: flex; flex-direction: column;
+            overflow-y: auto; z-index: 100;
+        }
+
+        .sidebar-header { padding: 1.5rem 1.5rem; border-bottom: 1px solid #ddd; margin-bottom: 1rem; display: flex; justify-content: center; }
+        .lab-logo { width: 100%; max-width: 240px; display: block; }
+        .nav-container { flex-grow: 1; padding: 0 1rem 2rem; }
+        .nav-group { margin-bottom: 2rem; }
+        .nav-title { font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--lab-text); margin-bottom: 1rem; padding-left: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .nav-list { list-style: none; }
+        .nav-link { text-decoration: none; color: var(--lab-text-muted); font-size: 0.9rem; font-weight: 500; padding: 8px 12px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease; border: 1px solid transparent; }
+        .nav-link:hover, .nav-link.active { color: var(--lab-text); background-color: var(--lab-active); border: 1px solid var(--lab-border); font-weight: 700; }
+
+        /* Main Content */
+        .main-content { flex-grow: 1; margin-left: var(--sidebar-width); padding: 5rem 8%; max-width: 1400px; }
+
+        .header { margin-bottom: 8rem; border-bottom: 2px solid #000; padding-bottom: 4rem; position: relative; }
+        .manifesto-tag { display: inline-block; padding: 4px 10px; background: #000; color: #fff; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        h1 { font-size: 5rem; font-weight: 950; letter-spacing: -4px; line-height: 0.85; margin-bottom: 2rem; text-transform: uppercase; }
+        .lead { font-size: 1.5rem; color: #333; max-width: 900px; line-height: 1.4; font-weight: 400; }
+
+        /* Navigation Index */
+        .page-index { margin-bottom: 6rem; background: #fff; border: 1px solid #000; padding: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .page-index a { text-decoration: none; color: #666; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
+        .page-index a:hover { color: #000; }
+
+        /* Sections and Chapters */
+        .chapter-section { margin-bottom: 12rem; border-top: 1px solid #eee; padding-top: 4rem; }
+        .chapter-num { font-size: 0.8rem; font-weight: 900; color: #bbb; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1.5rem; display: block; }
+        .chapter-title { font-size: 3rem; font-weight: 950; letter-spacing: -1.5px; text-transform: uppercase; margin-bottom: 4rem; }
+
+        /* Data Grids */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .card { background: #fff; border: 1.5px solid #000; padding: 3rem; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
+        .card:hover { transform: translateY(-8px); box-shadow: 15px 15px 0px rgba(0,0,0,0.02); }
+        .card h3 { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 2rem; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #eee; padding-bottom: 1rem; }
+        .card h4 { font-size: 0.85rem; font-weight: 900; text-transform: uppercase; color: #999; margin: 1.5rem 0 0.8rem; }
+        .card ul { list-style: none; }
+        .card li { font-size: 0.95rem; line-height: 1.6; margin-bottom: 6px; color: #444; position: relative; padding-left: 22px; }
+        .card li::before { content: '•'; position: absolute; left: 0; font-weight: 900; color: var(--accent-purple); }
+
+        /* Indigenous & Cultural Specifics */
+        .cultural-block { background: #000; color: #fff; padding: 4rem; margin-top: 3rem; }
+        .cultural-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .cultural-list h4 { color: var(--accent-coral); font-size: 1rem; margin-bottom: 1.5rem; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        /* Composition & Technical Rules */
+        .rule-box { border-left: 5px solid #000; padding-left: 2rem; margin-bottom: 4rem; }
+        .rule-box h4 { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; }
+        .rule-box p { font-size: 1.1rem; line-height: 1.6; color: #555; margin-bottom: 1rem; }
+
+        /* Step-by-Step Methodology */
+        .methodology-track { position: relative; padding-left: 60px; border-left: 1px dashed #ccc; }
+        .method-step { position: relative; margin-bottom: 6rem; }
+        .method-step::before { content: attr(data-step); position: absolute; left: -90px; top: 0; font-size: 4rem; font-weight: 950; opacity: 0.1; }
+        .method-step h4 { font-size: 1.8rem; font-weight: 900; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .method-step .questions { background: #fff; border: 1px solid #ddd; padding: 2rem; margin-top: 1.5rem; }
+        .method-step .questions h5 { font-size: 0.7rem; text-transform: uppercase; color: #999; letter-spacing: 2px; margin-bottom: 1rem; }
+        .method-step .questions ul li { color: var(--accent-teal); font-weight: 600; margin-bottom: 10px; }
+
+        /* Master Prompt Box */
+        .prompt-container { background: #111; color: #fff; padding: 5rem; border-radius: 8px; font-family: monospace; line-height: 1.8; position: relative; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+        .prompt-container::after { content: '</>'; position: absolute; bottom: 2rem; right: 2rem; opacity: 0.1; font-size: 5rem; }
+        .prompt-header { font-size: 0.7rem; text-transform: uppercase; opacity: 0.5; letter-spacing: 3px; border-bottom: 1px solid #333; padding-bottom: 1rem; margin-bottom: 2rem; }
+        .prompt-section { margin-bottom: 1.5rem; }
+        .prompt-section b { color: var(--accent-coral); margin-right: 10px; }
+
+        @media (max-width: 1024px) {
+            .cultural-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 3.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 3rem 5%; }
+            .prompt-container { padding: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header reveal">
+            <span class="manifesto-tag">METODOLOGIA AUTORAL</span>
+            <h1>Dicionário de <br>Metáforas <br>Mandalla.</h1>
+            <p class="lead">Manual técnico de narrativa visual e inteligência simbólica. Transformamos princípios estratégicos em gramática visual para o Design Sensível.</p>
+        </header>
+
+        <nav class="page-index reveal">
+            <a href="#principais">01. Elementos Principais</a>
+            <a href="#secundarios">02. Elementos Secundários</a>
+            <a href="#composicao">03. Composição & Estética</a>
+            <a href="#metaforas">04. Metáforas Estruturais</a>
+            <a href="#arquetipos">05. Arquétipos Visuais</a>
+            <a href="#regras-culturais">06. Regras Culturais</a>
+            <a href="#consistencia">07. Consistência Narrativa</a>
+            <a href="#sistema">08. Sistema de Geração</a>
+            <a href="#prompt">09. Prompt Mestre IA</a>
+        </nav>
+
+        <!-- Chapter 01: Elementos Principais -->
+        <section id="principais" class="chapter-section reveal">
+            <span class="chapter-num">Capítulo 01</span>
+            <h2 class="chapter-title">Elementos Principais</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3><i class="ph ph-user-circle"></i> Mulheres</h3>
+                    <ul>
+                        <li>Negra empreendedora</li>
+                        <li>Parda empreendedora</li>
+                        <li>Indígena comunicadora</li>
+                        <li>Branca (fora do padrão norte-americano)</li>
+                        <li>Criadora de conteúdo / Podcaster</li>
+                        <li>Designer / Pesquisadora</li>
+                        <li>Ativista ambiental / Líder comunitária</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="ph ph-user-square"></i> Homens</h3>
+                    <ul>
+                        <li>Negro comunicador</li>
+                        <li>Pardo empreendedor</li>
+                        <li>Indígena líder comunitário</li>
+                        <li>Branco (fora do padrão norte-americano)</li>
+                        <li>Radialista comunitário / Podcaster</li>
+                        <li>Criador de conteúdo / Educador social</li>
+                        <li>Designer / Estrategista</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="ph ph-users-four"></i> Diversidade</h3>
+                    <ul>
+                        <li>Pessoas LGBTQIA+</li>
+                        <li>Diferentes idades adultas e idosos</li>
+                        <li>Biotipos diversos e PCDs</li>
+                        <li>Estilos culturais plurais</li>
+                        <li>Juventude periférica e popular</li>
+                        <li>Técnicos de campo / Agricultores</li>
+                        <li>Trabalhadores do território</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 02: Elementos Secundários -->
+        <section id="secundarios" class="chapter-section reveal">
+            <span class="chapter-num">Capítulo 01 (Cont.)</span>
+            <h2 class="chapter-title">Objetos e Contextos</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Tecnologia</h3>
+                    <h4>Dispositivos</h4>
+                    <ul><li>Smartphone, Laptop, Tablet, Smartwatch</li></ul>
+                    <h4>Produção</h4>
+                    <ul><li>Microfones (podcast/rádio), Headsets</li><li>Tripés, Câmeras, Ring lights</li><li>Projetores, Equipamentos de áudio</li></ul>
+                </div>
+                <div class="card">
+                    <h3>Cotidiano & Criatividade</h3>
+                    <ul>
+                        <li>Cadernos, Blocos de notas, Agendas</li>
+                        <li>Máquina de escrever, Lâmpadas</li>
+                        <li>Mesa de trabalho, Planners, Pranchetas</li>
+                        <li>Post-its, Painéis de ideias, Cartas/Tarot</li>
+                        <li>Mural, Álbum, Caixas e Arquivos</li>
+                        <li>Ferramentas de campo e criação</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Natureza (Flora e Fauna)</h3>
+                    <ul>
+                        <li>Folhas verdes, Trepadeiras, Ramos</li>
+                        <li>Flores silvestres e tropicais</li>
+                        <li>Suculentas, Samambaias, Árvores</li>
+                        <li>Hortelã, Capim, Alecrim, Manjericão</li>
+                        <li>Cactos, Espada de São Jorge</li>
+                        <li>Beija-flores, Borboletas, Pardais</li>
+                        <li>Tartarugas, Peixes, Aves migratórias</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cultural-block reveal">
+                <div class="cultural-grid">
+                    <div class="cultural-list">
+                        <h4>Povos Originários e Tradicionais</h4>
+                        <ul>
+                            <li><b>Adornos:</b> Cocares (circular, radial, minimalista)</li>
+                            <li>Pinturas faciais (horizontais/verticais)</li>
+                            <li>Grafismos geométricos e corporais</li>
+                            <li>Colares de sementes e contas múltiplas</li>
+                            <li>Brincos de penas e miçangas longas</li>
+                            <li>Pulseiras de contas e faixas trançadas</li>
+                        </ul>
+                    </div>
+                    <div class="cultural-list">
+                        <h4>Vestimenta e Texturas</h4>
+                        <ul>
+                            <li>Roupas leves e tropicais (Brasil Real)</li>
+                            <li>Tecidos artesanais e contemporâneos</li>
+                            <li><b>Evitar:</b> Sobretudos, blazers pesados, estética corporativa</li>
+                            <li><b>Texturas:</b> Solo, areia, madeira, cerâmica, papel gasto</li>
+                            <li>Fita adesiva, recortes, costuras aparentes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 03 & 04: Composição e Metáforas -->
+        <section id="composicao" class="chapter-section reveal">
+            <span class="chapter-num">Capítulo 02 & 03</span>
+            <h2 class="chapter-title">Regras de Composição & Metáforas</h2>
+            
+            <div class="grid-3">
+                <div class="rule-box">
+                    <h4>Cenografia</h4>
+                    <p><b>Fundo Branco Puro:</b> Representa o laboratório simbólico e a neutralidade ativa.</p>
+                    <p>Ambientes urbanos populares, centros culturais, coworkings e varandas.</p>
+                </div>
+                <div class="rule-box">
+                    <h4>Gramática Visual</h4>
+                    <p><b>Estrutura:</b> Pessoa + Objeto de Comunicação + Elemento Natural.</p>
+                    <p><b>Ritmo:</b> Tríades, repetições e fluxos orgânicos.</p>
+                </div>
+                <div class="rule-box">
+                    <h4>Iluminação</h4>
+                    <p>Estética cinematográfica (35mm motion picture).</p>
+                    <p>Calor tropical, proximidade humana e sombras realistas.</p>
+                </div>
+            </div>
+
+            <div id="metaforas" style="margin-top: 5rem;">
+                <h3 style="font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 3rem;">Metáforas Estruturais</h3>
+                <div class="grid-3">
+                    <div class="card" style="border-top: 4px solid var(--accent-purple)">
+                        <h3>Comunicação como Ecossistema</h3>
+                        <p>Linhas conectando pessoas, rede orgânica, fluxos vivos. Jamais mídia isolada.</p>
+                    </div>
+                    <div class="card" style="border-top: 4px solid var(--accent-teal)">
+                        <h3>Comunicação como Cultivo</h3>
+                        <p>Sementes, brotos, plantas crescendo em dispositivos. Crescimento gradual e orgânico.</p>
+                    </div>
+                    <div class="card" style="border-top: 4px solid var(--accent-coral)">
+                        <h3>Comunicação como Território</h3>
+                        <p>Ligada ao lugar, voz comunitária, rodas de conversa e ocupação simbólica.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 06: Arquétipos -->
+        <section id="arquetipos" class="chapter-section reveal">
+            <span class="chapter-num">Capítulo 06</span>
+            <h2 class="chapter-title">Arquétipos Visuais Mandalla</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>A Sábia</h3>
+                    <p>Pensamento estratégico e análise profunda.</p>
+                    <h4>Mantra</h4><p>Conhecimento gera impacto.</p>
+                </div>
+                <div class="card">
+                    <h3>A Criadora</h3>
+                    <p>Imaginação, inovação e o fazer autoral.</p>
+                    <h4>Mantra</h4><p>Imaginar é o primeiro ato político.</p>
+                </div>
+                <div class="card">
+                    <h3>A Cuidadora</h3>
+                    <p>Zelo pelo coletivo, território e pessoas.</p>
+                    <h4>Mantra</h4><p>Cuidar para florescer.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 07: Regras Culturais -->
+        <section id="regras-culturais" class="chapter-section reveal">
+            <span class="chapter-num">Capítulo 07</span>
+            <h2 class="chapter-title">Regras Culturais</h2>
+            <div class="cultural-block reveal">
+                <div class="cultural-grid">
+                    <div class="cultural-list">
+                        <h4>Representação Indígena</h4>
+                        <ul>
+                            <li><b>NUNCA:</b> Caricaturizar ou usar símbolos genéricos sem contexto.</li>
+                            <li><b>SEMPRE:</b> Representar pessoas reais e respeitar a diversidade cultural.</li>
+                        </ul>
+                    </div>
+                    <div class="cultural-list">
+                        <h4>Representação Brasileira</h4>
+                        <ul>
+                            <li><b>EVITAR:</b> Estética norte-americana genérica e padrão corporativo internacional.</li>
+                            <li><b>VALORIZAR:</b> Diversidade brasileira, territórios e realidades sociais.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 08: Consistência Narrativa -->
+        <section id="consistencia" class="chapter-section reveal">
+            <span class="chapter-num">Capítulo 08</span>
+            <h2 class="chapter-title">Consistência Narrativa</h2>
+            <p style="margin-bottom: 3rem;">Toda imagem precisa comunicar um conceito claro. A imagem deve estar ligada a pelo menos um tema:</p>
+            <div class="grid-3">
+                <div class="card" style="border-left: 10px solid var(--accent-purple)">
+                    <h3><i class="ph ph-broadcast"></i> Conceitos Chave</h3>
+                    <ul>
+                        <li>Comunicação & Comunidade</li>
+                        <li>Impacto Socioambiental</li>
+                        <li>Conhecimento & Criação</li>
+                        <li>Conexão & Transformação</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-left: 10px solid #ff4d4d">
+                    <h3><i class="ph ph-prohibit"></i> Não Devem Ser</h3>
+                    <ul>
+                        <li>Apenas decorativas</li>
+                        <li>Neutras ou Genéricas</li>
+                        <li>Vazias de significado</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 09: Sistema de Geração -->
+        <section id="sistema" class="chapter-section reveal">
+            <span class="chapter-num">Capítulo 09</span>
+            <h2 class="chapter-title">Sistema de Geração</h2>
+            <p>Este capítulo transforma o dicionário em ferramenta de criação prática.</p>
+            <div class="rule-box" style="margin-top: 3rem;">
+                <h4>Fórmula de Composição Mandalla</h4>
+                <p style="font-size: 1.5rem; font-weight: 700; color: var(--accent-teal);">1 Elemento Principal + 1 Elemento Secundário + 1 Elemento de Composição</p>
+                <div class="questions" style="margin-top: 2rem;">
+                    <h5>Exemplos de Combinação</h5>
+                    <ul>
+                        <li>Mulher Comunicadora (Principal) + Microfone (Secundário) + Flores Violetas (Composição)</li>
+                        <li>Homem usando laptop (Principal) + Tela de rede social (Secundário) + Linhas conectando pontos (Composição)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Master Prompt Container -->
+        <section id="prompt" class="chapter-section reveal">
+            <span class="chapter-num">Capítulo 10</span>
+            <h2 class="chapter-title">Sistema de Geração IA</h2>
+            <p style="margin-bottom: 3rem;">Nosso Prompt Mestre é o sistema operacional para manter a unidade visual em criações sintéticas.</p>
+            
+            <div class="prompt-container">
+                <div class="prompt-header">MANDALLA_MASTER_PROMPT_v1.0</div>
+                <div class="prompt-section">
+                    <b>CONTEXT:</b> Photorealistic Brazilian northeastern context, warm tropical climate, casual lightweight clothing (cotton t-shirts, sleeveless tops), no jackets, no winter outfits.
+                </div>
+                <div class="prompt-section">
+                    <b>DIVERSITY:</b> Realistic Brazilian diversity, Black, Brown and Indigenous women/men with natural features. Visible diversity in skin tones, hairstyles, body types. Inclusive orientations.
+                </div>
+                <div class="prompt-section">
+                    <b>SYMBOLS:</b> Communication ecosystem symbolism integrated (microphones, clipboards, design grids, books, typography fragments) as human collage aesthetic.
+                </div>
+                <div class="prompt-section">
+                    <b>TECH & ORG:</b> Digital interfaces (screens, timeline bars, pixel grids) oriented toward the person and intertwined with organic elements (leaves, plants, seeds, water movement).
+                </div>
+                <div class="prompt-section">
+                    <b>VISUAL:</b> Cinematic lighting, 35mm motion picture style, ultra detailed textures, human-centered composition, clean white background.
+                </div>
+                <div class="prompt-section">
+                    <b>ITERATION:</b> Never repeat the same person or clothing, ensure visible variation in ethnicity and body posture in every generation.
+                </div>
+            </div>
+            
+            <div style="margin-top: 4rem; padding: 2rem; border: 1px solid #000; display: flex; align-items: center; gap: 2rem;">
+                <i class="ph ph-warning-octagon" style="font-size: 3rem; color: var(--accent-coral)"></i>
+                <p style="font-weight: 700; font-size: 0.9rem; text-transform: uppercase;">A imagem nunca deve ser apenas decorativa. Ela precisa comunicar pelo menos um conceito: Comunicação, Comunidade, Impacto ou Transformação.</p>
+            </div>
+        </section>
+
+        <footer style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 120px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">Design Sensível & Inteligência Simbólica. A retroalimentação criativa da Mandalla.</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+                <span>Design: Mandalla | Tech: Gemini Antigravity</span>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>

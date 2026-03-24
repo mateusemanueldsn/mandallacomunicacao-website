@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Gravação Mobile | E-books Mandalla</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        :root {
+            --phone-width: 380px;
+            --phone-height: 750px;
+        }
+
+        body {
+            background: #fff;
+            color: #000;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 5%;
+            display: grid;
+            grid-template-columns: var(--phone-width) 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        /* Phone Container */
+        .phone-wrapper {
+            position: relative;
+            width: var(--phone-width);
+            height: var(--phone-height);
+            z-index: 10;
+        }
+
+        .phone-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 12px solid #000;
+            border-radius: 40px;
+            background: #fff;
+            box-shadow: none;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        /* Speaker/Notch */
+        .phone-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #000;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 100;
+        }
+
+        /* Scrollable Container (Estilo PDF) */
+        .book-scroll-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .book-scroll-container::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari */
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            scroll-snap-align: start;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+
+        /* Content Styles */
+        .ebook-chapter-tag {
+            font-size: 0.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #000;
+            padding: 3px 10px;
+            width: fit-content;
+        }
+
+        .ebook-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .spec-item {
+            padding: 1.5rem;
+            border: 1px dashed #000;
+            margin-bottom: 1rem;
+        }
+
+        .spec-item h4 {
+            font-size: 0.7rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .spec-item p {
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        .recommendation-box {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #000;
+            font-size: 0.9rem;
+            background: #fdfdfd;
+        }
+
+        .recommendation-box.not-recommended {
+            border-left-color: #ff4444;
+        }
+
+        .recommendation-box.recommended {
+            border-left-color: #00c853;
+        }
+
+        /* Right Column Info */
+        .ebook-summary-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .summary-content h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            letter-spacing: -3px;
+        }
+
+        .summary-content p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 600px;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .features-list i {
+            font-size: 1.5rem;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #000;
+            color: #fff !important;
+            border: none;
+            padding: 24px 44px;
+            font-weight: 900;
+            text-decoration: none;
+            box-shadow: none;
+            transition: 0.3s;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-download:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: none;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translate(-50%, 0);
+            }
+
+            40% {
+                transform: translate(-50%, -10px);
+            }
+
+            60% {
+                transform: translate(-50%, -5px);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+            }
+
+            .summary-content p,
+            .btn-download {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .features-list {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Início</a></li>
+                    <li><a href="../ebooks.html" class="nav-link active">E-books</a></li>
+                    <li><a href="../artigos.html" class="nav-link">Artigos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Left: Phone Simulator -->
+        <div class="phone-wrapper visible">
+            <div class="phone-frame">
+                <div class="book-scroll-container">
+
+                    <!-- Page 1: Cover -->
+                    <div class="page" id="p1">
+                        <span class="ebook-chapter-tag">Capa</span>
+                        <h1 class="ebook-title" style="font-size: 2.8rem; margin-top: 40px;">Gravação <br>de Conteúdo
+                            <br><span>Digital.</span></h1>
+                        <p style="margin-top: 30px; font-weight: 500;">Um manual prático Mandalla para transformar seu
+                            celular em uma ferramenta de impacto.</p>
+                        <div class="scroll-indicator"><i class="ph ph-caret-double-down"></i></div>
+                        <div style="margin-top: auto; border-top: 1px solid #eee; padding-top: 20px;">
+                            <p style="font-size: 0.7rem; font-weight: 900;">MANDALLA COMUNICAÇÃO & DESIGN</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 2: Intro -->
+                    <div class="page" id="p2">
+                        <span class="ebook-chapter-tag">Introdução</span>
+                        <h2 class="ebook-title">Por que Qualidade?</h2>
+                        <p>Nos preocupamos com a qualidade porque ela chama a atenção do seu público de interesse de
+                            forma real.</p>
+                        <div class="recommendation-box">
+                            Este material surge para orientar sobre todo o processo de captação de forma qualitativa.
+                        </div>
+                        <i class="ph ph-sparkle" style="font-size: 3rem; margin-top: 30px; opacity: 0.1;"></i>
+                    </div>
+
+                    <!-- Page 3: Technical -->
+                    <div class="page" id="p3">
+                        <span class="ebook-chapter-tag">Técnico</span>
+                        <h2 class="ebook-title">Specs Essenciais</h2>
+                        <div class="spec-item">
+                            <h4>Formato</h4>
+                            <p>Vertical (9:16)</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Resolução</h4>
+                            <p>1080x1920 (Full HD)</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Salvamento</h4>
+                            <p>MP4</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 4: Lighting -->
+                    <div class="page" id="p4">
+                        <span class="ebook-chapter-tag">Luz</span>
+                        <h2 class="ebook-title">Iluminação</h2>
+                        <p>Use a luz natural a seu favor ou ring lights em 2 pontos (esquerda/direita).</p>
+                        <div class="recommendation-box not-recommended">
+                            <strong>EVITE:</strong> Ring light de frente. Gera reflexos nos óculos e olhos.
+                        </div>
+                    </div>
+
+                    <!-- Page 5: Audio -->
+                    <div class="page" id="p5">
+                        <span class="ebook-chapter-tag">Som</span>
+                        <h2 class="ebook-title">Captura de Áudio</h2>
+                        <p>01. Use microfone externo se possível.</p>
+                        <p>02. Escolha locais silenciosos, sem ar-condicionado ou barulho de rua.</p>
+                    </div>
+
+                    <!-- Page 6: Positions -->
+                    <div class="page" id="p6">
+                        <span class="ebook-chapter-tag">Enquadramento</span>
+                        <h2 class="ebook-title">Posicionamentos</h2>
+                        <div class="recommendation-box recommended">
+                            <strong>RECOMENDADO:</strong> Corpo centralizado ou plano médio.
+                        </div>
+                        <div class="recommendation-box not-recommended">
+                            <strong>NÃO RECOMENDADO:</strong> Rosto muito próximo ou gesticulação insegura.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Summary & Download -->
+        <div class="ebook-summary-col visible">
+            <div class="summary-content">
+                <h2>O Guia para <br>sua voz digital.</h2>
+                <p>Este material foi desenvolvido para democratizar a criação de conteúdo de alta qualidade. Ao aplicar
+                    estas orientações, você garante que sua mensagem não seja apenas ouvida, mas vista com o
+                    profissionalismo e o cuidado que sua marca merece.</p>
+            </div>
+
+            <ul class="features-list">
+                <li><i class="ph ph-check-circle" style="color: #00c853;"></i> Autonomia na criação diária</li>
+                <li><i class="ph ph-check-circle" style="color: #00c853;"></i> Padrão estético profissional</li>
+                <li><i class="ph ph-check-circle" style="color: #00c853;"></i> Otimização para algoritmos (Reels/TikTok)
+                </li>
+            </ul>
+
+            <div class="download-box">
+                <a href="[MANDALLA] Manual de captação de fotos e vídeos - Mobile.pdf" class="btn-download" download>
+                    <i class="ph ph-file-pdf"></i>
+                    <span>Baixar Guia Completo (PDF)</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div style="text-align: center; padding: 40px;">
+            <img src="../assets/logo.svg" alt="Mandalla Logo"
+                style="height: 30px;margin-bottom: 2rem;">
+            <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Mandalla | Experiência Digital.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
+

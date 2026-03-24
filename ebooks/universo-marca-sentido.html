@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-book: Como Criar um Universo de Marca com Sentido | Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_mandalla.png">
+    <style>
+        :root {
+            --phone-width: 380px;
+            --phone-height: 750px;
+        }
+
+        body {
+            background: #fff;
+            color: #000;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 5%;
+            display: grid;
+            grid-template-columns: var(--phone-width) 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        /* Phone Container */
+        .phone-wrapper {
+            position: relative;
+            width: var(--phone-width);
+            height: var(--phone-height);
+            z-index: 10;
+        }
+
+        .phone-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 12px solid #000;
+            border-radius: 40px;
+            background: #fff;
+            box-shadow: none;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        /* Speaker/Notch */
+        .phone-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #000;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 100;
+        }
+
+        /* Scrollable Container (Estilo PDF) */
+        .book-scroll-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none;
+        }
+
+        .book-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            scroll-snap-align: start;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+
+        /* Content Styles */
+        .ebook-chapter-tag {
+            font-size: 0.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #000;
+            padding: 3px 10px;
+            width: fit-content;
+        }
+
+        .ebook-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .spec-item {
+            padding: 1.2rem;
+            border: 1px dashed #000;
+            margin-bottom: 0.8rem;
+        }
+
+        .spec-item h4 {
+            font-size: 0.7rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .spec-item p {
+            font-size: 0.9rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .recommendation-box {
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border-left: 4px solid #000;
+            font-size: 0.85rem;
+            background: #fdfdfd;
+            line-height: 1.4;
+        }
+
+        .recommendation-box.highlight {
+            border-left-color: var(--coral, #ff5c35);
+        }
+
+        .list-style {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        .list-style li {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .list-style li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            font-weight: 900;
+        }
+
+        /* Right Column Info */
+        .ebook-summary-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .summary-content h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            letter-spacing: -3px;
+        }
+
+        .summary-content p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 600px;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .features-list i {
+            font-size: 1.5rem;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #000;
+            color: #fff !important;
+            border: none;
+            padding: 24px 44px;
+            font-weight: 900;
+            text-decoration: none;
+            box-shadow: none;
+            transition: 0.3s;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-download:hover {
+            transform: translate(-3px, -3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -10px); }
+            60% { transform: translate(-50%, -5px); }
+        }
+
+        @media (max-width: 1100px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+            }
+            .summary-content p, .btn-download { margin-left: auto; margin-right: auto; }
+            .features-list { justify-content: center; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Início</a></li>
+                    <li><a href="../ebooks.html" class="nav-link active">E-books</a></li>
+                    <li><a href="../artigos.html" class="nav-link">Artigos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Left: Phone Simulator -->
+        <div class="phone-wrapper visible">
+            <div class="phone-frame">
+                <div class="book-scroll-container">
+
+                    <!-- Page 1: Cover -->
+                    <div class="page" id="p1">
+                        <span class="ebook-chapter-tag">Guia Metodológico</span>
+                        <h1 class="ebook-title" style="font-size: 2.2rem; margin-top: 40px;">Como Criar um <br><span>Universo de Marca</span> <br>com Sentido.</h1>
+                        <p style="margin-top: 20px; font-size: 0.9rem; font-weight: 500; line-height: 1.4;">Guia prático para negócios de impacto socioambiental e criativos.</p>
+                        <div class="scroll-indicator"><i class="ph ph-caret-double-down"></i></div>
+                        <div style="margin-top: auto; border-top: 1px solid #000; padding-top: 20px;">
+                            <p style="font-size: 0.65rem; font-weight: 900; letter-spacing: 1px;">MANDALLA COMUNICAÇÃO & DESIGN</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 2: Design com Sentido -->
+                    <div class="page" id="p2">
+                        <span class="ebook-chapter-tag">Conceito</span>
+                        <h2 class="ebook-title">Design com <br>Sentido</h2>
+                        <p style="font-size: 0.9rem; line-height: 1.5;">Acontece quando estética, narrativa e propósito caminham juntos.</p>
+                        <div class="recommendation-box highlight">
+                            Não é apenas identidade visual, é um sistema simbólico coerente para orientar toda a comunicação.
+                        </div>
+                    </div>
+
+                    <!-- Page 3: Etapa 1 -->
+                    <div class="page" id="p3">
+                        <span class="ebook-chapter-tag">Etapa 01</span>
+                        <h2 class="ebook-title">Propósito <br>Profundo</h2>
+                        <p style="font-size: 0.85rem; margin-bottom: 1rem;">O que a marca representa no mundo?</p>
+                        <div class="spec-item">
+                            <h4>Questão Chave</h4>
+                            <p>Qual transformação essa marca busca gerar?</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Identidade</h4>
+                            <p>Se a marca fosse uma pessoa, como ela pensaria?</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 4: Etapa 2 -->
+                    <div class="page" id="p4">
+                        <span class="ebook-chapter-tag">Etapa 02</span>
+                        <h2 class="ebook-title">Campos <br>Simbólicos</h2>
+                        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Metáforas que fazem sentido:</p>
+                        <ul class="list-style">
+                            <li>Comunicação / Conhecimento</li>
+                            <li>Impacto Socioambiental</li>
+                            <li>Tecnologia ou Natureza</li>
+                            <li>Tradição ou Inovação</li>
+                        </ul>
+                    </div>
+
+                    <!-- Page 5: Etapa 3 - Elementos -->
+                    <div class="page" id="p5">
+                        <span class="ebook-chapter-tag">Etapa 03</span>
+                        <h2 class="ebook-title">Vocabulário <br>Visual</h2>
+                        <div class="spec-item">
+                            <h4>Pessoas</h4>
+                            <p>Quem é o protagonista? Qual diversidade deve aparecer?</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Objetos</h4>
+                            <p>Ferramentas de trabalho e tecnologias do cotidiano.</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 6: Etapa 3 - Natureza -->
+                    <div class="page" id="p6">
+                        <span class="ebook-chapter-tag">Etapa 03 (cont.)</span>
+                        <h2 class="ebook-title">Materialidade</h2>
+                        <div class="spec-item">
+                            <h4>Natureza & Fauna</h4>
+                            <p>Plantas e animais com significado simbólico.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Texturas</h4>
+                            <p>Madeira, papel, pedra ou superfícies digitais.</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 7: Etapa 4 -->
+                    <div class="page" id="p7">
+                        <span class="ebook-chapter-tag">Etapa 04</span>
+                        <h2 class="ebook-title">O Cenário <br>Visual</h2>
+                        <p style="font-size: 0.85rem;">Onde as imagens acontecem?</p>
+                        <ul class="list-style" style="margin-top: 1rem;">
+                            <li>Laboratório simbólico</li>
+                            <li>Território natural</li>
+                            <li>Ambiente urbano</li>
+                            <li>Cenários minimalistas</li>
+                        </ul>
+                    </div>
+
+                    <!-- Page 8: Etapa 5 & 6 -->
+                    <div class="page" id="p8">
+                        <span class="ebook-chapter-tag">Etapa 05 & 06</span>
+                        <h2 class="ebook-title">Gramática & <br>Metáforas</h2>
+                        <div class="recommendation-box">
+                            <strong>Gramática:</strong> Define a hierarquia e organização dos elementos.
+                        </div>
+                        <div class="recommendation-box highlight">
+                            <strong>Metáforas:</strong> Sementes (ideias), Flores (crescimento), Redes (conexão).
+                        </div>
+                    </div>
+
+                    <!-- Page 9: Etapa 7 & 8 -->
+                    <div class="page" id="p9">
+                        <span class="ebook-chapter-tag">Etapa 07 & 08</span>
+                        <h2 class="ebook-title">Composição <br>& Estética</h2>
+                        <div class="spec-item">
+                            <h4>Composição</h4>
+                            <p>Limites claros de elementos, escala e apoio visual.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Estética</h4>
+                            <p>Realismo vs Ilustração, Iluminação e Textura.</p>
+                        </div>
+                    </div>
+
+                    <!-- Page 10: Etapa 9 & 10 -->
+                    <div class="page" id="p10">
+                        <span class="ebook-chapter-tag">Etapa 09 & 10</span>
+                        <h2 class="ebook-title">Representação <br>& Sistema</h2>
+                        <p style="font-size: 0.82rem;">Design responsável e replicável.</p>
+                        <div class="recommendation-box" style="font-family: monospace; font-size: 0.75rem;">
+                            Fórmula: Elem. Principal + Objeto + Elem. Simbólico + Estética
+                        </div>
+                    </div>
+
+                    <!-- Page 11: Conclusão -->
+                    <div class="page" id="p11">
+                        <span class="ebook-chapter-tag">Conclusão</span>
+                        <h2 class="ebook-title">Marcas que <br>Contam Histórias</h2>
+                        <p style="font-size: 0.85rem; line-height: 1.5;">O design deixa de ser visual para ser um sistema simbólico.</p>
+                        <div style="margin-top: auto; padding: 20px; text-align: center; background: #000; color: #fff; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px;">
+                            BORA GIRAR!
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Summary & Download -->
+        <div class="ebook-summary-col visible">
+            <div class="summary-content">
+                <h2>O Universo <br>com Sentido.</h2>
+                <p>Aprenda a construir sistemas simbólicos que conectam estética, narrativa e propósito real. O guia da Mandalla para marcas que desejam impactar o mundo.</p>
+            </div>
+
+            <ul class="features-list">
+                <li><i class="ph ph-target" style="color: #000;"></i> Propósito profundo</li>
+                <li><i class="ph ph-magic-wand" style="color: #000;"></i> Gramática visual proprietária</li>
+                <li><i class="ph ph-users-three" style="color: #000;"></i> Representação responsável</li>
+            </ul>
+
+            <div class="download-box">
+                <a href="#" class="btn-download">
+                    <i class="ph ph-file-pdf"></i>
+                    <span>Baixar Guia Completo</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div style="text-align: center; padding: 40px;">
+            <img src="../assets/logo.svg" alt="Mandalla Logo" style="height: 30px;margin-bottom: 2rem;">
+            <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Mandalla | Experiência Digital.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

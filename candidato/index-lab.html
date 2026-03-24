@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Mandalla Lab</title>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_mandalla.png">
+
+    <style>
+        .lab-dashboard {
+            min-height: 100vh;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lab-nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .lab-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+        }
+
+        .lab-logo img {
+            width: 40px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--turquesa-soft);
+            border: 1px solid var(--turquesa);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--turquesa);
+            font-weight: 900;
+        }
+
+        .lab-hero {
+            padding: 80px 5%;
+            background: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .lab-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .lab-hero h1 span {
+            color: var(--turquesa);
+        }
+
+        .lab-hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+        }
+
+        .dashboard-grid {
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .dashboard-section h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lab-cta-card {
+            padding: 4rem 3rem;
+            background: var(--turquesa-soft);
+            border: 1px solid var(--turquesa);
+            border-radius: 40px;
+            text-align: center;
+            animation: cardEntrance 1s ease-out;
+        }
+
+        .lab-cta-card h2 {
+            font-size: 2.5rem;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        .lab-cta-card p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-muted);
+        }
+
+        /* Vacancy Cards */
+        .vacancy-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .vacancy-card {
+            padding: 2rem;
+            background: #fff;
+            border: 1px solid #000;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .vacancy-card:hover {
+            background: var(--turquesa-soft);
+            border-color: var(--turquesa);
+            transform: translateX(10px);
+        }
+
+        .vacancy-info h4 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .vacancy-tags {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .v-tag {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        /* Sidebar Widgets */
+        .sidebar-widget {
+            padding: 2.5rem;
+            background: #fcfcfc;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .lab-btn-outline {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 1px solid #000;
+            border-radius: var(--radius-round);
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .lab-btn-outline:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        @media (max-width: 992px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .lab-cta-card .btn-primary:hover {
+            background: var(--turquesa) !important;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(76, 178, 171, 0.2);
+        }
+    </style>
+</head>
+
+<body class="lab-dashboard">
+    <nav class="lab-nav">
+        <div class="lab-logo">
+            <img src="../assets/logo.svg" alt="Mandalla Logo">
+            <span>LAB 2026</span>
+        </div>
+        <div class="user-profile">
+            <span>Olá, Talent</span>
+            <div class="user-avatar text-center">T</div>
+        </div>
+    </nav>
+
+    <header class="lab-hero">
+        <div class="container--full">
+            <h1>Onde a <span>Inteligência</span><br>encontra a Sensibilidade.</h1>
+            <p>Este é o seu espaço de cocriação e descoberta dentro do ecossistema Mandalla.</p>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        <section class="dashboard-section">
+            <div class="lab-cta-card">
+                <h2>Acesse o Ambiente de Criação</h2>
+                <p>O Mandalla Lab é o nosso hub de inteligência onde transformamos teoria em prática. Explore nossos métodos, ferramentas e o "Jeito Mandalla" de criar impacto.</p>
+                <a href="../lab/lab.html" class="btn-primary" style="display:inline-flex; width:auto; padding: 1.2rem 3.5rem; background: #000; color: #fff; border-radius: 100vw; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: all 0.4s ease; gap: 1rem;">
+                    Acessar o Ambiente Lab
+                    <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <aside>
+            <div class="sidebar-widget">
+                <h3>Meu Perfil Lab</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 2rem;">Mantenha seu portfólio de impacto atualizado para não perder nenhuma oportunidade.</p>
+                <a href="#" class="lab-btn-outline">Editar Perfil</a>
+            </div>
+
+            <div class="sidebar-widget" style="background: var(--turquesa); color: #fff; border:none;">
+                <h3 style="color:#fff;">Próximos Briefings</h3>
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 2rem;">Fique atento às notificações sobre novos projetos e labs criativos.</p>
+                <i class="ph ph-bell-ringing" style="font-size: 3rem; opacity: 0.3;"></i>
+            </div>
+        </aside>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-books | Mandalla - Conhecimento que Transforma</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon_mandalla.png">
+    <style>
+        .section-ebooks-list {
+            padding: 100px 0;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .ebooks-stack-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 5%;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 700px;
+        }
+
+        .ebook-stack-card {
+            position: relative;
+            flex: 0 0 140px;
+            /* Slice inicial */
+            height: 600px;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: #000;
+            margin-right: -40px;
+            /* Overlap manual */
+        }
+
+        .ebook-stack-card:last-child {
+            margin-right: 0;
+        }
+
+        /* O primeiro fica aberto por padrão ou apenas maior */
+        .ebook-stack-card:first-child {
+            flex: 0 0 400px;
+            box-shadow: none;
+        }
+
+        .ebook-stack-card:hover {
+            flex: 0 0 500px;
+            z-index: 50;
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: none;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        .ebooks-stack-container:hover .ebook-stack-card:not(:hover) {
+            flex: 0 0 80px;
+            opacity: 0.4;
+            filter: grayscale(0.8);
+        }
+
+        .ebook-cover-art {
+            width: 500px;
+            height: 100%;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .ebook-cover-art .chapter-tag {
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            border: 1px solid #000;
+            padding: 4px 12px;
+            width: fit-content;
+        }
+
+        .ebook-cover-art h3 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .ebook-cover-art .description {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+            max-width: 300px;
+            margin-bottom: 2rem;
+        }
+
+        .ebook-cover-art .meta {
+            margin-top: auto;
+            font-size: 0.8rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
+        }
+
+        .ebook-cover-art i.ph-bg {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            font-size: 18rem;
+            opacity: 0.04;
+            transform: rotate(-10deg);
+            pointer-events: none;
+        }
+
+        /* Variações de Cores Mandalla */
+        .card-mobile-guide .ebook-cover-art {
+            border-top: 10px solid var(--roxo);
+        }
+
+        .card-prompts-method .ebook-cover-art {
+            border-top: 10px solid var(--coral);
+        }
+
+        .card-placeholder-1 .ebook-cover-art {
+            border-top: 10px solid var(--teal);
+            opacity: 0.6;
+        }
+
+        .card-placeholder-2 .ebook-cover-art {
+            border-top: 10px solid var(--pastel-orange);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1024px) {
+            .ebooks-stack-container {
+                flex-direction: column;
+                min-height: auto;
+                gap: 3rem;
+                padding: 40px 5%;
+            }
+
+            .ebook-stack-card {
+                flex: 0 0 auto !important;
+                width: 100%;
+                max-width: 450px;
+                height: 550px;
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+                transform: none !important;
+                opacity: 1 !important;
+                filter: none !important;
+            }
+
+            .ebook-cover-art {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="branding.html">Branding</a></li>
+                            <li><a href="design.html">Design</a></li>
+                            <li><a href="conteudo.html">Conteúdo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="historia.html">Nossa história</a></li>
+                            <li><a href="index.html#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link active">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="artigos.html">Artigos</a></li>
+                            <li><a href="ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio/feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="index.html#midias-digitais">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section: E-books -->
+        <section class="ebooks-hero">
+            <div class="hero-container">
+                <div class="hero-content fade-up">
+                    <span class="manifesto-tag"
+                        style="border: none; padding: 5px 15px; font-size: 0.7rem; letter-spacing: 2px; font-weight: 900; margin-bottom: 1.5rem; display: inline-block;">BIBLIOTECA
+                        MANDALLA</span>
+                    <h1>Conhecimento <br><span>Compartilhado.</span></h1>
+                    <p>Compilamos nossa experiência em guias práticos e materiais educativos para ajudar sua marca a se
+                        comunicar de forma autêntica, sensível e independente.</p>
+                </div>
+                <div class="hero-visual fade-up" style="transition-delay: 0.2s;">
+                    <div class="ebook-geometric-stack">
+                        <div class="ebook-rect"></div>
+                        <div class="ebook-rect"></div>
+                        <div class="ebook-rect main">
+                            <i class="ph ph-notebook" style="font-size: 4rem; opacity: 0.2;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E-books Stack Section -->
+        <section class="section-ebooks-list">
+            <div class="ebooks-stack-container fade-up">
+
+                <!-- Card 1: Gravação Mobile -->
+                <a href="ebooks/guia-gravacao-mobile.html" class="ebook-stack-card card-mobile-guide">
+                    <div class="ebook-cover-art">
+                        <span class="chapter-tag">Manual Mandalla</span>
+                        <h3>Gravação <br>de Conteúdo <br><span>Digital.</span></h3>
+                        <p class="description">Transforme seu celular em uma ferramenta de impacto real com nosso guia
+                            de captação.</p>
+                        <div class="meta">
+                            <i class="ph ph-arrow-right"></i><span>EXPLORAR GUIA</span>
+                        </div>
+                        <i class="ph ph-video-camera ph-bg"></i>
+                    </div>
+                </a>
+
+                <!-- Card 2: Método de Prompts -->
+                <a href="ebooks/metodo-mandalla-prompts.html" class="ebook-stack-card card-prompts-method">
+                    <div class="ebook-cover-art">
+                        <span class="chapter-tag">Estratégia Visual</span>
+                        <h3>O Método <br>Mandalla de <br><span>Prompts.</span></h3>
+                        <p class="description">As 6 camadas fundamentais para criar imagens de IA que expressam a alma
+                            da marca.</p>
+                        <div class="meta">
+                            <i class="ph ph-arrow-right"></i><span>EXPLORAR MÉTODO</span>
+                        </div>
+                        <i class="ph ph-magic-wand ph-bg"></i>
+                    </div>
+                </a>
+
+                <!-- Card 3: Branding Regenerativo -->
+                <a href="ebooks/branding-regenerativo.html" class="ebook-stack-card card-placeholder-1">
+                    <div class="ebook-cover-art">
+                        <span class="chapter-tag">Tese Mandalla</span>
+                        <h3>Branding <br>Regenerativo <br><span>e Social.</span></h3>
+                        <p class="description">Como construir identidades que geram impacto positivo em territórios
+                            diversos.</p>
+                        <div class="meta">
+                            <i class="ph ph-arrow-right"></i><span>ABRIR TESE</span>
+                        </div>
+                        <i class="ph ph-tree ph-bg"></i>
+                    </div>
+                </a>
+
+                <!-- Card 4: Universo de Marca com Sentido -->
+                <a href="ebooks/universo-marca-sentido.html" class="ebook-stack-card card-universo-sentido" style="border-top: 10px solid #000;">
+                    <div class="ebook-cover-art">
+                        <span class="chapter-tag">Design com Sentido</span>
+                        <h3>Universo <br>de Marca <br><span>com Sentido.</span></h3>
+                        <p class="description">Guia estratégico para construir sistemas simbólicos que conectam estética e propósito.</p>
+                        <div class="meta">
+                            <i class="ph ph-arrow-right"></i><span>ABRIR GUIA</span>
+                        </div>
+                        <i class="ph ph-fingerprint ph-bg"></i>
+                    </div>
+                </a>
+
+                <!-- Card 5: Gestão de Redes -->
+                <a href="ebooks/gestao-redes-impacto.html" class="ebook-stack-card card-placeholder-2">
+                    <div class="ebook-cover-art">
+                        <span class="chapter-tag">Estratégia Móvel</span>
+                        <h3>Gestão de <br>Redes para <br><span>Impacto.</span></h3>
+                        <p class="description">Estratégias de comunidade e engajamento real fora da bolha dos
+                            algoritmos.</p>
+                        <div class="meta">
+                            <i class="ph ph-arrow-right"></i><span>ABRIR GUIA</span>
+                        </div>
+                        <i class="ph ph-users-three ph-bg"></i>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div style="text-align: center; padding: 60px 0;">
+            <img src="assets/logo.svg" alt="Mandalla Logo" style="height: 30px;margin-bottom: 1.5rem;">
+            <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Mandalla | Girando a Mudança através do Saber.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografia & Universo Visual — Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+            --roxo: #926ECC;
+            --coral: #FF6C40;
+            --teal: #4CB2AB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .lab-logo {
+            width: 100%;
+            max-width: 240px;
+            display: block;
+        }
+
+        .nav-container {
+            flex-grow: 1;
+            padding: 0 1rem 2rem;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--lab-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            padding: 5rem 8%;
+            max-width: 1400px;
+        }
+
+        .header {
+            margin-bottom: 4rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-intro {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--lab-text-muted);
+            max-width: 800px;
+            margin-bottom: 5rem;
+        }
+
+        /* Composition Grid */
+        .composition-system {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .composition-layer {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .composition-layer:hover {
+            transform: translateY(-10px);
+            box-shadow: none;
+        }
+
+        .layer-num {
+            font-size: 0.7rem;
+            font-weight: 900;
+            opacity: 0.3;
+        }
+
+        .layer-title {
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .layer-desc {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Library Section */
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .library-card {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 2rem;
+        }
+
+        .library-card h3 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prompt-base {
+            background: #f0f0f0;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #000;
+        }
+
+        .element-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .element-item {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 10px;
+            transition: background 0.2s ease;
+            border-radius: 4px;
+        }
+
+        .element-item:hover {
+            background: #f5f5f5;
+        }
+
+        .element-item span {
+            font-weight: 900;
+            font-size: 0.7rem;
+            opacity: 0.3;
+        }
+
+        /* Combinations Search/Filter */
+        .combinations-section {
+            background: #000;
+            color: #fff;
+            padding: 5rem 8%;
+            margin: 0 -8% 6rem;
+        }
+
+        .search-container {
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: transparent;
+            border: 2px solid #333;
+            color: #fff;
+            font-size: 1.1rem;
+            font-family: 'Lato', sans-serif;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--coral);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .combinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .combo-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .combo-card:hover {
+            border-color: #444;
+            transform: scale(1.02);
+            background: #1a1a1a;
+        }
+
+        .combo-num {
+            font-size: 0.7rem;
+            font-weight: 900;
+            color: #444;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .combo-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        .combo-card:hover .combo-text {
+            color: #fff;
+        }
+
+        .master-prompt-box {
+            background: #fff;
+            border: 2px dashed #000;
+            padding: 3rem;
+            margin-top: 4rem;
+        }
+
+        .master-prompt-box h2 {
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        /* Colors for Categories */
+        .cat-people h3 {
+            color: var(--roxo);
+            border-color: var(--roxo);
+        }
+
+        .cat-tech h3 {
+            color: var(--teal);
+            border-color: var(--teal);
+        }
+
+        .cat-nature h3 {
+            color: var(--coral);
+            border-color: var(--coral);
+        }
+
+        @media (max-width: 1024px) {
+            .composition-system {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 3rem 5%;
+            }
+
+            .composition-system {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggleSidebar"
+            style="position: absolute; right: -15px; top: 25px; width: 30px; height: 30px; background: #000; color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 101;"><i
+                class="ph ph-caret-left"></i></button>
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header reveal">
+            <span class="manifesto-tag">IDENTIDADE VISUAL</span>
+            <h1>Fotografia & <br>Universo Visual.</h1>
+            <p>O sistema de colagens e prompts que define a narrativa estética da Mandalla.</p>
+        </header>
+
+        <section class="section-intro reveal">
+            <p>
+                O universo visual da Mandalla traduz comunicação de impacto socioambiental através de metáforas visuais
+                regenerativas. Não geramos apenas imagens; construímos organismos vivos onde tecnologia e natureza se
+                fundem em um território específico.
+            </p>
+        </section>
+
+        <!-- Composition System -->
+        <section class="reveal" style="margin-bottom: 8rem;">
+            <span class="manifesto-tag" style="background: var(--coral);">ESTRUTURA DE COMPOSIÇÃO</span>
+            <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 3rem; text-transform: uppercase;">A Lógica
+                das Camadas</h2>
+
+            <div class="composition-system">
+                <div class="composition-layer">
+                    <span class="layer-num">01</span>
+                    <span class="layer-title">Pessoa</span>
+                    <p class="layer-desc">Diversidade brasileira, contexto Nordestino e clima tropical. Roupas leves de
+                        algodão.</p>
+                </div>
+                <div class="composition-layer">
+                    <span class="layer-num">02</span>
+                    <span class="layer-title">Tecnologia</span>
+                    <p class="layer-desc">Ferramentas de comunicação real: smartphones, microfones, laptops e cabos.</p>
+                </div>
+                <div class="composition-layer">
+                    <span class="layer-num">03</span>
+                    <span class="layer-title">Natureza</span>
+                    <p class="layer-desc">Plantas resilientes: musgo, hortelã, alecrim, trepadeiras e raízes finas.</p>
+                </div>
+                <div class="composition-layer">
+                    <span class="layer-num">04</span>
+                    <span class="layer-title">Textura</span>
+                    <p class="layer-desc">O toque do território: terra úmida, pedra de rio, areia seca ou solo de
+                        caatinga.</p>
+                </div>
+                <div class="composition-layer">
+                    <span class="layer-num">05</span>
+                    <span class="layer-title">Metáfora</span>
+                    <p class="layer-desc">A alma da imagem: dados como água, comunicação como raiz, impacto como
+                        germinação.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Element Library -->
+        <section class="reveal">
+            <span class="manifesto-tag" style="background: var(--roxo);">BIBLIOTECA DE ELEMENTOS</span>
+            <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 3rem; text-transform: uppercase;">Dicionário
+                Visual & Prompts</h2>
+
+            <div class="library-grid">
+                <!-- Pessoas -->
+                <div class="library-card cat-people">
+                    <h3><i class="ph ph-users"></i> Pessoas</h3>
+                    <div class="prompt-base">photorealistic Brazilian northeastern context, warm tropical cl                    <ul class="element-list">
+                        <li class="element-item"><span>01</span> Mulher negra com smartphone</li>
+                        <li class="element-item"><span>02</span> Radialista comunitária</li>
+                        <li class="element-item"><span>03</span> Técnico de telecom</li>
+                        <li class="element-item"><span>04</span> Estudante com laptop</li>
+                        <li class="element-item"><span>05</span> Criador de conteúdo</li>
+                        <li class="element-item"><span>06</span> Designer digital</li>
+                        <li class="element-item"><span>07</span> Jornalista local</li>
+                        <li class="element-item"><span>08</span> Ativista socioambiental</li>
+                        <li class="element-item"><span>09</span> Jovem empreendedora</li>
+                        <li class="element-item"><span>10</span> Mulher indígena no celular</li>
+                    </ul>
+                </div>
+
+                <!-- Tecnologia -->
+                <div class="library-card cat-tech">
+                    <h3><i class="ph ph-cpu"></i> Tecnologia</h3>
+                    <div class="prompt-base">isolated on pure white background, ultra detailed textures, cinematic
+                        lighting...</div>
+                    <ul class="element-list">
+                        <li class="element-item"><span>01</span> Smartphone / Tablet</li>
+                        <li class="element-item"><span>02</span> Laptop / Estação de trabalho</li>
+                        <li class="element-item"><span>03</span> Microfone / Gravador</li>
+                        <li class="element-item"><span>04</span> Cabo de rede / Fibra ótica</li>
+                        <li class="element-item"><span>05</span> Caixa de conexão / Roteador</li>
+                        <li class="element-item"><span>06</span> Smartwatch / Wearables</li>
+                        <li class="element-item"><span>07</span> Tripé / Anéis de luz</li>
+                        <li class="element-item"><span>08</span> Mesa de áudio / Mixer</li>
+                        <li class="element-item"><span>09</span> Antenas de rádio</li>
+                        <li class="element-item"><span>10</span> Câmera de vídeo profissional</li>
+                    </ul>
+                </div>
+
+                <!-- Natureza -->
+                <div class="library-card cat-nature">
+                    <h3><i class="ph ph-leaf"></i> Natureza</h3>
+                    <div class="prompt-base">resilient plants growing organically, detailed natural textures,
+                        cinematic...</div>
+                    <ul class="element-list">
+                        <li class="element-item"><span>01</span> Musgo de parede verde</li>
+                        <li class="element-item"><span>02</span> Hortelã e Ervas frescas</li>
+                        <li class="element-item"><span>03</span> Alecrim e plantas lenhosas</li>
+                        <li class="element-item"><span>04</span> Trigo e gramíneas</li>
+                        <li class="element-item"><span>05</span> Trepadeira Pothos</li>
+                        <li class="element-item"><span>06</span> Suculenta Echeveria</li>
+                        <li class="element-item"><span>07</span> Grama de campo</li>
+                        <li class="element-item"><span>08</span> Folhas de Eucalipto</li>
+                        <li class="element-item"><span>09</span> Raízes finas e micélio</li>
+                        <li class="element-item"><span>10</span> Ervas silvestres do semiárido</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combinations Catalog -->
+        <section class="combinations-section reveal">
+            <span class="manifesto-tag" style="background: var(--teal);">CATÁLOGO DE COMBINAÇÕES</span>
+            <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase;">500
+                Exemplos Estruturados</h2>
+            <p style="color: #666; margin-bottom: 3rem;">O sistema modular da Mandalla permite até 25.000 composições
+                únicas. Abaixo, exploramos as combinações mais potentes por categoria.</p>
+
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Filtrar por elemento (ex: radialista, musgo..)">
+            </div>
+
+            <div class="combinations-grid">
+                <div class="combo-card">
+                    <span class="combo-num">001</span>
+                    <p class="combo-text">young Brazilian woman holding smartphone where wheat grows from screen over
+                        moist soil</p>
+                </div>
+                <div class="combo-card">
+                    <span class="combo-num">002</span>
+                    <p class="combo-text">Black community radio host speaking into microphone where mint plants grow
+                        from base</p>
+                </div>
+                <div class="combo-card">
+                    <span class="combo-num">003</span>
+                    <p class="combo-text">telecom technician repairing network cable turning into plant roots</p>
+                </div>
+                <div class="combo-card">
+                    <span class="combo-num">004</span>
+                    <p class="combo-text">student typing on laptop where moss grows between keyboard keys</p>
+                </div>
+                <div class="combo-card">
+                    <span class="combo-num">005</span>
+                    <p class="combo-text">content creator recording video while vines grow around tripod</p>
+                </div>
+                <div class="combo-card">
+                    <span class="combo-num">051</span>
+                    <p class="combo-text">smartphone where mint plants grow while hummingbird flies nearby, cinematic
+                        lighting</p>
+                </div>
+                <div class="combo-card">
+                    <span class="combo-num">052</span>
+                    <p class="combo-text">laptop where wheat grows with small sparrows perched, tropical climate</p>
+                </div>
+                <div class="combo-card">
+                    <span class="combo-num">201</span>
+                    <p class="combo-text">diverse Brazilian group connected by cables transforming into vines,
+                        regenerative communication</p>
+                </div>
+                <div class="combo-card">
+                    <span class="combo-num">500</span>
+                    <p class="combo-text">Brazilian community connected by devices where vines and roots spread
+                        symbolizing regenerative networks</p>
+                </div>
+            </div>
+
+            <!-- Master Prompt -->
+            <div class="master-prompt-box reveal">
+                <h2 style="color: #000; font-size: 1.2rem; font-weight: 900;">O PROMPT MESTRE DEFINITIVO</h2>
+                <p style="color: #333; font-family: monospace; line-height: 1.6; font-size: 0.95rem;">
+                    photorealistic Brazilian northeastern context, warm tropical climate, casual lightweight clothing
+                    suitable for hot weather such as cotton t-shirts or sleeveless shirts, no jackets no blazers no
+                    coats no winter clothing, natural Brazilian diversity, communication technology integrated with
+                    resilient plants and natural textures symbolizing socioenvironmental regeneration, Mandalla brand
+                    palette accents (#FF6C40 #926ECC #4CB2AB), cinematic lighting, 35mm film style, ultra detailed
+                    textures, pure white background
+                </p>
+            </div>
+
+            <div style="margin-top: 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+                <div style="background: rgba(76, 178, 171, 0.1); padding: 3rem; border: 1px solid var(--teal);">
+                    <h3 style="color: var(--teal); margin-bottom: 2rem; font-weight: 900; text-transform: uppercase;"><i
+                            class="ph ph-check-circle"></i> O QUE FAZER</h3>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; font-weight: 500;">
+                        <li>✔ Tecnologia integrada à natureza</li>
+                        <li>✔ Diversidade brasileira autêntica</li>
+                        <li>✔ Clima tropical e ensolarado</li>
+                        <li>✔ Metáforas regenerativas claras</li>
+                        <li>✔ Estética cinematográfica 35mm</li>
+                        <li>✔ Fundo branco limpo</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(255, 108, 64, 0.1); padding: 3rem; border: 1px solid var(--coral);">
+                    <h3 style="color: var(--coral); margin-bottom: 2rem; font-weight: 900; text-transform: uppercase;">
+                        <i class="ph ph-x-circle"></i> O QUE EVITAR
+                    </h3>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; font-weight: 500;">
+                        <li>✖ Estética corporativa americana / Stock</li>
+                        <li>✖ Roupas de inverno (casacos, blazers)</li>
+                        <li>✖ Tecnologia futurista exagerada (CGI artificial)</li>
+                        <li>✖ Natureza agressiva ou perigosa</li>
+                        <li>✖ Pessoas com aparência artificial / bonecos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab"
+                            style="height: 70px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da
+                        Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">
+                        Navegação</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="../index.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Mandalla
+                                Comunicação & Design</a></li>
+                        <li><a href="../simbolyca.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Simbólyca</a>
+                        </li>
+                        <li><a href="lab.html"
+                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Dashboard
+                                Lab</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+                <span>Design Sensível & Estratégia Técnica</span>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Simple search filter for combinations
+        const searchInput = document.querySelector('.search-input');
+        const comboCards = document.querySelectorAll('.combo-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            comboCards.forEach(card => {
+                const text = card.querySelector('.combo-text').textContent.toLowerCase();
+                if (text.includes(term)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

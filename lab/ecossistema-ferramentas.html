@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecossistema de Trabalho — Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+            --roxo: #926ECC;
+            --coral: #FF6C40;
+            --teal: #4CB2AB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .lab-logo {
+            width: 100%;
+            max-width: 240px;
+            display: block;
+        }
+
+        .nav-container {
+            flex-grow: 1;
+            padding: 0 1rem 2rem;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--lab-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            padding: 5rem 8%;
+            max-width: 1400px;
+        }
+
+        .header {
+            margin-bottom: 4rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Ecosystem Visualizer Styles - Neural Hub Redesign 2026 */
+        .ecosystem-container {
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 60px;
+            padding: 100px 5%;
+            margin: 6rem auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.03);
+            max-width: 1400px;
+        }
+
+        .hub-stage {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Central Neural Hub */
+        .central-neural-hub {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 40px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 20px 50px rgba(0,0,0,0.05),
+                inset 0 0 40px rgba(146, 110, 204, 0.05);
+            z-index: 20;
+        }
+
+        .central-neural-hub::before {
+            content: '';
+            position: absolute;
+            top: -20px; left: -20px; right: -20px; bottom: -20px;
+            background: radial-gradient(circle, rgba(146, 110, 204, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: hubGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes hubGlow {
+            from { transform: scale(0.9); opacity: 0.5; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+
+        .hub-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--roxo);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .hub-main-tools {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .hub-tool-card {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: #000;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 1rem;
+            width: 100%;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .hub-tool-card:hover {
+            transform: scale(1.05);
+            background: var(--roxo);
+        }
+
+        /* Satellite Streams */
+        .tool-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .stream-title {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text-muted);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .mini-tool-card {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .mini-tool-card:hover {
+            border-color: #000;
+            transform: translateX(10px);
+            background: #fdfdfd;
+        }
+
+        .stream-left .mini-tool-card:hover { border-color: var(--teal); }
+        .stream-right .mini-tool-card:hover { border-color: var(--roxo); }
+
+        .mini-tool-card i {
+            font-size: 1.6rem;
+            color: #000;
+            display: flex;
+            align-items: center;
+        }
+
+        .mini-tool-card span {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* SVG Connections */
+        .svg-connections {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .neural-path {
+            stroke: #000;
+            stroke-width: 1px;
+            stroke-dasharray: 4, 4;
+            opacity: 0.1;
+            fill: none;
+            animation: flowDash 30s linear infinite;
+        }
+
+        @keyframes flowDash {
+            to { stroke-dashoffset: -1000; }
+        }
+
+        .section-intro {
+            max-width: 800px;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: var(--lab-text-muted);
+            margin-bottom: 4rem;
+        }
+
+        .info-card {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 3rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 1024px) {
+            .hub-stage { grid-template-columns: 1fr; gap: 4rem; }
+            .central-neural-hub { order: -1; }
+            .svg-connections { display: none; }
+            .ecosystem-container { border-radius: 40px; padding: 60px 5%; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 3rem 5%; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggleSidebar"
+            style="position: absolute; right: -15px; top: 25px; width: 30px; height: 30px; background: #000; color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 101;"><i
+                class="ph ph-caret-left"></i></button>
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header reveal">
+            <span class="manifesto-tag">AMBIENTE REMOTO</span>
+            <h1>Ecossistema <br> de Trabalho.</h1>
+            <p>A representação visual do nosso fluxo e ferramentas diárias.</p>
+        </header>
+
+        <p class="section-intro reveal">
+            Trabalhamos de forma 100% remota e assíncrona, mas conectados por um ecossistema sólido de ferramentas que garante que a criatividade mandalliana flua sem barreiras geográficas.
+        </p>
+
+        <section class="ecosystem-container reveal">
+            <svg class="svg-connections" viewBox="0 0 1400 600">
+                <!-- Neural Connections -->
+                <path d="M300,100 Q700,100 700,300" class="neural-path" />
+                <path d="M300,200 Q700,200 700,300" class="neural-path" />
+                <path d="M300,300 Q700,300 700,300" class="neural-path" />
+                <path d="M300,400 Q700,400 700,300" class="neural-path" />
+                <path d="M300,500 Q700,500 700,300" class="neural-path" />
+                
+                <path d="M1100,150 Q700,150 700,300" class="neural-path" />
+                <path d="M1100,300 Q700,300 700,300" class="neural-path" />
+                <!-- Evernote Standalone (No neural connection) -->
+            </svg>
+
+            <div class="hub-stage">
+                <!-- Visual Stream -->
+                <div class="tool-stream stream-left">
+                    <div class="stream-title">Visual Design</div>
+                    <a href="https://figma.com" target="_blank" class="mini-tool-card" style="border-left: 4px solid var(--teal); text-decoration: none;">
+                        <i class="ph ph-figma-logo"></i>
+                        <span>Figma</span>
+                    </a>
+                    <a href="#" class="mini-tool-card" style="text-decoration: none;">
+                        <i class="ph ph-bezier-curve"></i>
+                        <span>Illustrator</span>
+                    </a>
+                    <a href="#" class="mini-tool-card" style="text-decoration: none;">
+                        <i class="ph ph-image"></i>
+                        <span>Photoshop</span>
+                    </a>
+                    <a href="#" class="mini-tool-card" style="text-decoration: none;">
+                        <i class="ph ph-columns"></i>
+                        <span>InDesign</span>
+                    </a>
+                    <a href="#" class="mini-tool-card" style="text-decoration: none;">
+                        <i class="ph ph-presentation"></i>
+                        <span>Canva</span>
+                    </a>
+                </div>
+
+                <!-- Central Hub -->
+                <div class="central-neural-hub">
+                    <span class="hub-title">Cérebro Compartilhado</span>
+                    <div class="hub-main-tools">
+                        <div class="hub-tool-card">
+                            <i class="ph ph-ghost"></i>
+                            GATHER 100%
+                        </div>
+                        <div class="hub-tool-card">
+                            <i class="ph ph-notebook"></i>
+                            NOTION HQ
+                        </div>
+                    </div>
+                    <p style="font-size: 0.7rem; color: var(--lab-text-muted); margin-top: 2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Sincronia Remota & Documentação</p>
+                </div>
+
+                <!-- Copy Stream -->
+                <div class="tool-stream stream-right">
+                    <div class="stream-title">Copy & Estratégia</div>
+                    <a href="#" class="mini-tool-card" style="border-right: 4px solid var(--roxo); justify-content: flex-end; text-decoration: none;">
+                        <span>Google Docs</span>
+                        <i class="ph ph-google-logo"></i>
+                    </a>
+                    <a href="#" class="mini-tool-card" style="justify-content: flex-end; text-decoration: none;">
+                        <span>ChatGPT HQ</span>
+                        <i class="ph ph-sparkle"></i>
+                    </a>
+                    <!-- Evernote: Standalone App (No link/connection as requested) -->
+                    <div class="mini-tool-card" style="justify-content: flex-end; opacity: 1; cursor: default; border-color: rgba(146, 110, 204, 0.2);">
+                        <span>Evernote</span>
+                        <i class="ph-fill ph-elephant" style="color: #00a82d;"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+            <div class="info-card reveal">
+                <h3 style="font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="ph ph-users-three" style="color: var(--teal);"></i>
+                    Sincronia Total
+                </h3>
+                <p style="line-height: 1.6; color: #666; font-size: 0.95rem;">
+                    O **Gather** atua como nosso escritório virtual, onde as trocas acontecem em tempo real, simulando a proximidade de um ambiente físico.
+                </p>
+            </div>
+            <div class="info-card reveal">
+                <h3 style="font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="ph ph-database" style="color: var(--roxo);"></i>
+                    Cérebro Digital
+                </h3>
+                <p style="line-height: 1.6; color: #666; font-size: 0.95rem;">
+                    O **Notion** é o nosso repositório de inteligência. Toda documentação, briefing e processos são centralizados para que ninguém fique no escuro.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 70px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+                <span>Ecossistema Mandalliano</span>
+            </div>
+        </footer>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeos & Motion — Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+            --teal: #4CB2AB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .lab-logo {
+            width: 100%;
+            max-width: 240px;
+            display: block;
+        }
+
+        .nav-container {
+            flex-grow: 1;
+            padding: 0 1rem 2rem;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--lab-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            padding: 5rem 8%;
+            max-width: 1400px;
+        }
+
+        .header {
+            margin-bottom: 4rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Hub Section Styles */
+        .technical-section {
+            margin-bottom: 6rem;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #999;
+            margin-bottom: 2rem;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-card {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            background: #fdfdfd;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.02);
+        }
+
+        .video-card h3 {
+            font-size: 1.25rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .video-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .safe-zone-preview {
+            width: 100%;
+            aspect-ratio: 9/16;
+            background: #111;
+            position: relative;
+            margin: 1rem 0;
+            border: 8px solid #000;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .reels-hud {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 30%, transparent 80%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .hud-top {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .hud-right {
+            position: absolute;
+            right: 15px;
+            bottom: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            color: #fff;
+        }
+
+        .hud-icon-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+
+        .hud-icon-label i { font-size: 1.5rem; }
+
+        .hud-bottom {
+            color: #fff;
+            margin-right: 60px; /* Space for buttons */
+        }
+
+        .hud-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .avatar-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--teal);
+        }
+
+        .caption-line {
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            margin-bottom: 6px;
+            width: 80%;
+        }
+
+        .safe-overlay {
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            width: 80%;
+            height: 70%;
+            border: 2px dashed var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(76, 178, 171, 0.05);
+            z-index: 2;
+        }
+
+        .safe-overlay span {
+            color: var(--teal);
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .danger-zone-tag {
+            position: absolute;
+            background: rgba(255, 108, 64, 0.2);
+            border: 1px solid var(--coral);
+            color: var(--coral);
+            font-size: 0.5rem;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+            z-index: 5;
+        }
+
+        .pdf-cta {
+            background: #000;
+            color: #fff;
+            padding: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .btn-pdf {
+            background: var(--teal);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-pdf:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 3rem 5%; }
+            .pdf-cta { flex-direction: column; gap: 2rem; text-align: center; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggleSidebar"
+            style="position: absolute; right: -15px; top: 25px; width: 30px; height: 30px; background: #000; color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 101;"><i
+                class="ph ph-caret-left"></i></button>
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header reveal">
+            <span class="manifesto-tag">IDENTIDADE EM MOVIMENTO</span>
+            <h1>Vídeos & <br>Motion Design.</h1>
+            <p>Os padrões técnicos para a narrativa cinematográfica e social da Mandalla.</p>
+        </header>
+
+        <p style="font-size: 1rem; line-height: 1.8; max-width: 700px; color: var(--lab-text-muted); margin-bottom: 5rem;">
+            Nossos vídeos não são apenas registros de imagem; são extensões da nossa identidade visual em movimento.
+            Seguimos padrões universais de edição para garantir impacto, clareza e acessibilidade em todas as
+            plataformas.
+        </p>
+
+        <!-- Padrão de Plataformas -->
+        <section class="technical-section reveal">
+            <span class="section-label">PADRÃO POR PLATAFORMA</span>
+            <div class="video-grid">
+                <div class="video-card" style="border-top: 4px solid var(--roxo);">
+                    <h3><i class="ph ph-instagram-logo"></i> Instagram Reels</h3>
+                    <p>O Reels é nossa vitrine audiovisual. Exige atenção triplicada aos recortes e zonas de interferência da interface.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; color: #666;">
+                        <li>• Orientação Vertical (9:16)</li>
+                        <li>• Duração: 15–60 seg</li>
+                        <li>• Hook nos primeiros 3 seg</li>
+                    </ul>
+                </div>
+                <div class="video-card" style="border-top: 4px solid var(--teal);">
+                    <h3><i class="ph ph-youtube-logo"></i> YouTube</h3>
+                    <p>Conteúdo denso estruturado. Maior tempo de retenção e estrutura narrativa clássica para desktop/TV.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; color: #666;">
+                        <li>• Horizontal 16:9 Full HD</li>
+                        <li>• Duração: 5–20 min</li>
+                        <li>• Chapters marcados na timeline</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Estrutura Base Reels -->
+        <section class="technical-section reveal">
+            <span class="section-label">ESTRUTURA BASE REELS</span>
+            <div class="video-grid">
+                <div class="video-card">
+                    <h3>01. Capa</h3>
+                    <p>Formato 9:16 (1080x1920) e 3:4 (1080x1350) na visualização do Feed. Corresponde ao meio central da capa (Post Retrato).</p>
+                </div>
+                <div class="video-card">
+                    <h3>02. Assinatura</h3>
+                    <p>Logo do cliente sempre no centro inferior, canto superior direito ou, em último caso, centro superior (sem cobrir rostos).</p>
+                </div>
+                <div class="video-card">
+                    <h3>03. Headline</h3>
+                    <p>Lettering nos primeiros 3 segundos ligado ao gancho (frase provocativa ou reflexão). Proibido começar com apresentações lentas.</p>
+                </div>
+                <div class="video-card">
+                    <h3>04. Finalização</h3>
+                    <p>Logo review simples ou apenas o PNG com cor da paleta e logo ao centro para fixar a marca na memória.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recomendações Específicas -->
+        <section class="technical-section reveal" style="background: rgba(76, 178, 171, 0.05); padding: 3rem; border: 1px dashed var(--teal);">
+            <h2 style="font-size: 1.5rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; color: var(--teal);">Depoimentos & Qualidade</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div>
+                    <h4 style="font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;"><i class="ph ph-cell-signal-low"></i> Baixa Qualidade Técnica</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">Em gravações pixeladas ou de baixa luz, use <strong>molduras de celular</strong> ou formas gráficas para cobrir imperfeições e profissionalizar a entrega.</p>
+                </div>
+                <div>
+                    <h4 style="font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;"><i class="ph ph-sparkles"></i> Estética & Humanização</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">Em rostos femininos, avaliar o uso de <strong>embelezamento automático</strong> ou maquiagens suaves para corrigir olheiras e manchas, conforme o conforto da pessoa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Padrões Técnicos -->
+        <section class="technical-section reveal">
+            <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 3rem; text-transform: uppercase;">Padrões Técnicos de Exportação</h2>
+            <div class="video-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="video-card" style="padding: 1.5rem;">
+                    <h3 style="font-size: 0.9rem;"><i class="ph ph-frame-corners"></i> Resolução</h3>
+                    <p style="font-size: 0.85rem;">Mínimo Full HD: 1920×1080px. 4K quando possível.</p>
+                </div>
+                <div class="video-card" style="padding: 1.5rem;">
+                    <h3 style="font-size: 0.9rem;"><i class="ph ph-film-slate"></i> Frame Rate</h3>
+                    <p style="font-size: 0.85rem;">Padrão: 30 FPS ou 60 FPS para movimentos fluídos.</p>
+                </div>
+                <div class="video-card" style="padding: 1.5rem;">
+                    <h3 style="font-size: 0.9rem;"><i class="ph ph-hard-drive"></i> Codec</h3>
+                    <p style="font-size: 0.85rem;">Container: .MP4 ou .MOV. Codec: H.264 ou H.265.</p>
+                </div>                <div class="video-card" style="padding: 1.5rem;">
+                    <h3 style="font-size: 0.9rem;"><i class="ph ph-speaker-high"></i> Áudio</h3>
+                    <p style="font-size: 0.85rem;">AAC 320kbps. Normalizado em -14 LUFS.</p>
+                </div>
+            </div>
+
+            <!-- Box de Zonas de Segurança Estilizado -->
+            <div style="margin-top: 5rem; background: #000; color: #fff; padding: 5rem 8%; display: flex; flex-wrap: wrap; gap: 4rem; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 style="font-weight: 900; text-transform: uppercase; margin-bottom: 2rem; font-size: 2rem; letter-spacing: -1px; display: flex; align-items: center; gap: 15px; color: var(--teal);">
+                        <span style="width: 15px; height: 15px; background: var(--teal); display: inline-block;"></span>
+                        Zonas de Segurança
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 1.25rem; line-height: 1.7; margin-bottom: 3rem; font-weight: 400; max-width: 600px;">
+                        Os primeiros e últimos 250px do topo e rodapé são cobertos pela interface do Instagram. O design deve respeitar as margens para garantir a legibilidade total.
+                    </p>
+                    
+                    <div style="background: rgba(255,255,255,0.05); border-left: 5px solid var(--roxo); padding: 2.5rem;">
+                        <h4 style="font-size: 1.1rem; font-weight: 900; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; color: var(--roxo);">Critérios de Qualidade</h4>
+                        <ul style="list-style: none; font-size: 1.1rem; color: #fff; display: flex; flex-direction: column; gap: 20px; font-weight: 500;">
+                            <li style="display: flex; gap: 15px; align-items: center;"><i class="ph ph-closed-captioning" style="color: var(--teal); font-size: 1.8rem;"></i> Legendas obrigatórias (80% assistem sem som)</li>
+                            <li style="display: flex; gap: 15px; align-items: center;"><i class="ph ph-user-focus" style="color: var(--teal); font-size: 1.8rem;"></i> Logo do cliente não deve cobrir rostos ou ações</li>
+                            <li style="display: flex; gap: 15px; align-items: center;"><i class="ph ph-warning-circle" style="color: var(--teal); font-size: 1.8rem;"></i> Evitar imagens estáticas (baixa entrega)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
+                    <div class="safe-zone-preview" style="max-width: 300px; width: 100%; margin: 0;">
+                        <div class="reels-hud">
+                            <div class="hud-top">
+                                <span>Reels</span>
+                                <i class="ph ph-camera"></i>
+                            </div>
+                            <div class="hud-right">
+                                <div class="hud-icon-label"><i class="ph ph-heart"></i><span>15k</span></div>
+                                <div class="hud-icon-label"><i class="ph ph-chat-circle"></i><span>240</span></div>
+                                <div class="hud-icon-label"><i class="ph ph-paper-plane-tilt"></i></div>
+                                <div class="hud-icon-label"><i class="ph ph-dots-three-vertical"></i></div>
+                            </div>
+                            <div class="hud-bottom">
+                                <div class="hud-user">
+                                    <div class="avatar-circle"></div>
+                                    <span style="font-weight: 900; font-size: 0.8rem;">mandalla.lab</span>
+                                </div>
+                                <div class="caption-line"></div>
+                                <div class="caption-line" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                        <div class="safe-overlay">
+                            <span>ZONA SEGURA <br> PARA TEXTOS</span>
+                        </div>
+                        <!-- Danger Tags -->
+                        <div class="danger-zone-tag" style="top: 20px; right: 20px;">UI</div>
+                        <div class="danger-zone-tag" style="bottom: 150px; right: 15px;">AÇÕES</div>
+                        <div class="danger-zone-tag" style="bottom: 30px; left: 20px;">LEGENDA</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Técnicas Virais -->
+        <section class="technical-section reveal">
+            <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 3rem; text-transform: uppercase;">Edição Viral & Retenção</h2>
+            <div class="video-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <div class="video-card">
+                    <h3>Hook de Abertura</h3>
+                    <p>O título gancho deve aparecer nos primeiros 3 segundos. É a promessa que interrompe o scroll.</p>
+                </div>
+                <div class="video-card">
+                    <h3>Zoom de Espacialidade</h3>
+                    <p>Movimento lateral (esquerda para direita). Usado para mostrar ambientes, lugares reais ou contextualizar situações sociais específicas.</p>
+                </div>
+                <div class="video-card">
+                    <h3>Zoom Dinâmico</h3>
+                    <p>Corte seco + Zoom de ênfase em palavras-chave. Funciona como um marcador de texto visual para reter atenção.</p>
+                </div>
+                <div class="video-card">
+                    <h3>J-Cut & L-Cut</h3>
+                    <p>Técnicas de sobreposição de áudio e vídeo para eliminar silêncios e criar fluidez narrativa orgânica.</p>
+                </div>
+                <div class="video-card">
+                    <h3>Jump Cuts Estratégicos</h3>
+                    <p>Suprimimos pausas de respiração para manter o ritmo acelerado e constante, eliminando "tempos mortos".</p>
+                </div>
+                <div class="video-card">
+                    <h3>Movimento Ken Burns</h3>
+                    <p>Zoom in ou out lento para criar clima de suspense ou reflexão em momentos estratégicos do vídeo.</p>
+                </div>
+                <div class="video-card">
+                    <h3>Split Screen</h3>
+                    <p>Divisão em colunas ou linhas para mostrar narração e contexto simultaneamente (Tours, Logo do cliente).</p>
+                </div>
+                <div class="video-card">
+                    <h3>Tarjas de Identificação</h3>
+                    <p>Uso de identificação visual (Nome/Cargo) sobre a cena para evitar apresentações verbais lentas.</p>
+                </div>
+                <div class="video-card">
+                    <h3>CTA Visual</h3>
+                    <p>Call-to-action integrado visualmente nos últimos 5 segundos, nunca dependendo apenas do áudio.</p>
+                </div>
+                <div class="video-card" style="border: 2px solid var(--teal);">
+                    <h3>Texto em Camadas</h3>
+                    <p>Palavras aparecendo <strong>atrás</strong> de pessoas ou objetos. Cria profundidade e interação direta entre o interlocutor e a mensagem.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gramática de Transições -->
+        <section class="technical-section reveal">
+            <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 3rem; text-transform: uppercase;">Gramática de Edição</h2>
+            <div style="border: 1.5px solid #000; background: #fff; overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #000; color: #fff; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px;">
+                            <th style="padding: 15px; text-align: left;">Transição</th>
+                            <th style="padding: 15px; text-align: left;">Uso</th>
+                            <th style="padding: 15px; text-align: left;">Quando Usar</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 0.85rem;">
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;"><strong>Corte Seco</strong></td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Padrão absoluto</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Separa tópicos na narrativa.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;"><strong>Fade to Black</strong></td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Fechamento</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Encerramento de capítulo emocional.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;"><strong>Lens Flare</strong></td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Abertura</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Vídeos descontraídos e humanizados.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;"><strong>Glitch Effect</strong></td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Disruptivo</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Impacto, urgência ou transformação.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;"><strong>Wipe por objeto</strong></td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Criativo</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Usar elementos da cena como máscara.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;"><strong>Overlay de Luz</strong></td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Psicológico</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #eee;">Transições de luz quente para passar sensação de conteúdo "fresquinho".</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Manifesto -->
+        <section style="background: #000; color: #fff; padding: 4rem; text-align: center; margin-bottom: 5rem;" class="reveal">
+            <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 1.5rem;">O vídeo como extensão da alma da marca.</h2>
+            <p style="font-size: 1rem; line-height: 1.7; max-width: 600px; margin: 0 auto; opacity: 0.8;">
+                A edição de vídeo na Mandalla é a arte de dar pulsação ao nosso território visual. Cada corte, cada transição, cada silêncio é intencional.
+            </p>
+        </section>
+
+        <section class="pdf-cta reveal">
+            <div>
+                <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 10px;">MANUAL TÉCNICO COMPLETO</h2>
+                <p style="opacity: 0.7;">Baixe o guia de pós-produção em PDF com detalhes sobre codecs e cortes.</p>
+            </div>
+            <a href="video-production.html" class="btn-pdf">
+                <i class="ph ph-file-pdf"></i> Baixar Manual Técnico
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 70px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+                <span>Universo em Movimento</span>
+            </div>
+        </footer>
+    </main>
+
+</body>
+
+</html>

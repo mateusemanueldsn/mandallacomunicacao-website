@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Mandalla Comunicação & Design</title>
+    <meta name="description"
+        content="Vamos projetar o futuro da sua marca. Entre em contato com a Mandalla para estratégias de design e impacto socioambiental.">
+
+    <!-- Google Fonts: Outfit -->
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon_mandalla.png">
+    <style>
+        .contact-page {
+            background-color: var(--bg-color);
+        }
+
+        .section-contact-hero {
+            padding: 150px 5% 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Essential Info Column */
+        .contact-info-column h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-column h1 span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1.5px #000;
+        }
+
+        .contact-info-column p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 4rem;
+        }
+
+        .info-item {
+            margin-bottom: 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            box-shadow: none;
+        }
+
+        .info-text h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-text a,
+        .info-text span {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #000;
+            transition: var(--transition);
+        }
+
+        .info-text a:hover {
+            color: var(--text-muted);
+        }
+
+        /* Form Column */
+        .contact-form-container {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 4rem;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .contact-form-container::before {
+            content: 'ESTRUTURA:01_CONTATO';
+            position: absolute;
+            top: -25px;
+            right: 20px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            opacity: 0.4;
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 0;
+            border: none;
+            border-bottom: 2px solid #000;
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1rem;
+            outline: none;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .form-input:focus {
+            border-bottom-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .form-textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.2rem 2.8rem;
+            background: #000;
+            color: #fff;
+            border: 1px solid #000;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 2rem;
+            border-radius: var(--radius-round);
+        }
+
+        .btn-submit:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: none;
+            transform: translateY(-3px);
+        }
+
+        /* Social Links */
+        .social-connect {
+            margin-top: 4rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link-box {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: #000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link-box:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: none;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .contact-form-container {
+                padding: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="contact-page">
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="Mandalla Logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Soluções <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="branding.html">Branding</a></li>
+                            <li><a href="design.html">Design</a></li>
+                            <li><a href="conteudo.html">Conteúdo</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="historia.html">Nossa história</a></li>
+                            <li><a href="#equipe">Quem faz a Mandalla girar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Nosso impacto <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="impacto.html">Comunicação de impacto socioambiental</a></li>
+                            <li><a href="clientes.html">Clientes</a></li>
+                            <li><a href="#cases">Cases</a></li>
+                            <li><a href="depoimentos.html">Depoimentos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Publicações <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="artigos.html">Artigos</a></li>
+                            <li><a href="ebooks.html">E-books</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#" class="nav-link">Portfólio <i class="ph ph-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="portfolio/feito-com-carinho.html">Feito com carinho</a></li>
+                            <li><a href="portfolio/midias-digitais.html">Mídias digitais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contato.html" class="nav-link active">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="contato.html" class="btn-primary">Contrate-nos</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-contact-hero">
+            <div class="contact-grid">
+                <!-- Column 1: Text and Info -->
+                <div class="contact-info-column">
+                    <div class="fade-up">
+                        <span class="manifesto-tag"
+                            style="background:#000; color:#fff; padding: 5px 15px; font-size: 0.7rem; letter-spacing: 2px; font-weight: 900; margin-bottom: 2rem; display: inline-block;">READY
+                            TO BUILT?</span>
+                        <h1>Sua voz pode <span>mudar o mundo.</span></h1>
+                        <p>
+                            Tem um projeto com propósito? Vamos dar a ele a visibilidade e o design que ele merece.
+                            Estamos prontos para ouvir sua história.
+                        </p>
+                    </div>
+
+                    <div class="fade-up" style="transition-delay: 0.2s;">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="ph ph-envelope-simple"></i></div>
+                            <div class="info-text">
+                                <h4>E-mail</h4>
+                                <a
+                                    href="mailto:contato@mandallacomunicacao.com.br">contato@mandallacomunicacao.com.br</a>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"><i class="ph ph-whatsapp-logo"></i></div>
+                            <div class="info-text">
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/5585999999999" target="_blank">+55 (85) 99999.9999</a>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"><i class="ph ph-map-pin"></i></div>
+                            <div class="info-text">
+                                <h4>Base Operacional</h4>
+                                <span>Fortaleza, Ceará • Brasil</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-connect fade-up" style="transition-delay: 0.4s;">
+                        <a href="#" class="social-link-box" aria-label="Instagram"><i
+                                class="ph ph-instagram-logo"></i></a>
+                        <a href="#" class="social-link-box" aria-label="LinkedIn"><i
+                                class="ph ph-linkedin-logo"></i></a>
+                        <a href="#" class="social-link-box" aria-label="Behance"><i class="ph ph-behance-logo"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: The Form -->
+                <div class="contact-form-column">
+                    <div class="contact-form-container fade-up" style="transition-delay: 0.3s;">
+                        <form action="#">
+                            <div class="form-group">
+                                <label class="form-label" for="name">Nome Completo</label>
+                                <input type="text" id="name" class="form-input" placeholder="Como devemos te chamar?"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="email">E-mail Corporativo</label>
+                                <input type="email" id="email" class="form-input"
+                                    placeholder="exemplo@suaempresa.com.br" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="subject">O que vamos projetar?</label>
+                                <select id="subject" class="form-input"
+                                    style="appearance: none; -webkit-appearance: none;">
+                                    <option value="branding">Branding & Identidade</option>
+                                    <option value="design">Design de Impacto</option>
+                                    <option value="conteudo">Conteúdo Estratégico</option>
+                                    <option value="outro">Outro Desafio</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="message">Conte sua história</label>
+                                <textarea id="message" class="form-input form-textarea"
+                                    placeholder="Conte brevemente sobre seu projeto e seus objetivos..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                Enviar Manifesto <i class="ph ph-paper-plane-tilt" style="margin-left: 10px;"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="assets/logo.svg" alt="Mandalla Logo" style="height: 40px;margin-bottom: 1rem;">
+                <p>Comunicação e Design para impacto socioambiental. Girando engrenagens de mudança positiva desde
+                    sempre.</p>
+                <div class="social-links">
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="historia.html">Nossa História</a></li>
+                    <li><a href="impacto.html">Impacto</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Soluções</h4>
+                <ul>
+                    <li><a href="branding.html">Branding</a></li>
+                    <li><a href="design.html">Design</a></li>
+                    <li><a href="conteudo.html">Conteúdo</a></li>
+
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.8rem; color: #999;">
+            &copy; 2024 Mandalla | Girando a mudança.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naming & Identidade Verbal — Mandalla Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <style>
+        :root {
+            --doc-bg: #f4f4f4;
+            --page-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --mandalla-purple: #926ECC;
+            --mandalla-orange: #FF6C40;
+            --mandalla-teal: #4CB2AB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--doc-bg);
+            color: var(--lab-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .main-content {
+            background-color: var(--page-bg);
+            width: 100%;
+            max-width: 1000px;
+            padding: 6rem 12%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        /* Marcante e premium */
+        .doc-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #bbb;
+            margin-bottom: 2.5rem;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 12px;
+        }
+
+        .hub-section {
+            margin-bottom: 5rem;
+        }
+
+        .card-tipologia {
+            padding: 2rem;
+            background: #fff;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .card-tipologia:hover {
+            border-color: #000;
+            transform: translateY(-5px);
+        }
+
+        .step-block {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 2rem;
+            align-items: flex-start;
+            padding: 2rem;
+            border: 1px solid #f4f4f4;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            height: 60px;
+            width: 60px;
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .main-content { box-shadow: none; border: none; margin: 0; max-width: 100%; width: 100%; padding: 2rem; }
+            .no-print { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 4rem 8%;
+            }
+            .doc-header-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="main-content">
+        <!-- Floating Navigation (Home & PDf) -->
+        <div class="no-print" style="position: absolute; top: 3rem; right: 3rem; display: flex; gap: 10px;">
+            <a href="universo-marcas.html" style="text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-arrow-left"></i> Hub de Marcas
+            </a>
+            <button onclick="window.print()" style="cursor: pointer; background: #000; color: #fff; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-download-simple"></i> Baixar PDF
+            </button>
+        </div>
+
+        <div class="doc-header-info">
+            <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 70px;">
+            <div style="text-align: right;">
+                <span style="display: block; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999;">Documento de Orientação Técnica</span>
+                <span style="display: block; font-size: 1.1rem; font-weight: 800; text-transform: uppercase;">002 // Naming & Identidade Verbal</span>
+            </div>
+        </div>
+
+        <header style="margin-bottom: 5rem;">
+            <span class="manifesto-tag">Diretriz Interna</span>
+            <h1>Naming.<br>O Signo Primordial.</h1>
+            <p style="font-size: 1.25rem; color: #444; margin-top: 2rem; max-width: 750px; font-weight: 400; line-height: 1.5;">
+                Este guia fundamenta o processo de construção verbal da marca na Mandalla. O nome não é apenas uma escolha estética, mas o alicerce estratégico que carrega a alma e a proteção jurídica da identidade.
+            </p>
+        </header>
+
+        <section class="hub-section">
+            <span class="section-title">01. CONCEITO & TIPOLOGIAS</span>
+            
+            <div style="margin-bottom: 3rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 2.5rem;">A eficácia de uma marca começa pelo seu nome. Conforme os preceitos do Design de Identidade, categorizamos os nomes em quatro tipologias fundamentais:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="card-tipologia" style="border-top: 4px solid #000;">
+                        <h4 style="text-transform: uppercase; font-size: 0.9rem; font-weight: 900; margin-bottom: 1rem;">Nomes Descritivos</h4>
+                        <p style="font-size: 0.95rem; color: #666;">Enunciam diretamente a natureza do negócio ou sua origem. Facilitam o entendimento imediato, mas podem ter proteção jurídica limitada.<br><br><strong>Ex:</strong> Oi, Ford, Banco do Brasil, Volkswagen.</p>
+                    </div>
+                    <div class="card-tipologia" style="border-top: 4px solid var(--mandalla-purple);">
+                        <h4 style="text-transform: uppercase; font-size: 0.9rem; font-weight: 900; margin-bottom: 1rem;">Nomes Síntese</h4>
+                        <p style="font-size: 0.95rem; color: #666;">Combinações de palavras or fragmentos semânticos que criam um novo termo com significado sugerido.<br><br><strong>Ex:</strong> Bom-Bril, Petrobras, Kibon, Microsoft.</p>
+                    </div>
+                    <div class="card-tipologia" style="border-top: 4px solid var(--mandalla-orange);">
+                        <h4 style="text-transform: uppercase; font-size: 0.9rem; font-weight: 900; margin-bottom: 1rem;">Nomes Invenções</h4>
+                        <p style="font-size: 0.95rem; color: #666;">Palavras totalmente novas, sem significado pré-existente. São excelentes para registro de marca exclusivo e sonoridade única.<br><br><strong>Ex:</strong> Xerox, Kodak, Exxon, Eno.</p>
+                    </div>
+                    <div class="card-tipologia" style="border-top: 4px solid var(--mandalla-teal);">
+                        <h4 style="text-transform: uppercase; font-size: 0.9rem; font-weight: 900; margin-bottom: 1rem;">Nomes Arbitrários</h4>
+                        <p style="font-size: 0.95rem; color: #666;">Palavras reais do dicionário usadas fora de seu contexto comum. Criam associações metafóricas fortes.<br><br><strong>Ex:</strong> Apple, Brahma, Puma, Rainha.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hub-section">
+            <span class="section-title">02. OS 8 FILTROS DE EFICÁCIA</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem;">
+                <div style="border-left: 2px solid #eee; padding-left: 1.5rem;">
+                    <span style="font-weight: 900; font-size: 0.75rem; color: #ddd; display: block; margin-bottom: 10px;">01</span>
+                    <strong style="text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 5px;">Alinhamento</strong>
+                    <span style="font-size: 0.85rem; color: #666;">Fidelidade à estratégia central.</span>
+                </div>
+                <div style="border-left: 2px solid #eee; padding-left: 1.5rem;">
+                    <span style="font-weight: 900; font-size: 0.75rem; color: #ddd; display: block; margin-bottom: 10px;">02</span>
+                    <strong style="text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 5px;">Originalidade</strong>
+                    <span style="font-size: 0.85rem; color: #666;">Distância dos concorrentes.</span>
+                </div>
+                <div style="border-left: 2px solid #eee; padding-left: 1.5rem;">
+                    <span style="font-weight: 900; font-size: 0.75rem; color: #ddd; display: block; margin-bottom: 10px;">03</span>
+                    <strong style="text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 5px;">Denotação</strong>
+                    <span style="font-size: 0.85rem; color: #666;">Clareza e legibilidade.</span>
+                </div>
+                <div style="border-left: 2px solid #eee; padding-left: 1.5rem;">
+                    <span style="font-weight: 900; font-size: 0.75rem; color: #ddd; display: block; margin-bottom: 10px;">04</span>
+                    <strong style="text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 5px;">Conotação</strong>
+                    <span style="font-size: 0.85rem; color: #666;">Associações positivas.</span>
+                </div>
+                <div style="border-left: 2px solid #eee; padding-left: 1.5rem;">
+                    <span style="font-weight: 900; font-size: 0.75rem; color: #ddd; display: block; margin-bottom: 10px;">05</span>
+                    <strong style="text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 5px;">Sonoridade</strong>
+                    <span style="font-size: 0.85rem; color: #666;">Fácil leitura e pronúncia.</span>
+                </div>
+                <div style="border-left: 2px solid #eee; padding-left: 1.5rem;">
+                    <span style="font-weight: 900; font-size: 0.75rem; color: #ddd; display: block; margin-bottom: 10px;">06</span>
+                    <strong style="text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 5px;">Memorização</strong>
+                    <span style="font-size: 0.85rem; color: #666;">Alto índice de recordação.</span>
+                </div>
+                <div style="border-left: 2px solid #eee; padding-left: 1.5rem;">
+                    <span style="font-weight: 900; font-size: 0.75rem; color: #ddd; display: block; margin-bottom: 10px;">07</span>
+                    <strong style="text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 5px;">Design Visual</strong>
+                    <span style="font-size: 0.85rem; color: #666;">Potencial gráfico do nome.</span>
+                </div>
+                <div style="border-left: 2px solid #eee; padding-left: 1.5rem;">
+                    <span style="font-weight: 900; font-size: 0.75rem; color: #ddd; display: block; margin-bottom: 10px;">08</span>
+                    <strong style="text-transform: uppercase; font-size: 0.8rem; display: block; margin-bottom: 5px;">Permanência</strong>
+                    <span style="font-size: 0.85rem; color: #666;">Atemporalidade do termo.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="hub-section">
+            <span class="section-title">03. FLUXO OPERACIONAL</span>
+            
+            <div class="step-block">
+                <div class="step-number">01</div>
+                <div>
+                    <h4 style="text-transform: uppercase; font-size: 0.9rem; margin-bottom: 8px;">Briefing & Vetores Semânticos</h4>
+                    <p style="font-size: 0.95rem; color: #666;">Mapeamento dos territórios de marca e palavras-chave que representam o DNA do negócio.</p>
+                </div>
+            </div>
+            <div class="step-block">
+                <div class="step-number">02</div>
+                <div>
+                    <h4 style="text-transform: uppercase; font-size: 0.9rem; margin-bottom: 8px;">Brainstorming & Longlist</h4>
+                    <p style="font-size: 0.95rem; color: #666;">Exploração exaustiva de sonoridades, prefixos, sufixos e linguagens correlatas.</p>
+                </div>
+            </div>
+            <div class="step-block">
+                <div class="step-number">03</div>
+                <div>
+                    <h4 style="text-transform: uppercase; font-size: 0.9rem; margin-bottom: 8px;">Peneira de Eufonia</h4>
+                    <p style="font-size: 0.95rem; color: #666;">Teste de pronúncia, leitura rápida e verificação de significados em outros idiomas.</p>
+                </div>
+            </div>
+            <div class="step-block" style="border: 2px solid #4CB2AB; background: #f0fdfc;">
+                <div class="step-number" style="background: #4CB2AB;">04</div>
+                <div>
+                    <h4 style="text-transform: uppercase; font-size: 0.9rem; margin-bottom: 8px; color: #4CB2AB;">Pesquisa Jurídica (INPI)</h4>
+                    <p style="font-size: 0.95rem; color: #666;">Validação de disponibilidade legal nas classes de registro pertinentes ao negócio.</p>
+                </div>
+            </div>
+            <div class="step-block" style="border: 2px solid #FF6C40; background: #fff8f6;">
+                <div class="step-number" style="background: #FF6C40;">05</div>
+                <div>
+                    <h4 style="text-transform: uppercase; font-size: 0.9rem; margin-bottom: 8px; color: #FF6C40;">Registro de Marca</h4>
+                    <p style="font-size: 0.95rem; color: #666;">Protocolo oficial de exclusividade, transformando o nome em um ativo de propriedade industrial.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Créditos Bibliográficos -->
+        <div style="margin-top: 6rem; padding: 2.5rem; background: #fcfcfc; border: 1px solid #000; position: relative;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;">
+                <i class="ph ph-books" style="font-size: 1.5rem;"></i>
+                <h4 style="text-transform: uppercase; font-size: 0.8rem; font-weight: 900; letter-spacing: 2px;">Fundamentação Bibliográfica</h4>
+            </div>
+            <p style="font-size: 0.85rem; color: #666; line-height: 1.8;">
+                Este documento foi estruturado com base nas melhores práticas do mercado global de branding, cruzando as metodologias de <strong>Alina Wheeler</strong> (Design de Identidade da Marca) com o <strong>Guia ABA de Design de Identidade</strong> (Associação Brasileira de Anunciantes). O Naming na Mandalla é tratado como o ponto de intersecção entre a linguística, a psicologia e o direito.
+            </p>
+        </div>
+
+        <footer style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+            <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+            <span class="no-print">Documento Gerado para Consulta Técnia.</span>
+        </footer>
+    </main>
+</body>
+
+</html>

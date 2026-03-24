@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Styleguide — Mandalla Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <style>
+        :root {
+            --doc-bg: #f4f4f4;
+            --page-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --mandalla-purple: #926ECC;
+            --mandalla-orange: #FF6C40;
+            --mandalla-teal: #4CB2AB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--doc-bg);
+            color: var(--lab-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+
+        .main-content {
+            background-color: var(--page-bg);
+            width: 100%;
+            max-width: 1000px;
+            padding: 6rem 12%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        .doc-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #bbb;
+            margin-bottom: 2.5rem;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 12px;
+        }
+
+        .hub-section {
+            margin-bottom: 6rem;
+        }
+
+        /* Visual Components Style */
+        .preview-box {
+            background: #fdfdfd;
+            border: 1.5px solid #eee;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .color-swatch {
+            width: 100%;
+            padding-bottom: 60%;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .color-info {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .font-sample {
+            border-left: 2px solid #000;
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .misuse-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .misuse-item {
+            text-align: center;
+            opacity: 0.5;
+            filter: grayscale(1);
+            position: relative;
+        }
+
+        .misuse-item::after {
+            content: "\eacb"; /* Ph-X circle */
+            font-family: "Phosphor";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff4d4d;
+            font-size: 2.5rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        @media print {
+            body { background: #fff; padding: 0 !important; }
+            .main-content { box-shadow: none !important; border: none !important; margin: 0 !important; max-width: 100% !important; width: 100% !important; padding: 3rem !important; }
+            .no-print { display: none !important; }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 4rem 8%;
+            }
+            .doc-header-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+        <main class="main-content">
+        <!-- Floating Navigation -->
+        <div class="no-print" style="position: absolute; top: 3rem; right: 3rem; display: flex; gap: 10px;">
+            <a href="universo-marcas.html" style="text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-arrow-left"></i> Voltar ao Hub
+            </a>
+            <button onclick="window.print()" style="cursor: pointer; background: #000; color: #fff; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-download-simple"></i> Baixar Guia
+            </button>
+        </div>
+
+        <div class="doc-header-info">
+            <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 70px;">
+            <div style="text-align: right;">
+                <span style="display: block; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999;">Guia de Implementação</span>
+                <span style="display: block; font-size: 1.1rem; font-weight: 800; text-transform: uppercase;">003 // Styleguide Visual</span>
+            </div>
+        </div>
+
+        <header style="margin-bottom: 5rem;">
+            <span class="manifesto-tag">Norma de Identidade</span>
+            <h1>Styleguide.<br>A Voz Visual.</h1>
+            <p style="font-size: 1.25rem; color: #444; margin-top: 2rem; max-width: 750px; font-weight: 400; line-height: 1.5;">
+                O Styleguide é o guia prático que traduz a alma da marca em regras de design. Ele garante que cada ponto de contato seja coeso, reconhecível e fiel à estratégia Mandalla de impacto e sensibilidade.
+            </p>
+        </header>
+
+        <!-- Seção 01: Logotipo -->
+        <section class="hub-section">
+            <span class="section-title">01. ANATOMIA DO LOGO</span>
+            
+            <div style="margin-bottom: 4rem;">
+                <h3 style="font-size: 1rem; font-weight: 900; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 2rem;">Área de Proteção & Respiro</h3>
+                <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Para garantir a integridade visual, o logotipo deve manter um espaço mínimo livre de outros elementos gráficos. Este espaço é definido pelo elemento "X" (baseado na altura do próprio logo).</p>
+                
+                <div class="preview-box">
+                    <!-- Representação Visual Simulada da Área de Proteção -->
+                    <div style="border: 2px dashed #bbb; padding: 3rem; position: relative;">
+                        <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 60px;">
+                        <!-- Guias de área -->
+                        <div style="position: absolute; top:0; left:0; right:0; height: 3rem; background: rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.6rem; color: #bbb;">X</div>
+                        <div style="position: absolute; bottom:0; left:0; right:0; height: 3rem; background: rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.6rem; color: #bbb;">X</div>
+                        <div style="position: absolute; top:0; left:0; bottom:0; width: 3rem; background: rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.6rem; color: #bbb; writing-mode: vertical-rl;">X</div>
+                        <div style="position: absolute; top:0; right:0; bottom:0; width: 3rem; background: rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.6rem; color: #bbb; writing-mode: vertical-rl;">X</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-size: 1rem; font-weight: 900; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 2rem;">Uso Incorreto (Don'ts)</h3>
+                <div class="misuse-grid">
+                    <div class="misuse-item">
+                        <img src="../assets/lab_logo.svg" alt="" style="height: 40px; transform: scaleX(1.8);">
+                        <p style="font-size: 0.7rem; margin-top: 1rem; font-weight: 700;">Não achatar/esticar</p>
+                    </div>
+                    <div class="misuse-item">
+                        <img src="../assets/lab_logo.svg" alt="" style="height: 40px; transform: rotate(15deg);">
+                        <p style="font-size: 0.7rem; margin-top: 1rem; font-weight: 700;">Não rotacionar</p>
+                    </div>
+                    <div class="misuse-item">
+                        <img src="../assets/lab_logo.svg" alt="" style="height: 40px; filter: hue-rotate(90deg);">
+                        <p style="font-size: 0.7rem; margin-top: 1rem; font-weight: 700;">Não alterar cores</p>
+                    </div>
+                    <div class="misuse-item">
+                        <img src="../assets/lab_logo.svg" alt="" style="height: 40px; opacity: 0.3;">
+                        <p style="font-size: 0.7rem; margin-top: 1rem; font-weight: 700;">Não usar marca d'água</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 02: Cores -->
+        <section class="hub-section">
+            <span class="section-title">02. PALETA CROMÁTICA</span>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <div>
+                    <div class="color-swatch" style="background: #000000;"></div>
+                    <div class="color-info">
+                        <span style="display: block; margin-bottom: 4px;">Mandalla Deep</span>
+                        <span style="color: #888;">HEX #000000</span><br>
+                        <span style="color: #888;">RGB 0, 0, 0</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #926ECC;"></div>
+                    <div class="color-info">
+                        <span style="display: block; margin-bottom: 4px;">Mandalla Purple</span>
+                        <span style="color: #888;">HEX #926ECC</span><br>
+                        <span style="color: #888;">RGB 146, 110, 204</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #FF6C40;"></div>
+                    <div class="color-info">
+                        <span style="display: block; margin-bottom: 4px;">Vibrancy Orange</span>
+                        <span style="color: #888;">HEX #FF6C40</span><br>
+                        <span style="color: #888;">RGB 255, 108, 64</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="color-swatch" style="background: #4CB2AB;"></div>
+                    <div class="color-info">
+                        <span style="display: block; margin-bottom: 4px;">Social Teal</span>
+                        <span style="color: #888;">HEX #4CB2AB</span><br>
+                        <span style="color: #888;">RGB 76, 178, 171</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 03: Tipografia -->
+        <section class="hub-section">
+            <span class="section-title">03. UNIVERSO TIPOGRÁFICO</span>
+            
+            <div class="font-sample">
+                <span style="font-size: 0.75rem; font-weight: 900; color: #999; text-transform: uppercase;">Primária // Outfit</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 900; margin: 0.5rem 0;">A B C D E F G H I J</h2>
+                <p style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: #444;">Utilizada para títulos marcantes, manifestos e displays. Representa modernidade e impacto.</p>
+            </div>
+
+            <div class="font-sample" style="border-left: 2px solid var(--mandalla-purple);">
+                <span style="font-size: 0.75rem; font-weight: 900; color: #999; text-transform: uppercase;">Secundária // Lato</span>
+                <h2 style="font-family: 'Lato', sans-serif; font-size: 2.5rem; font-weight: 400; margin: 0.5rem 0;">Aa Bb Cc Dd Ee Ff</h2>
+                <p style="font-family: 'Lato', sans-serif; font-size: 1rem; color: #666;">Utilizada para corpos de texto densos, guias e documentos. Representa legibilidade e técnica.</p>
+            </div>
+        </section>
+
+        <!-- Seção 04: UI Components -->
+        <section class="hub-section">
+            <span class="section-title">04. COMPONENTES INTERATIVOS (UI)</span>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem;">
+                <div>
+                    <h4 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem;">Botões (Padrão Lab)</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;">
+                        <span style="padding: 10px 25px; background: #000; color: #fff; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Botão Primário</span>
+                        <span style="padding: 10px 25px; border: 1.5px solid #000; color: #000; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Botão Secundário</span>
+                        <span style="padding: 10px 25px; color: #000; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; text-decoration: underline;">Botão Ghost</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem;">Alertas & Notificações</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="padding: 12px; border-left: 4px solid var(--mandalla-teal); background: #f0fdfc; font-size: 0.8rem; font-weight: 700;">Sucesso: Operação concluída.</div>
+                        <div style="padding: 12px; border-left: 4px solid var(--mandalla-orange); background: #fff8f6; font-size: 0.8rem; font-weight: 700;">Atenção: Verifique os dados.</div>
+                        <div style="padding: 12px; border-left: 4px solid #ff4d4d; background: #fff5f5; font-size: 0.8rem; font-weight: 700;">Erro: Falha na conexão.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rodapé do Documento -->
+        <div style="margin-top: 6rem; padding: 3rem; border: 1px solid #000; background: #fafafa; display: flex; align-items: center; justify-content: center; text-align: center;">
+            <div>
+                <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 40px; margin-bottom: 1.5rem; filter: grayscale(1);">
+                <p style="font-size: 0.8rem; color: #999; text-transform: uppercase; letter-spacing: 2px;">Mandalla Design System // Versão 2026.1</p>
+                <p style="font-size: 0.7rem; color: #bbb; margin-top: 10px;">Propriedade intelectual da Mandalla Comunicação & Design. Uso restrito.</p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #bbb; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+            <span>&copy; 2026 Mandalla Styleguide</span>
+            <span class="no-print">Impresso via Mandalla Lab Hub</span>
+        </footer>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Cargos e Carreiras — Mandalla Lab</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="lab-animations.css">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <script src="lab-animations.js" defer></script>
+    <style>
+        :root {
+            --lab-bg: #f9f9f9;
+            --lab-sidebar-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --lab-active: #eeeeee;
+            --sidebar-width: 280px;
+            
+            /* Career Palette */
+            --seed: #81C9C4;
+            --sprout: #FF9879;
+            --fiber: #FFD54F;
+            --flower: #926ECC;
+            --trunk: #795548;
+            --root: #37474F;
+            --canopy: #4CAF50;
+            --wind: #03A9F4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--lab-bg);
+            color: var(--lab-text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar & Layout */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--lab-sidebar-bg);
+            border-right: 1.5px solid var(--lab-border);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .lab-logo {
+            width: 100%;
+            max-width: 240px;
+            display: block;
+        }
+
+        .nav-container {
+            flex-grow: 1;
+            padding: 0 1rem 2rem;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--lab-text);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--lab-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+        }
+
+        .nav-link.active {
+            color: var(--lab-text);
+            background-color: var(--lab-active);
+            border: 1px solid var(--lab-border);
+            font-weight: 700;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            flex-grow: 1;
+            margin-left: var(--sidebar-width);
+            padding: 5rem 8%;
+            max-width: 1300px;
+        }
+
+        .header {
+            margin-bottom: 7rem;
+            max-width: 900px;
+        }
+
+        .manifesto-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 950;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .lead-text {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            color: var(--lab-text);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .sub-lead {
+            font-size: 1.1rem;
+            color: var(--lab-text-muted);
+            max-width: 750px;
+            line-height: 1.6;
+        }
+
+        /* Sections */
+        .content-section {
+            margin-bottom: 8.5rem;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #999;
+            margin-bottom: 3rem;
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        /* Logic Grid */
+        .logic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .logic-card {
+            background: #fff;
+            padding: 2.5rem;
+            border: 1.5px solid var(--lab-border);
+            position: relative;
+        }
+
+        .logic-card h3 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logic-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--lab-text-muted);
+        }
+
+        /* Career Journey (Levels) */
+        .career-journey {
+            display: grid;
+            gap: 4rem;
+        }
+
+        .level-block {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .level-symbol {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #fff;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .level-symbol i {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .level-symbol span {
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .level-content {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 3.5rem;
+            position: relative;
+        }
+
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 1.5rem;
+        }
+
+        .level-header h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .level-header .internal-name {
+            font-size: 0.75rem;
+            font-weight: 900;
+            background: #000;
+            color: #fff;
+            padding: 5px 12px;
+            text-transform: uppercase;
+        }
+
+        .level-body {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .body-section h4 {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .body-section h4::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .body-section p, .body-section ul {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .body-section ul {
+            list-style: none;
+        }
+
+        .body-section li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        .body-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-weight: 900;
+        }
+
+        .time-badge {
+            margin-top: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 8px 15px;
+            border: 1px dashed #000;
+            text-transform: uppercase;
+        }
+
+        /* Management Track */
+        .management-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .mgmt-card {
+            background: #000;
+            color: #fff;
+            padding: 3.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .mgmt-card:hover { transform: scale(1.02); }
+
+        .mgmt-card i { font-size: 3.5rem; margin-bottom: 1.5rem; }
+        .mgmt-card h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .mgmt-card p { opacity: 0.8; line-height: 1.6; }
+
+        /* Botton Info */
+        .info-panel {
+            background: #fff;
+            border: 1.5px solid #000;
+            padding: 4rem;
+            margin-top: 4rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .info-block h3 {
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .info-block ul { list-style: none; }
+        .info-block li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.5; padding-left: 20px; position: relative; }
+        .info-block li::before { content: '•'; position: absolute; left: 0; font-weight: 900; }
+
+        @media (max-width: 1024px) {
+            .level-block { grid-template-columns: 1fr; }
+            .level-symbol { position: relative; top: 0; width: 60px; height: 60px; }
+            .level-symbol i { font-size: 1.5rem; }
+            .management-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 3rem 5%; }
+            h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
+        </div>
+
+                <nav class="nav-container">
+            <div class="nav-group">
+                <div class="nav-title">Cultura de marca</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
+                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
+                            <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
+                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
+                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
+                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
+                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
+                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
+                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Universo de marcas</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
+                            <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
+                            <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
+                            <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
+                            <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
+                            <span>Vídeos</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Criatividade</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
+                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
+                            <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
+                            <span>Digital & Impacto</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Suporte</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
+                            <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
+                                Ajuda</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../candidato/login-lab.html" class="nav-link" style="color: #ff4d4d; font-weight: 700;">
+                            <i class="ph ph-sign-out"></i> <span>Sair do Lab</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header reveal">
+            <span class="manifesto-tag">CARREIRA & EVOLUÇÃO</span>
+            <h1>Plano de Cargos <br>e Carreiras <br>Mandalla.</h1>
+            <p class="lead-text">Na Mandalla, crescimento não é linear nem automático. Ele acontece quando entrega, autonomia, responsabilidade e cuidado com o impacto evoluem de forma consistente.</p>
+            <p class="sub-lead">Como trabalhamos importa tanto quanto o que entregamos. Este plano garante clareza de expectativas, previsibilidade de crescimento e decisões baseadas em mérito e cuidado.</p>
+        </header>
+
+        <section class="content-section reveal">
+            <span class="section-title">01. PRINCÍPIOS E LÓGICA</span>
+            <div class="logic-grid">
+                <div class="logic-card" style="border-top-color: var(--teal-100)">
+                    <h3><i class="ph ph-rocket-launch"></i> Entrega Real</h3>
+                    <p>Produtividade e entrega palpável. Resultados que movem os projetos dos nossos clientes.</p>
+                </div>
+                <div class="logic-card" style="border-top-color: var(--flower)">
+                    <h3><i class="ph ph-user-focus"></i> Autonomia</h3>
+                    <p>Resolutividade e organização no trabalho remoto. A capacidade de governar o próprio fluxo.</p>
+                </div>
+                <div class="logic-card" style="border-top-color: var(--coral-100)">
+                    <h3><i class="ph ph-heart-break"></i> Cuidado</h3>
+                    <p>Zelo com o impacto: clientes, time, temas sensíveis e responsabilidades coletivas.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; background: #000; color: #fff; padding: 2.5rem; border-radius: 4px;">
+                <p style="font-weight: 700; font-style: italic; line-height: 1.6; text-align: center;">"Tempo de casa não garante evolução. Boa vontade não substitui entrega. Performance sem cuidado não sustenta o negócio."</p>
+            </div>
+        </section>
+
+        <section class="content-section reveal">
+            <span class="section-title">02. NÍVEIS DE EVOLUÇÃO (OPERAÇÃO)</span>
+            <div class="career-journey">
+                
+                <!-- ESTAGIÁRIO -->
+                <div class="level-block">
+                    <div class="level-symbol" style="color: var(--seed)"><i class="ph ph-seedling"></i><span>Semente</span></div>
+                    <article class="level-content">
+                        <div class="level-header">
+                            <h2>Estagiário(a)</h2>
+                            <span class="internal-name">Semente</span>
+                        </div>
+                        <div class="level-body">
+                            <div class="body-section">
+                                <h4>Papel no Ecossistema</h4>
+                                <p>Potencial em formação. Fase de aprendizado, observação e primeiros movimentos técnicos. Afinidade obrigatória com causas sociais e direitos humanos.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Autonomia & Complexidade</h4>
+                                <p>Executa tarefas simples com orientação direta. Autonomia estimulada para execução, mas não para decisões estratégicas de impacto.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Responsabilidade</h4>
+                                <ul>
+                                    <li>Cuidado rigoroso com prazos</li>
+                                    <li>Comunicação proativa sobre impedimentos</li>
+                                    <li>Postura responsável com o coletivo</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="time-badge"><i class="ph ph-clock"></i> ⏱️ 6 a 12 meses</div>
+                    </article>
+                </div>
+
+                <!-- TRAINEE -->
+                <div class="level-block">
+                    <div class="level-symbol" style="color: var(--sprout)"><i class="ph ph-leaf"></i><span>Broto</span></div>
+                    <article class="level-content">
+                        <div class="level-header">
+                            <h2>Trainee</h2>
+                            <span class="internal-name">Broto</span>
+                        </div>
+                        <div class="level-body">
+                            <div class="body-section">
+                                <h4>Papel no Ecossistema</h4>
+                                <p>Crescimento visível. Começa a assumir a responsabilidade total pelas suas entregas. Não depende mais de instruções passo a passo.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Autonomia & Complexidade</h4>
+                                <p>Executa tarefas completas de menor complexidade com checklists e validação técnica.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Critérios de Evolução</h4>
+                                <ul>
+                                    <li>Dois trimestres sem falhas críticas</li>
+                                    <li>Início do uso de IA para ganho de eficiência</li>
+                                    <li>Organização consistente no remoto</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="time-badge"><i class="ph ph-clock"></i> ⏱️ 6 a 12 meses</div>
+                    </article>
+                </div>
+
+                <!-- ASSISTENTE -->
+                <div class="level-block">
+                    <div class="level-symbol" style="color: var(--fiber)"><i class="ph ph-threads"></i><span>Fibra</span></div>
+                    <article class="level-content">
+                        <div class="level-header">
+                            <h2>Assistente</h2>
+                            <span class="internal-name">Fibra</span>
+                        </div>
+                        <div class="level-body">
+                            <div class="body-section">
+                                <h4>Papel no Ecossistema</h4>
+                                <p>Dá corpo e flexibilidade à agência. Garante a resistência do fluxo operacional. Sem fibra, o sistema rompe.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Autonomia & Responsabilidade</h4>
+                                <p>Autonomia média. Executa sem validação constante. Escala apenas quando surgem impasses complexos.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Indicadores</h4>
+                                <ul>
+                                    <li>Previsibilidade por 2 a 3 trimestres</li>
+                                    <li>Apoio prático a níveis iniciais</li>
+                                    <li>Nenhum alerta de comunicação ou atraso</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="time-badge"><i class="ph ph-clock"></i> ⏱️ 12 a 18 meses</div>
+                    </article>
+                </div>
+
+                <!-- ANALISTA -->
+                <div class="level-block">
+                    <div class="level-symbol" style="color: var(--flower)"><i class="ph ph-flower"></i><span>Flor</span></div>
+                    <article class="level-content">
+                        <div class="level-header">
+                            <h2>Analista</h2>
+                            <span class="internal-name">Flor</span>
+                        </div>
+                        <div class="level-body">
+                            <div class="body-section">
+                                <h4>Papel no Ecossistema</h4>
+                                <p>A flor é o resultado de maturação técnica profunda. Expressão visível de competência consolidada.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Autonomia & Complexidade</h4>
+                                <p>Sólida. Resolve problemas operacionais e assume responsabilidade pelo resultado final. Comunicação direta com clientes.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Diferenciais</h4>
+                                <ul>
+                                    <li>Uso estratégico de IA e ferramentas</li>
+                                    <li>Redução drástica de retrabalho</li>
+                                    <li>Impacto positivo no fluxo do time</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="time-badge"><i class="ph ph-clock"></i> ⏱️ 18 a 24 meses</div>
+                    </article>
+                </div>
+
+                <!-- PLENO -->
+                <div class="level-block">
+                    <div class="level-symbol" style="color: var(--trunk)"><i class="ph ph-tree"></i><span>Tronco</span></div>
+                    <article class="level-content">
+                        <div class="level-header">
+                            <h2>Pleno</h2>
+                            <span class="internal-name">Tronco</span>
+                        </div>
+                        <div class="level-body">
+                            <div class="body-section">
+                                <h4>Papel no Ecossistema</h4>
+                                <p>Estrutura central. Aguenta peso, conecta o time e sustenta a complexidade dos projetos maiores.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Foco em Gestão</h4>
+                                <p>Autonomia alta: decide, prioriza e antecipa necessidades. Interface constante com contas estratégicas.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Impacto</h4>
+                                <ul>
+                                    <li>Melhoria contínua de processos internos</li>
+                                    <li>Mentoria técnica para outros níveis</li>
+                                    <li>Antecipação de problemas críticos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="time-badge"><i class="ph ph-clock"></i> ⏱️ 24 meses ou mais</div>
+                    </article>
+                </div>
+
+                <!-- SÊNIOR -->
+                <div class="level-block">
+                    <div class="level-symbol" style="color: var(--root)"><i class="ph ph-line-segments"></i><span>Raiz</span></div>
+                    <article class="level-content">
+                        <div class="level-header">
+                            <h2>Sênior</h2>
+                            <span class="internal-name">Raiz</span>
+                        </div>
+                        <div class="level-body">
+                            <div class="body-section">
+                                <h4>Papel no Ecossistema</h4>
+                                <p>Fundação profunda. Sustenta o sistema inteiro, garantindo estabilidade e continuidade.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Autonomia Total</h4>
+                                <p>Sustentação técnica e estratégica absoluta. Apoio direto à liderança e gestão de crises.</p>
+                            </div>
+                            <div class="body-section">
+                                <h4>Mestria</h4>
+                                <ul>
+                                    <li>Visão sistêmica do negócio</li>
+                                    <li>Otimização de processos complexos</li>
+                                    <li>Referência máxima de qualidade técnica</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="content-section reveal">
+            <span class="section-title">03. TRILHA DE GESTÃO (ESTRATEGIA)</span>
+            <div class="management-grid">
+                <div class="mgmt-card">
+                    <i class="ph ph-tree-structure" style="color: var(--canopy)"></i>
+                    <h3>Coordenação // Copa</h3>
+                    <p>Gestão direta de pessoas e processos. Organização do coletivo, direcionamento prático e leitura do time como um conjunto vivo.</p>
+                </div>
+                <div class="mgmt-card">
+                    <i class="ph ph-wind" style="color: var(--wind)"></i>
+                    <h3>Gerência // Vento</h3>
+                    <p>Gestão sistêmica e visão de negócio. Direção estratégica, movimento e articulação do ecossistema para novos horizontes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section reveal">
+            <span class="section-title">04. EIXO TRANSVERSAL & PDI</span>
+            <div class="info-panel">
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h3>Antifragilidade</h3>
+                        <ul>
+                            <li>Aprendizado com erros</li>
+                            <li>Ajuste de processos após tensão</li>
+                            <li>Crescimento na complexidade</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h3>Ciclo de PDI</h3>
+                        <ul>
+                            <li>Acompanhamento trimestral</li>
+                            <li>Baseado em dados e evidências</li>
+                            <li>Decisões conectadas ao histórico</li>
+                        </ul>
+                    </div>
+                    <div class="info-block">
+                        <h3>Mandalla Core</h3>
+                        <p style="font-size: 0.85rem; color: #666">"Não buscamos perfeição. Buscamos capacidade de ficar melhor com o desafio."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                <div>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 120px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">Navegação</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="../index.html" style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Mandalla Comunicação & Design</a></li>
+                        <li><a href="../simbolyca.html" style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Simbólyca</a></li>
+                        <li><a href="lab.html" style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Dashboard Lab</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
+                <span>Design Sensível & Estratégia Técnica</span>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
