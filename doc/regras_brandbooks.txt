@@ -1,0 +1,98 @@
+CONSOLIDADO DE REGRAS DE MARCA - BRANDBOOKS DE REFERÊNCIA
+Estudo realizado para Mandalla Lab
+
+================================================================================
+1. CIELO (Manual de Identidade Visual)
+================================================================================
+DIRETRIZES DE LOGOTIPO:
+- Dimensões Mínimas: 8mm para impressos; flexível para digital mas com foco na legibilidade.
+- Área de Não-Interferência: Mínimo de metade da altura da letra 'o' ao redor do logo.
+- Usos Proibidos: Não rotacionar, não distorcer, não usar outline (contorno), não desalinhar elementos, não usar o símbolo separadamente do nome.
+
+CORES INSTITUCIONAIS:
+- Azul Cielo: Hex #00AEEF | CMYK 100/0/0/0
+- Preto Cielo: Hex #000000 | CMYK 0/0/0/100
+- Fundo: Se o fundo for do mesmo tom que o logo, a opacidade do fundo não deve ultrapassar 30%.
+
+TIPOGRAFIA:
+- Principal: Família Museo (serifada para títulos) e Museo Sans (sem serifa para texto).
+- Substituto (Sistema/Web): Arial.
+
+GRAFISMO:
+- Padrão curvo derivado do símbolo, aplicado preferencialmente nos cantos das peças.
+
+================================================================================
+2. DELL (Brand Identity Standards)
+================================================================================
+CONCEITO: "The power to do more".
+
+DIRETRIZES DE LOGOTIPO:
+- Versões: Dell Blue ou Branco (Preferencial). Dell Gray (Secundário).
+- Área de Proteção: Espaço "X" equivalente à altura da letra 'D'.
+- Tamanho Mínimo Digital: 30px de altura.
+
+CORES:
+- Dell Blue: Hex #0085C3 | CMYK 92/34/0/0.
+- Paleta de Apoio: Uso vibrante e saturado. Cores como Verde (PMS 376), Amarelo (PMS 7408) e Laranja (PMS 151).
+- Regra: Evitar usar mais de 3 cores de apoio com o azul Dell no mesmo layout.
+
+TIPOGRAFIA:
+- Principal: Museo for Dell (pesos 100, 300, 700).
+- Substituto (Sistema/Office): Trebuchet MS.
+- Estilo: Texto em "sentence case" (apenas primeira letra maiúscula); CTAs em "title case".
+
+ELEMENTOS GRÁFICOS & FOTO:
+- Cantos Arredondados: Raio padrão de 0.0694" (5 pontos) para destacar informações.
+- Fotografia: Estilo fotojornalístico, luz natural, momentos autênticos, evitar poses artificiais ou "clichês" de banco de imagem.
+
+================================================================================
+3. LENOVO (Visual Identity Guidelines)
+================================================================================
+CONCEITO: "Never Stand Still" (Atitude, não um slogan fixo).
+
+DIRETRIZES DE LOGOTIPO:
+- Formato "Tag": O logo deve estar dentro de uma forma sólida (retângulo) que pode conter cores, imagens ou texturas.
+- Orientação: Versão vertical é preferida para ser "disruptiva".
+- Inovação: O logo funciona como uma "janela" para o mundo.
+
+CORES:
+- Cor Hero: Lenovo Red (Hex #E2231A | CMYK 5/98/100/0).
+- Paleta Estendida: Sapphire Blue, Peony Pink, Flame Orange, Envy Green.
+
+TIPOGRAFIA:
+- Principal: Gotham (Extra Light até Ultra).
+- Digital/Web: Raleway para títulos; Arial/Helvetica para corpo de texto.
+
+PADRÕES (PATTERNS):
+- Grafismos criados a partir do "L" do logo repetido, criando texturas geométricas.
+
+================================================================================
+4. POSITIVO (Manual de Identidade Visual)
+================================================================================
+MISSÃO: Transformação através do saber, ética, trabalho e progresso.
+
+ARQUITETURA DE MARCA:
+- Sistema Monolítico Colorido: Cada unidade de negócio tem uma cor específica.
+  * Colégio: Laranja (#F7941E)
+  * Informática: Ciano (#00AEEF)
+  * Universidade: Azul Escuro (#26247B)
+  * Editora: Verde (#67AE3E)
+
+TIPOGRAFIA:
+- Principal: Myriad Pro (família completa).
+- Secundário/Descriptor: Myriad Pro Black para nomes de unidades; Italic para informações suplementares.
+- Substituto: Verdana.
+
+REGRAS DE APLICAÇÃO:
+- Versões: Vertical (Recomendada) e Horizontal (Restrita a espaços estreitos).
+- Redução Mínima: 1,5 cm de largura.
+- Proibições: Não aplicar sombra, não inclinar, não alterar proporções, não contornar o símbolo.
+- Cores Corporativas: K100 (Black). Digital usar #000000.
+
+================================================================================
+RESUMO DE TENDÊNCIAS OBSERVADAS
+================================================================================
+1. TIPOGRAFIA WEB: Uso constante de substitutos seguros (Arial/Trebuchet/Verdana) quando as fontes de marca não estão disponíveis.
+2. ESPAÇAMENTO: O "X" de proteção é quase sempre baseado em uma letra interna do logo (o 'o' da Cielo, o 'D' da Dell, o 'P' da Positivo).
+3. AUTENTICIDADE VISUAL: Transição de fotos de estúdio para estilos mais naturais e espontâneos (especialmente visível na Dell e Lenovo).
+4. LOGO COMO TAG: Tendência moderna (Lenovo) de tratar o logo não apenas como um vetor, mas como um contêiner flexível.

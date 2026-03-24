@@ -70,29 +70,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // Sidebar Toggle Logic
-    const toggleBtn = document.getElementById('toggleSidebar');
-    const sidebar = document.getElementById('sidebar');
-
-    if (toggleBtn && sidebar) {
-        // Load initial state
-        const isMinimized = localStorage.getItem('labSidebarMinimized') === 'true';
-        if (isMinimized) {
-            sidebar.classList.add('minimized');
-            document.body.classList.add('sidebar-minimized');
-            toggleBtn.querySelector('i').className = 'ph ph-caret-right';
-        }
-
-        toggleBtn.addEventListener('click', () => {
-            const minimized = sidebar.classList.toggle('minimized');
-            document.body.classList.toggle('sidebar-minimized');
-
-            // Update icon
-            toggleBtn.querySelector('i').className = minimized ? 'ph ph-caret-right' : 'ph ph-caret-left';
-
-            // Save state
-            localStorage.setItem('labSidebarMinimized', minimized);
-        });
-    }
 });
