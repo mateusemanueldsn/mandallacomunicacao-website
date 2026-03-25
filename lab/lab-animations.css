@@ -45,3 +45,173 @@ body.loaded .sidebar { transform: translateX(0); }
 body.sidebar-minimized .main-content { margin-left: 80px; }
 body.loaded .main-content { opacity: 1; }
 html { scroll-behavior: smooth; }
+
+/* ==========================================================================
+   MANDALLA OFFICIAL PATTERNS (GEOMETRIC COMPOSITION)
+   Use: Create a .pattern-container and add .pillar and .acc elements.
+   ========================================================================== */
+.pattern-container {
+    height: 400px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border: 1px solid #f0f0f0;
+    margin: 2rem 0;
+}
+
+.pillar {
+    position: absolute;
+    bottom: -30px;
+    border-radius: 999px;
+}
+
+.p-purple {
+    width: 160px;
+    height: 380px;
+    background: var(--mandalla-purple);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.p-teal {
+    width: 150px;
+    height: 240px;
+    background: var(--mandalla-teal);
+    left: 35%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.p-orange {
+    width: 180px;
+    height: 300px;
+    background: var(--mandalla-orange);
+    left: 65%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.acc {
+    position: absolute;
+    background: #1A1A1A;
+}
+
+.acc-bowl {
+    width: 120px;
+    height: 60px;
+    border-radius: 0 0 60px 60px;
+    top: 15px;
+    left: 20px;
+}
+
+.acc-hat {
+    width: 130px;
+    height: 65px;
+    border-radius: 65px 65px 0 0;
+    top: -20px;
+    right: -30px;
+}
+
+.p-teal-extra {
+    width: 100px;
+    height: 50px;
+    background: var(--mandalla-teal);
+    border-radius: 50px 50px 0 0;
+    position: absolute;
+    bottom: 220px;
+    left: 25%;
+    z-index: 2;
+}
+
+.p-line {
+    position: absolute;
+    border: 1px solid rgba(255,255,255,0.3);
+    pointer-events: none;
+}
+
+.line-purple {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    top: 40px;
+    left: 15px;
+}
+
+.line-orange {
+    width: 140px;
+    height: 100px;
+    border-radius: 0 70px 70px 0;
+    border-left: 0;
+    top: 100px;
+    left: 0;
+}
+
+
+/* ==========================================================================
+   NEW: DYNAMIC COMPOSITIONS & OVERLAPS
+   ========================================================================== */
+
+.pillar.p-horizontal {
+    width: 280px;
+    height: 140px;
+    border-radius: 999px;
+    bottom: auto;
+}
+
+.pillar.p-black { background: #1A1A1A; }
+
+.pillar.p-outline {
+    background: transparent !important;
+    border: 1.8px solid #1A1A1A;
+}
+
+.pillar.p-outline.white {
+    border-color: #FFFFFF;
+}
+
+.pillar.p-semi { border-radius: 0 0 999px 999px; }
+.pillar.p-semi-bottom { border-radius: 999px 999px 0 0; }
+
+/* Carrossel Horizontal de Variações */
+.variation-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.variation-carousel::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.variation-carousel .variation-card {
+    flex: 0 0 400px; /* Largura fixa para cada card */
+    height: 400px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    transition: transform 0.4s ease;
+}
+
+.variation-carousel .variation-card:hover { border-color: #eee; }
+
+.variation-carousel .pillar { bottom: auto; }
+
+@media (max-width: 768px) {
+    .variation-carousel .variation-card {
+        flex: 0 0 300px;
+        height: 300px;
+    }
+}
+
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo de Logo [Demonstrativo] // EcoVox — Mandalla Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon_lab.png">
+    <style>
+        :root {
+            --doc-bg: #f4f4f4;
+            --page-bg: #ffffff;
+            --lab-border: #000000;
+            --lab-text: #000000;
+            --lab-text-muted: #666666;
+            --mandalla-purple: #926ECC;
+            --mandalla-orange: #FF6C40;
+            --mandalla-teal: #4CB2AB;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--doc-bg);
+            color: var(--lab-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+        .main-content {
+            background-color: var(--page-bg);
+            width: 100%;
+            max-width: 1000px;
+            padding: 6rem 12%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            position: relative;
+            border: 1px solid #eee;
+        }
+        .doc-header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+        }
+        .manifesto-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #bbb;
+            margin-bottom: 2.5rem;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 12px;
+        }
+        .hub-section { margin-bottom: 6rem; }
+        .soul-card {
+            padding: 2.5rem;
+            border: 1px solid #eee;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+        .soul-card:hover { background: #fff; border-color: #000; }
+        @media print {
+            body { background: #fff; padding: 0 !important; }
+            .main-content { box-shadow: none !important; border: none !important; margin: 0 !important; max-width: 100% !important; width: 100% !important; padding: 3rem !important; }
+            .no-print { display: none !important; }
+        }
+        @media (max-width: 768px) {
+            .main-content { padding: 4rem 8%; }
+            .doc-header-info { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <main class="main-content">
+        <!-- Floating Navigation -->
+        <div class="no-print" style="position: absolute; top: 3rem; right: 3rem; display: flex; gap: 10px;">
+            <a href="universo-marcas.html" style="text-decoration: none; color: #000; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-arrow-left"></i> Voltar ao Hub
+            </a>
+            <button onclick="window.print()" style="cursor: pointer; background: #000; color: #fff; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; padding: 10px 15px; border: 1.5px solid #000;">
+                <i class="ph ph-download-simple"></i> Baixar PDF
+            </button>
+        </div>
+
+        <div class="doc-header-info">
+            <img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 70px;">
+            <div style="text-align: right;">
+                <span style="display: block; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #999;">Gestão de Marca & Branding</span>
+                <span style="display: block; font-size: 1.1rem; font-weight: 800; text-transform: uppercase;">Estudo de Logo — EcoVox (Case Fictício)</span>
+            </div>
+        </div>
+
+        <header style="margin-bottom: 5rem;">
+            <span class="manifesto-tag">Metodologia Prática</span>
+            <h1>Construção. <br>Estudo de Logo.</h1>
+            <p style="font-size: 1.25rem; color: #444; margin-top: 2rem; max-width: 750px; font-weight: 400; line-height: 1.5;">
+                O processo estruturado da Mandalla para a construção de marcas. Da pesquisa fundamental à validação visual, apresentamos o desenvolvimento do logotipo aprovado para a <strong>EcoVox - Inteligência Socioambiental</strong>.
+            </p>
+        </header>
+
+        <!-- Fase I: Pesquisa -->
+        <section class="hub-section">
+            <span class="section-title">FASE I • PESQUISA (FUNDAMENTAÇÃO)</span>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                <div class="soul-card" style="border-left: 5px solid #000;">
+                    <h3 style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px;">01. Levantamento Visual & Briefing</h3>
+                    <p style="font-size: 1.05rem; color: #444;">O primeiro passo consiste na pesquisa de referências cruzadas: analisando a essência da marca, valores como arquitetura, natureza e impacto sistêmico. Montamos painéis semânticos (moodboards) para direcionar as escolhas formais iniciais.</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="soul-card" style="border-left: 5px solid var(--mandalla-teal);">
+                        <h3 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;">02. Análise da Marca Atual</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Diagnosticamos as deficiências do logo antigo ("Eco-Serv") que usava folhas e tons pasteis em excesso, perdendo peso institucional, mas que ainda baseava sua construção nos tons de azul e verde.</p>
+                    </div>
+                    <div class="soul-card" style="border-left: 5px solid var(--mandalla-purple);">
+                        <h3 style="font-size: 0.85rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;">03. Benchmarking de Mercado</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Monitoramos logotipos concorrentes ou correlatos (como Base, Space, Impacta), identificando padrões visuais: adoção de fontes sem-serifa bold e ícones orgânicos que mesclam a inicial (E) com metáforas estruturais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fase II: Estratégia -->
+        <section class="hub-section">
+            <span class="section-title">FASE II • ESTRATÉGIA E CAMINHO VISUAL</span>
+            <p style="font-size: 1rem; color: #444; margin-bottom: 3rem;">A estratégia converte a coleta de dados da pesquisa visual em escolhas concisas de paleta cromática, família de fontes e construção do símbolo.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+                <div style="background: #fafafa; padding: 2rem; border: 1px solid #eee;">
+                    <h3 style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;"><i class="ph ph-palette" style="margin-right: 8px;"></i> Cores</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Direcionamento para uma paleta vibrante: <strong>Laranja</strong> como faísca de impacto e energia, <strong>Verde</strong> como acolhimento e sustentabilidade, com bases de cinza escuro focadas na sobriedade corporativa.</p>
+                </div>
+                <div style="background: #fafafa; padding: 2rem; border: 1px solid #eee;">
+                    <h3 style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;"><i class="ph ph-text-aa" style="margin-right: 8px;"></i> Tipografia</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Para abraçar a sensação de acolhimento e "casa", foram selecionadas famílias tipográficas amigáveis (como <strong>Baloo 2</strong> e <strong>Arial Rounded</strong>), suavizando as interseções da mensagem e modernizando o visual.</p>
+                </div>
+                <div style="background: #fafafa; padding: 2rem; border: 1px solid #eee;">
+                    <h3 style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem;"><i class="ph ph-shapes" style="margin-right: 8px;"></i> Ícone</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Direção construtiva pautada na união de conceitos visuais em um monograma abstrato: A conexão humana e orgânica alinhada ao formato arquitetônico representativo da letra "E" e de uma Casa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fase III: Opção 01 -->
+        <section class="hub-section">
+            <span class="section-title">FASE III • PROPOSTA DE CRIAÇÃO — OPÇÃO 01 (V3)</span>
+            <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+                <div style="background: #000; color: #fff; padding: 3rem;">
+                    <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 1.5rem; letter-spacing: -1px;">Rota Criativa: Orgânica & Acolhedora</h2>
+                    <p style="font-size: 1rem; color: #bbb; line-height: 1.6; max-width: 800px;">A primeira opção desenvolvida buscou traduzir o impacto social pelo viés do acolhimento. A letra "e" minúscula foi trabalhada em curvas suaves e fluídas, criando dentro de seu espaço negativo o elemento de proteção de uma casa e a interligação de círculos matemáticos — indicando o ecossistema contínuo.</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div style="border: 1px solid #eee; padding: 2rem;">
+                        <h4 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: #666;">Construção Geométrica</h4>
+                        <p style="font-size: 0.9rem; color: #444;">Um grid composto pela interligação proporcional de circunferências, lapidado para garantir reprodutibilidade em escalas extremas. O uso de versão negativa em fundos coloridos testou a solidez em aplicações sociais.</p>
+                    </div>
+                    <div style="border: 1px solid #eee; padding: 2rem;">
+                        <h4 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: #666;">Aplicações Hipotéticas</h4>
+                        <p style="font-size: 0.9rem; color: #444;">Renderização do logotipo em cartões de visita minimalistas, uniformes e painéis arquitetônicos, validando o contraste da marca no mundo real e offline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fase III: Opção 02 -->
+        <section class="hub-section">
+            <span class="section-title">FASE III • PROPOSTA DE CRIAÇÃO — OPÇÃO 02 (V1)</span>
+            <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+                <div style="background: var(--mandalla-teal); color: #000; padding: 3rem;">
+                    <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 1.5rem; letter-spacing: -1px;">Rota Criativa: Dinâmica & Plural</h2>
+                    <p style="font-size: 1rem; color: #000; line-height: 1.6; max-width: 800px; font-weight: 500;">A segunda proposta injetou uma estética com foco na explosão de ideias e conexões. Formas com angulações e um foco direto no choque energético central. Tipografia semi-arredondada para representar a ação descentralizada de inovadores, focada totalmente no conceito de "Impacto".</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div style="border: 1px solid #eee; padding: 2rem;">
+                        <h4 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: #666;">A Variação Cromática</h4>
+                        <p style="font-size: 0.9rem; color: #444;">Empregamos fundos vivos inteiramente laranjas ou escuros com a marca em branco contrastante (negativo puro), elevando a percepção de energia e forte apelo no âmbito digital.</p>
+                    </div>
+                    <div style="border: 1px solid #eee; padding: 2rem;">
+                        <h4 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: #666;">Aplicações de Rede e Vestuário</h4>
+                        <p style="font-size: 0.9rem; color: #444;">Validação das peças sociais vitais (arquitetura de post para o Instagram, avatares), além das provas de sinalização externa e estamparia em camisetas vibrantes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fase IV: Fechamento -->
+        <section class="hub-section">
+            <span class="section-title">FASE IV • VALIDAÇÃO E FECHAMENTO</span>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                <div class="soul-card" style="border-left: 5px solid var(--mandalla-orange);">
+                    <h3 style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px;">O Confronto Final (Side-by-Side)</h3>
+                    <p style="font-size: 1.05rem; color: #444;">Com as duas rotas criativas elaboradas, promovemos a etapa de colisão. A Opção 01 contra a Opção 02 em um mesmo grid visual. Essa exibição facilita a compreensão macro pelo cliente e acelera a decisão pautada nos objetivos corporativos (já que ambas as versões solucionam tecnicamente o briefing).</p>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border: 1.5px dashed #000; padding: 2rem; margin-top: 1rem; background: #fff;">
+                    <div>
+                        <h4 style="font-size: 1.2rem; font-weight: 900; text-transform: uppercase;">Logo Escolhido & Próximos Passos</h4>
+                        <p style="font-size: 0.95rem; color: #666; margin-top: 8px;">A aprovação da rota oficial aciona a elaboração do <strong>Brandbook / Manual de Identidade</strong> e o empacotamento vetorizado final de todas as ramificações de arquivos da marca (EPS, SVG, PNG e Fontes).</p>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--mandalla-purple);">Entrega Concluída</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #bbb; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+            <span>&copy; 2026 Mandalla | Documentação de Processo Técnico</span>
+            <span class="no-print">Impresso via Mandalla Lab Hub</span>
+        </footer>
+    </main>
+</body>
+</html>

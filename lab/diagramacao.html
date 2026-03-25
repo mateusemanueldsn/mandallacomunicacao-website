@@ -18,6 +18,12 @@
             --lab-text-muted: #666666;
             --lab-active: #eeeeee;
             --sidebar-width: 280px;
+            
+            /* Cores de Marca Mandalla */
+            --turquesa: #00B1A8;
+            --coral: #FF5C35;
+            --roxo: #6B4E96;
+            --ocre: #D4A373;
         }
 
         * {
@@ -59,7 +65,6 @@
         .lab-logo {
             width: 100%;
             max-width: 240px;
-
             display: block;
         }
 
@@ -119,60 +124,168 @@
             flex-grow: 1;
             margin-left: var(--sidebar-width);
             padding: 5rem 8%;
-            max-width: 1200px;
+            max-width: 1400px;
         }
 
         .header {
-            margin-bottom: 4rem;
+            margin-bottom: 6rem;
+            max-width: 900px;
         }
 
         .header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(3rem, 8vw, 4.5rem);
             font-weight: 900;
             letter-spacing: -2px;
-            line-height: 1;
+            line-height: 0.9;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: var(--lab-text-muted);
+            max-width: 600px;
+            line-height: 1.4;
+        }
+
+        .content-section {
+            margin-bottom: 8rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            border-bottom: 1.5px solid var(--lab-border);
+            padding-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .technical-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
         }
 
         .tech-card {
-            border: 1.5px solid #000;
-            padding: 2rem;
+            border: 1.5px solid var(--lab-border);
+            padding: 2.5rem;
             background: #fff;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 10px 10px 0px var(--lab-border);
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--lab-border);
+        }
+
+        .tech-card.turquesa::before { background: var(--turquesa); }
+        .tech-card.coral::before { background: var(--coral); }
+        .tech-card.roxo::before { background: var(--roxo); }
+        .tech-card.ocre::before { background: var(--ocre); }
+
         .tech-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 900;
             margin-bottom: 1rem;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tech-card p {
+            color: var(--lab-text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
         .tech-card ul {
-            list-style: square;
-            padding-left: 20px;
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.6;
+            list-style: none;
+            margin-top: auto;
+        }
+
+        .tech-card li {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: var(--lab-text);
+        }
+
+        .tech-card li::before {
+            content: "→";
+            font-weight: 900;
         }
 
         .manifesto-tag {
             display: inline-block;
-            padding: 4px 10px;
+            padding: 6px 12px;
             background: #000;
             color: #fff;
             font-weight: 900;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .error-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .error-item {
+            background: #fff;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            border-left: 4px solid #ff4d4d;
+        }
+
+        .error-item h4 {
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: #ff4d4d;
+        }
+
+        .error-item p {
+            font-size: 0.9rem;
+            color: var(--lab-text-muted);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                padding: 4rem 5%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -182,81 +295,65 @@
 
             .main-content {
                 margin-left: 0;
-                padding: 3rem 5%;
+            }
+            
+            .header h1 {
+                font-size: 3rem;
             }
         }
     </style>
 </head>
 
-<body>    <aside class="sidebar" id="sidebar">
-        
+<body>
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" class="lab-logo"></a>
         </div>
 
-                <nav class="nav-container">
+        <nav class="nav-container">
             <div class="nav-group">
                 <div class="nav-title">Cultura de marca</div>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i
-                                 class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
-                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i>
-                            <span>Missão, visão e valores</span></a></li>
-                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i
-                                 class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
-                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i
-                                 class="ph ph-git-branch"></i> <span>Processos</span></a></li>
-                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i
-                                 class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
-                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i
-                                 class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
-                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i
-                                 class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
-                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i
-                                 class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
+                    <li class="nav-item"><a href="jeito-mandalla.html" class="nav-link"><i class="ph ph-chat-circle-text"></i> <span>O jeito Mandalla</span></a></li>
+                    <li class="nav-item"><a href="missao-visao-valores.html" class="nav-link"><i class="ph ph-eye"></i> <span>Missão, visão e valores</span></a></li>
+                    <li class="nav-item"><a href="conceito-criacao.html" class="nav-link"><i class="ph ph-lightbulb"></i> <span>Conceito de Criação</span></a></li>
+                    <li class="nav-item"><a href="mapeamento-processos.html" class="nav-link"><i class="ph ph-git-branch"></i> <span>Processos</span></a></li>
+                    <li class="nav-item"><a href="ecossistema-ferramentas.html" class="nav-link"><i class="ph ph-tree-structure"></i> <span>Ecossistema</span></a></li>
+                    <li class="nav-item"><a href="manual-colaborador.html" class="nav-link"><i class="ph ph-identification-card"></i> <span>Manual Colaborador</span></a></li>
+                    <li class="nav-item"><a href="plano-cargos.html" class="nav-link"><i class="ph ph-chart-line-up"></i> <span>Plano de Cargos</span></a></li>
+                    <li class="nav-item"><a href="guia-atendimento.html" class="nav-link"><i class="ph ph-hand-heart"></i> <span>Guia Atendimento</span></a></li>
                 </ul>
             </div>
 
             <div class="nav-group">
                 <div class="nav-title">Universo de marcas</div>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i>
-                            <span>Logotipos</span></a></li>
-                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i>
-                            <span>Tipografia</span></a></li>
-                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i>
-                            <span>Cores</span></a></li>
-                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i>
-                            <span>Fotografia</span></a></li>
-                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i>
-                            <span>Vídeos</span></a></li>
+                    <li class="nav-item"><a href="universo-marcas.html" class="nav-link"><i class="ph ph-folders"></i> <span>Logotipos</span></a></li>
+                    <li class="nav-item"><a href="tipografia.html" class="nav-link"><i class="ph ph-text-aa"></i> <span>Tipografia</span></a></li>
+                    <li class="nav-item"><a href="cores.html" class="nav-link"><i class="ph ph-palette"></i> <span>Cores</span></a></li>
+                    <li class="nav-item"><a href="fotografia.html" class="nav-link"><i class="ph ph-camera"></i> <span>Fotografia</span></a></li>
+                    <li class="nav-item"><a href="videos.html" class="nav-link"><i class="ph ph-video-camera"></i> <span>Vídeos</span></a></li>
                 </ul>
             </div>
 
             <div class="nav-group">
                 <div class="nav-title">Criatividade</div>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i
-                                 class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
+                    <li class="nav-item"><a href="criatividade.html" class="nav-link"><i class="ph ph-shooting-star"></i> <span>Recursos Criativos</span></a></li>
                     <li class="nav-item"><a href="dicionario-metaforas.html" class="nav-link"><i class="ph ph-book-open"></i> <span>Dicionário de Metáforas</span></a></li>
-                    <li class="nav-item"><a href="diagramacao.html" class="nav-link"><i class="ph ph-layout"></i>
-                            <span>Diagramação</span></a></li>
-                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i>
-                            <span>Digital & Impacto</span></a></li>
+                    <li class="nav-item"><a href="diagramacao.html" class="nav-link active"><i class="ph ph-layout"></i> <span>Diagramação</span></a></li>
+                    <li class="nav-item"><a href="digital.html" class="nav-link"><i class="ph ph-device-mobile"></i> <span>Digital & Impacto</span></a></li>
                 </ul>
             </div>
 
             <div class="nav-group">
                 <div class="nav-title">Suporte</div>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i>
-                            <span>HUB Tutoriais</span></a></li>
-                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB
-                                Ajuda</span></a></li>
+                    <li class="nav-item"><a href="tutoriais.html" class="nav-link"><i class="ph ph-graduation-cap"></i> <span>HUB Tutoriais</span></a></li>
+                    <li class="nav-item"><a href="ajuda.html" class="nav-link"><i class="ph ph-lifebuoy"></i> <span>HUB Ajuda</span></a></li>
                 </ul>
             </div>
 
-            <!-- Logout -->
             <div class="nav-group" style="margin-top: auto; padding-top: 2rem; border-top: 1px solid #eee;">
                 <ul class="nav-list">
                     <li class="nav-item">
@@ -273,65 +370,602 @@
         <header class="header reveal">
             <span class="manifesto-tag">RIGOR E POESIA</span>
             <h1>Diagramação <br>Editorial.</h1>
-            <p>Padrões técnicos para criação de e-books, relatórios e materiais impressos premium.</p>
+            <p>A arte de organizar o caos. Princípios e elementos fundamentais para a criação de sistemas visuais sensíveis e eficientes.</p>
         </header>
 
-        <section id="grid" class="tech-card">
-            <h2>Grid Layout</h2>
-            <p>Nossos materiais editoriais sempre seguem grids de 12 colunas para flexibilidade ou 6 colunas para
-                leitura densa. A margem externa nunca deve ser inferior a 20mm para respiro e segurança.</p>
+        <!-- Introdução -->
+        <section class="content-section reveal">
+            <div class="section-header">
+                <h2>O que é design editorial?</h2>
+                <span style="font-size: 0.8rem; color: #999;">INTRODUÇÃO</span>
+            </div>
+            <div style="background: #fff; padding: 3rem; border: 1.5px solid var(--lab-border); position: relative; overflow: hidden;">
+                <p style="font-size: 1.4rem; line-height: 1.6; color: var(--lab-text); max-width: 800px; z-index: 2; position: relative;">
+                    É o ramo do design gráfico responsável pelo projeto e diagramação de publicações, sejam elas impressas ou digitais. Seu objetivo é organizar informações de forma clara, estética e funcional, guiando a leitura e proporcionando uma experiência agradável ao leitor.
+                </p>
+                <div style="position: absolute; right: -50px; bottom: -50px; width: 200px; height: 200px; border-radius: 50%; background: var(--turquesa); opacity: 0.1; pointer-events: none;"></div>
+            </div>
         </section>
 
-        <div class="technical-grid">
-            <div class="tech-card reveal">
-                <h3>InDesign Setup</h3>
-                <ul>
-                    <li>Sangria: 3mm (all sides)</li>
-                    <li>Cores: CMYK (Coated FOGRA39)</li>
-                    <li>Imagens: 300 DPI (mínimo)</li>
-                    <li>Links: Sempre organizar em pastas</li>
-                </ul>
+        <!-- Parte 1: Elementos -->
+        <section class="content-section reveal">
+            <div class="section-header">
+                <h2>01. Elementos Fundamentais</h2>
+                <span style="font-size: 0.8rem; color: #999;">A MATÉRIA-PRIMA</span>
             </div>
-            <div class="tech-card reveal">
-                <h3>Exportação</h3>
-                <ul>
-                    <li>PDF/X-1a para Impressão</li>
-                    <li>PDF Interativo para Digital</li>
-                    <li>Marcas de corte inclusas</li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- Footer -->
-        <footer
-            style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
-            <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+            <!-- Cluster: Estrutura da Página -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="width: 20px; height: 2px; background: var(--turquesa);"></span> Estrutura e Base
+                </h3>
+                <div class="technical-grid">
+                    <article class="tech-card turquesa">
+                        
+                        <h3>Mancha Gráfica</h3>
+                        <p>Área da página onde o conteúdo principal (texto e imagens) é organizado. Delimitada pelas margens, define o peso visual.</p>
+                        <ul>
+                            <li>Manchas maiores: Dense e informativo</li>
+                            <li>Manchas menores: Elegância e leveza</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; gap: 10px; justify-content: center;">
+                            <div style="width: 45px; height: 60px; border: 1px solid #ccc; background: white; padding: 4px; position: relative;">
+                                <div style="width: 100%; height: 100%; background: #eee;"></div>
+                                <span style="position: absolute; bottom: -15px; left: 0; font-size: 0.5rem; width: 100%; text-align: center;">Densa</span>
+                            </div>
+                            <div style="width: 45px; height: 60px; border: 1px solid #ccc; background: white; padding: 12px; position: relative;">
+                                <div style="width: 100%; height: 100%; background: #eee;"></div>
+                                <span style="position: absolute; bottom: -15px; left: 0; font-size: 0.5rem; width: 100%; text-align: center;">Leve</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="tech-card turquesa">
+                        
+                        <h3>Grid</h3>
+                        <p>A estrutura invisível que organiza todos os elementos na página. Garante consistência e harmonia em todo o projeto.</p>
+                        <ul style="margin-bottom: 2rem;">
+                            <li>Consistência</li>
+                            <li>Harmonia</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                            <!-- Layout 1: Modular Balance -->
+                            <div style="height: 50px; border: 1px solid #eee; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 2px;">
+                                <div style="background: #f5f5f5;"></div>
+                                <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 2px;">
+                                    <div style="background: #f5f5f5;"></div>
+                                    <div style="background: #f5f5f5;"></div>
+                                </div>
+                            </div>
+                            <!-- Layout 2: Information Stack -->
+                            <div style="height: 50px; border: 1px solid #eee; display: grid; grid-template-columns: 1fr 2fr; gap: 2px; padding: 2px;">
+                                <div style="display: grid; grid-template-rows: repeat(4, 1fr); gap: 2px;">
+                                    <div style="background: var(--turquesa); opacity: 0.2;"></div>
+                                    <div style="background: var(--turquesa); opacity: 0.2;"></div>
+                                    <div style="background: var(--turquesa); opacity: 0.2;"></div>
+                                    <div style="background: var(--turquesa); opacity: 0.2;"></div>
+                                </div>
+                                <div style="background: #f5f5f5;"></div>
+                            </div>
+                            <!-- Layout 3: Columnar -->
+                            <div style="height: 50px; border: 1px solid #eee; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; padding: 2px;">
+                                <div style="background: #f5f5f5;"></div>
+                                <div style="background: #f5f5f5;"></div>
+                                <div style="background: #f5f5f5;"></div>
+                            </div>
+                            <!-- Layout 4: Mixed -->
+                            <div style="height: 50px; border: 1px solid #eee; display: grid; grid-template-rows: 1fr 2fr; gap: 2px; padding: 2px;">
+                                <div style="background: #f5f5f5;"></div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;">
+                                    <div style="background: #f5f5f5;"></div>
+                                    <div style="background: #f5f5f5;"></div>
+                                    <div style="background: #f5f5f5;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.65rem; color: #999; margin-top: 1rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Representações de Sistemas de Grid</p>
+                    </article>
+                    <article class="tech-card turquesa">
+                        
+                        <h3>Margens e Sangria</h3>
+                        <p>Espaços de segurança. <strong>Margens:</strong> segurança interna. <strong>Sangria:</strong> sobra de imagem para fora da área de corte (essencial na gráfica).</p>
+                        <ul>
+                            <li>Segurança</li>
+                            <li>Corte Gráfico</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; height: 60px; border: 1px solid #ff4d4d; position: relative; background: #fff;">
+                            <div style="position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; border: 1px dashed var(--turquesa); background: rgba(0,255,183,0.05);"></div>
+                            <div style="position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border: 0.5px solid #ff4d4d; opacity: 0.3;"></div>
+                            <span style="position: absolute; top: 12px; left: 12px; font-size: 0.45rem; color: var(--turquesa); font-weight: 700;">MARGEM</span>
+                            <span style="position: absolute; top: -12px; left: 0; font-size: 0.45rem; color: #ff4d4d; font-weight: 700;">SANGRIA</span>
+                        </div>
+                    </article>
+                    <article class="tech-card turquesa">
+                        
+                        <h3>Coluna e Espaçamento</h3>
+                        <p>Define a largura do texto (entre-colunas) e a facilidade de leitura. Crucial para o ritmo visual.</p>
+                        <ul>
+                            <li>Largura do Texto</li>
+                            <li>Ritmo de Leitura</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; height: 60px;">
+                            <div style="background: #f5f5f5; border-left: 2px solid var(--turquesa);"></div>
+                            <div style="background: #f5f5f5; border-left: 2px solid var(--turquesa);"></div>
+                            <div style="background: #f5f5f5; border-left: 2px solid var(--turquesa);"></div>
+                        </div>
+                        <p style="font-size: 0.5rem; color: #999; margin-top: 0.5rem; text-align: center;">Goteiras (gutters) constantes</p>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Cluster: Conteúdo -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="width: 20px; height: 2px; background: var(--roxo);"></span> Conteúdo e Legibilidade
+                </h3>
+                <div class="technical-grid">
+                    <article class="tech-card roxo">
+                        
+                        <h3>O Texto</h3>
+                        <p>Elemento central. Deve ser tratado com cuidado para garantir legibilidade e conforto visual.</p>
+                        <ul>
+                            <li>Corpo do texto</li>
+                            <li>Títulos e subtítulos</li>
+                            <li>Legendas</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; background: #fdfdfd; padding: 10px; border: 1px solid #eee;">
+                            <div style="width: 40%; height: 6px; background: #333; margin-bottom: 6px;"></div>
+                            <div style="width: 100%; height: 2px; background: #ddd; margin-bottom: 3px;"></div>
+                            <div style="width: 100%; height: 2px; background: #ddd; margin-bottom: 3px;"></div>
+                            <div style="width: 80%; height: 2px; background: #ddd;"></div>
+                        </div>
+                    </article>
+                    <article class="tech-card roxo">
+                        
+                        <h3>A Imagem</h3>
+                        <p>Não são apenas ilustrativas, elas comunicam! Fotografias trazem realismo; Ilustrações permitem abstração.</p>
+                        <ul>
+                            <li>Fotografias</li>
+                            <li>Infográficos</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; gap: 10px;">
+                            <div style="flex: 1; height: 50px; background: #eee; position: relative; overflow: hidden;">
+                                <div style="position: absolute; width: 20px; height: 20px; border-radius: 50%; background: #fff; top: 10px; right: 10px; opacity: 0.5;"></div>
+                                <div style="position: absolute; bottom: 0; width: 100%; height: 50%; background: #ddd; transform: skewY(-10deg);"></div>
+                            </div>
+                            <div style="flex: 1; height: 50px; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #ccc;">+</div>
+                        </div>
+                    </article>
+                    <article class="tech-card roxo">
+                        
+                        <h3>Tipografia</h3>
+                        <p>Define a "voz" da publicação. Serifadas para tradição e longos textos; Não serifadas para modernidade.</p>
+                        <ul>
+                            <li>Voz do Projeto</li>
+                            <li>Identidade</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: baseline; justify-content: center; gap: 15px; font-size: 2.5rem;">
+                            <span style="font-family: serif; color: #333;">Aa</span>
+                            <span style="font-family: sans-serif; color: #999;">Aa</span>
+                        </div>
+                    </article>
+                    <article class="tech-card roxo">
+                        
+                        <h3>Legibilidade vs. Leiturabilidade</h3>
+                        <p><strong>Legibilidade:</strong> reconhecimento dos caracteres. <strong>Leiturabilidade:</strong> conforto no fluxo visual do texto.</p>
+                        <ul>
+                            <li>Reconhecimento</li>
+                            <li>Conforto Visual</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; gap: 15px; align-items: center;">
+                            <div style="font-size: 0.5rem; letter-spacing: -2px; opacity: 0.3; line-height: 0.8;">TEXTO<br>DIFÍCIL</div>
+                            <div style="width: 2px; height: 30px; background: #eee;"></div>
+                            <div style="font-size: 0.7rem; letter-spacing: 1px; font-weight: 500;">Texto Claro</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Cluster: Espaço e Equilíbrio -->
+            <div style="margin-bottom: 4rem;">
+                <h3 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="width: 20px; height: 2px; background: var(--coral);"></span> Espaço e Equilíbrio
+                </h3>
+                <div class="technical-grid">
+                    <article class="tech-card coral">
+                        
+                        <h3>Espaço em Branco</h3>
+                        <p>O "respiro" é fundamental. Ajuda a separar elementos, evita a poluição visual e guia o olhar. Não é ausência de conteúdo.</p>
+                        <ul>
+                            <li>Elemento Ativo</li>
+                            <li>Equilíbrio</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; height: 60px; background: #fff; border: 1px solid #f0f0f0; position: relative;">
+                            <div style="position: absolute; top: 25px; left: 25px; width: 10px; height: 10px; background: var(--coral); border-radius: 50%;"></div>
+                        </div>
+                    </article>
+                    <article class="tech-card coral">
+                        
+                        <h3>Hierarquia Visual</h3>
+                        <p>Uso de tamanhos, pesos e cores para indicar a importância. O leitor deve saber imediatamente o que ler primeiro.</p>
+                        <ul>
+                            <li>Ênfase</li>
+                            <li>Navegação</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 5px;">
+                            <div style="width: 80%; height: 12px; background: #333;"></div>
+                            <div style="width: 50%; height: 6px; background: #666;"></div>
+                            <div style="width: 30%; height: 4px; background: #999;"></div>
+                        </div>
+                    </article>
+                    <article class="tech-card coral">
+                        
+                        <h3>Contraste e Equilíbrio</h3>
+                        <p>Evita monotonia e cria harmonia. O equilíbrio pode ser Simétrico (formal) ou Assimétrico (dinâmico).</p>
+                        <ul>
+                            <li>Diferenciação</li>
+                            <li>Estabilidade</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 10px;">
+                            <div style="width: 20px; height: 20px; background: #333;"></div>
+                            <div style="width: 50px; height: 4px; background: #eee; position: relative;">
+                                <div style="position: absolute; left: 50%; top: -10px; border: 5px solid transparent; border-bottom-color: #333; transform: translateX(-50%);"></div>
+                            </div>
+                            <div style="width: 15px; height: 15px; background: #999; border-radius: 50%;"></div>
+                        </div>
+                    </article>
+                    <article class="tech-card coral">
+                        
+                        <h3>Unidade e Ritmo</h3>
+                        <p>Consistência (Repetição), Proximidade (Agrupamento) e Ritmo (Sequência) criam a alma do projeto editorial.</p>
+                        <ul>
+                            <li>Identidade</li>
+                            <li>Fluidez</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; gap: 5px; justify-content: center;">
+                            <div style="width: 12px; height: 12px; background: var(--coral); opacity: 0.4;"></div>
+                            <div style="width: 12px; height: 12px; background: var(--coral);"></div>
+                            <div style="width: 12px; height: 12px; background: var(--coral); opacity: 0.4;"></div>
+                            <div style="width: 12px; height: 12px; background: var(--coral);"></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Cluster: Técnica -->
+            <div>
+                <h3 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="width: 20px; height: 2px; background: var(--ocre);"></span> Técnica e Finalização
+                </h3>
+                <div class="technical-grid">
+                    <article class="tech-card ocre">
+                        
+                        <h3>Alinhamento</h3>
+                        <p>Organiza os elementos em relação a um eixo, criando ordem e conexão visual. Nada é arbitrário.</p>
+                        <ul>
+                            <li>Ordem Visual</li>
+                            <li>Conexão</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 8px; border-left: 1px dashed var(--ocre); padding-left: 10px;">
+                            <div style="width: 60%; height: 8px; background: #eee;"></div>
+                            <div style="width: 90%; height: 8px; background: #eee;"></div>
+                            <div style="width: 40%; height: 8px; background: #eee;"></div>
+                        </div>
+                    </article>
+                    <article class="tech-card ocre">
+                        
+                        <h3>Formatos e Suportes</h3>
+                        <p>Escolha do tamanho físico (A4, A5, personalizados) ou digital (telas). O suporte dita as regras.</p>
+                        <ul>
+                            <li>Físico vs Digital</li>
+                            <li>Customização</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: flex-end; justify-content: center; gap: 10px;">
+                            <div style="width: 30px; height: 40px; border: 1px solid #333; background: #fff;"></div>
+                            <div style="width: 45px; height: 35px; border: 1px solid #333; background: #fff; border-radius: 2px; position: relative;">
+                                <div style="position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 1px; background: #333;"></div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="tech-card ocre">
+                        
+                        <h3>Cores (RGB vs CMYK)</h3>
+                        <p>RGB para telas (Digital); CMYK para impressão (Gráfica). Definir o modo correto evita surpresas desagradáveis.</p>
+                        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                            <!-- Complementar -->
+                            <div style="text-align: center;">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(#ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000); position: relative; margin: 0 auto 8px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    <svg viewBox="0 0 100 100" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+                                        <line x1="50" y1="15" x2="50" y2="85" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                        <circle cx="50" cy="15" r="4" fill="white"/>
+                                        <circle cx="50" cy="85" r="4" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span style="font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: #666;">Complementar</span>
+                            </div>
+                            <!-- Análogas -->
+                            <div style="text-align: center;">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(#ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000); position: relative; margin: 0 auto 8px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    <svg viewBox="0 0 100 100" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+                                        <path d="M50,15 A35,35 0 0,1 80,32" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                        <circle cx="50" cy="15" r="4" fill="white"/>
+                                        <circle cx="67" cy="20" r="4" fill="white"/>
+                                        <circle cx="80" cy="32" r="4" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span style="font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: #666;">Análogas</span>
+                            </div>
+                            <!-- Triádica -->
+                            <div style="text-align: center;">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(#ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000); position: relative; margin: 0 auto 8px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    <svg viewBox="0 0 100 100" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+                                        <polygon points="50,15 85,75 15,75" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+                                        <circle cx="50" cy="15" r="4" fill="white"/>
+                                        <circle cx="85" cy="75" r="4" fill="white"/>
+                                        <circle cx="15" cy="75" r="4" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span style="font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: #666;">Triádica</span>
+                            </div>
+                            <!-- Meio-Complementar -->
+                            <div style="text-align: center;">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(#ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000); position: relative; margin: 0 auto 8px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    <svg viewBox="0 0 100 100" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+                                        <line x1="50" y1="50" x2="50" y2="15" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                        <line x1="50" y1="50" x2="25" y2="80" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                        <line x1="50" y1="50" x2="75" y2="80" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                        <circle cx="50" cy="15" r="4" fill="white"/>
+                                        <circle cx="25" cy="80" r="4" fill="white"/>
+                                        <circle cx="75" cy="80" r="4" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span style="font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: #666;">Fenda</span>
+                            </div>
+                            <!-- Retangular -->
+                            <div style="text-align: center;">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(#ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000); position: relative; margin: 0 auto 8px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    <svg viewBox="0 0 100 100" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+                                        <rect x="30" y="20" width="40" height="60" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round" transform="rotate(45 50 50)"/>
+                                        <circle cx="30" cy="20" r="4" fill="white" transform="rotate(45 50 50)"/>
+                                        <circle cx="70" cy="20" r="4" fill="white" transform="rotate(45 50 50)"/>
+                                        <circle cx="30" cy="80" r="4" fill="white" transform="rotate(45 50 50)"/>
+                                        <circle cx="70" cy="80" r="4" fill="white" transform="rotate(45 50 50)"/>
+                                    </svg>
+                                </div>
+                                <span style="font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: #666;">Retângulo</span>
+                            </div>
+                            <!-- Quadrado -->
+                            <div style="text-align: center;">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(#ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000); position: relative; margin: 0 auto 8px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    <svg viewBox="0 0 100 100" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+                                        <rect x="25" y="25" width="50" height="50" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+                                        <circle cx="25" cy="25" r="4" fill="white"/>
+                                        <circle cx="75" cy="25" r="4" fill="white"/>
+                                        <circle cx="25" cy="75" r="4" fill="white"/>
+                                        <circle cx="75" cy="75" r="4" fill="white"/>
+                                    </svg>
+                                </div>
+                                <span style="font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: #666;">Quadrado</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parte 2: Princípios -->
+        <section class="content-section reveal">
+            <div class="section-header">
+                <h2>02. Princípios de Design</h2>
+                <span style="font-size: 0.8rem; color: #999;">A LÓGICA DO SISTEMA</span>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div style="background: #1A1A1A; color: #fff; padding: 3rem; border-radius: 4px;">
+                    <p style="font-size: 1.1rem; font-weight: 300; line-height: 1.6; border-left: 2px solid var(--turquesa); padding-left: 1.5rem; margin-bottom: 2rem;">
+                        "Saber diagramar não é apenas colocar coisas na página; é saber como e por que colocá-las."
+                    </p>
+                    
+                </div>
+                <div style="background: #fff; border: 1.5px solid var(--lab-border); padding: 2rem;">
+                    <h3 style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem;">Enfado e Surpresa</h3>
+                    <p style="font-size: 0.95rem; color: var(--lab-text-muted); line-height: 1.6;">
+                        <strong>Enfado:</strong> Aquilo que é constante e previsível. <br>
+                        <strong>Surpresa:</strong> Aquilo que é inesperado e foge do padrão. <br>
+                        O bom design deve equilibrar os dois: manter uma estrutura compreensível, mas inserir elementos interessantes.
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <!-- Hierarquia (Slide 25) -->
+                <div style="padding: 2rem; border: 1px solid #eee; background: #fff;">
+                    
+                    <h4 style="text-transform: uppercase; margin-bottom: 1rem;">Hierarquia</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: var(--lab-text-muted);">
+                        "Designers usam a hierarquia para guiar os leitores através de documentos... saber para onde olhar primeiro." (HARRINGTON, Paula)
+                    </p>
+                    <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 4px;">
+                        <div style="width: 100%; height: 12px; background: #333;"></div>
+                        <div style="width: 60%; height: 6px; background: #999;"></div>
+                        <div style="width: 30%; height: 6px; background: #ccc;"></div>
+                    </div>
+                </div>
+                <!-- Contraste (Slide 26) -->
+                <div style="padding: 2rem; border: 1px solid #eee; background: #fff;">
+                    
+                    <h4 style="text-transform: uppercase; margin-bottom: 1rem;">Contraste</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: var(--lab-text-muted);">
+                        "O contraste deve ser grande o suficiente para que o leitor saiba imediatamente que há algo diferente." Cor, Tamanho, Forma, Peso.
+                    </p>
+                    <div style="margin-top: 1rem; display: flex; gap: 15px; align-items: center;">
+                        <div style="width: 30px; height: 30px; background: #333;"></div>
+                        <div style="width: 15px; height: 15px; border: 2px solid #333; border-radius: 50%;"></div>
+                    </div>
+                </div>
+                <!-- Alinhamento (Slide 27) -->
+                <div style="padding: 2rem; border: 1px solid #eee; background: #fff;">
+                    
+                    <h4 style="text-transform: uppercase; margin-bottom: 1rem;">Alinhamento & Proximidade</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: var(--lab-text-muted);">
+                        Nada arbitrário. Cada elemento deve ter conexão visual. Agrupar itens relacionados facilita a compreensão.
+                    </p>
+                    <div style="margin-top: 1rem; display: flex; gap: 10px;">
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="width: 30px; height: 10px; background: #eee;"></div>
+                            <div style="width: 30px; height: 10px; background: #eee;"></div>
+                        </div>
+                        <div style="width: 1px; height: 30px; background: #ff4d4d; opacity: 0.2;"></div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="width: 30px; height: 10px; background: #eee;"></div>
+                            <div style="width: 30px; height: 10px; background: #eee;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repetição (Slide 28) -->
+                <div style="padding: 2rem; border: 1px solid #eee; background: #fff;">
+                    
+                    <h4 style="text-transform: uppercase; margin-bottom: 1rem;">Repetição & Unidade</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: var(--lab-text-muted);">
+                        Mesmos estilos de títulos, paleta consistente e padronização de ícones geram profissionalismo.
+                    </p>
+                    <div style="margin-top: 1rem; display: flex; gap: 5px;">
+                        <div style="width: 15px; height: 15px; border: 1.5px solid #333; border-radius: 2px;"></div>
+                        <div style="width: 15px; height: 15px; border: 1.5px solid #333; border-radius: 2px;"></div>
+                        <div style="width: 15px; height: 15px; border: 1.5px solid #333; border-radius: 2px;"></div>
+                    </div>
+                </div>
+                <!-- Espaço Branco (Slide 29) -->
+                <div style="padding: 2rem; border: 1px solid #eee; background: #fff;">
+                    
+                    <h4 style="text-transform: uppercase; margin-bottom: 1rem;">O Vazio</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: var(--lab-text-muted);">
+                        Não tenha medo. O espaço em branco é uma ferramenta ativa que permite ao olho descansar e destaca o importante.
+                    </p>
+                    <div style="margin-top: 1rem; height: 40px; border: 1px solid #f0f0f0; background: #fff; position: relative;">
+                        <div style="position: absolute; right: 10px; bottom: 10px; width: 15px; height: 15px; background: #eee;"></div>
+                    </div>
+                </div>
+                <!-- Tempo e Movimento (Slide 30-31) -->
+                <div style="padding: 2rem; border: 1px solid #eee; background: #fff;">
+                    
+                    <h4 style="text-transform: uppercase; margin-bottom: 1rem;">Tempo & Movimento</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: var(--lab-text-muted);">
+                        "Todo desenho pode ser entendido como um estudo do movimento." (MOHOLY-NAGY). Ritmo e equilíbrio criam pulsação.
+                    </p>
+                    <svg viewBox="0 0 100 20" style="width: 100%; height: 20px; margin-top: 1rem; opacity: 0.4;">
+                        <path d="M0,10 Q25,0 50,10 T100,10" fill="none" stroke="black" stroke-width="1.5"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parte 3: Erros e Práticas -->
+        <section class="content-section reveal">
+            <div class="section-header">
+                <h2>03. Guia Prático</h2>
+                <span style="font-size: 0.8rem; color: #999;">COMO EVITAR ERROS E PLANEJAR</span>
+            </div>
+            
+            <div class="error-grid" style="margin-bottom: 4rem;">
+                <div class="error-item">
+                    <div style="font-size: 0.7rem; font-weight: 900; margin-bottom: 0.5rem; color: #ff4d4d;">ERROS COMUNS</div>
+                    <h4>Checklist do que evitar</h4>
+                    <p>
+                        • Uso excessivo de fontes e núcleos.<br>
+                        • Falta de respiro no layout.<br>
+                        • Imagens de baixa resolução.<br>
+                        • Justificativa errada (rios no texto).<br>
+                        • Alinhamento inconsistente.<br>
+                        • Contraste insuficiente.
+                    </p>
+                    <div style="margin-top: 1rem; background: #fff1f1; border-radius: 4px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #ff4d4d; border: 1px dashed #ff4d4d; opacity: 0.5;">✕</div>
+                </div>
+
+                <div class="error-item" style="border-left-color: var(--turquesa);">
+                    <div style="font-size: 0.7rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--turquesa);">PLANEJAMENTO</div>
+                    <h4>Estrutura e Tipografia</h4>
+                    <p>
+                        • Defina um grid consistente desde o início.<br>
+                        • Use estilos de parágrafo no InDesign.<br>
+                        • Evite mais de 3 ou 4 fontes no projeto.<br>
+                        • Teste tamanhos para títulos, legendas e corpo.
+                    </p>
+                    <div style="margin-top: 1rem; border: 1px solid var(--turquesa); height: 40px; background: rgba(0,255,183,0.05); display: flex; align-items: center; padding: 0 10px;">
+                        <div style="width: 80%; height: 2px; background: var(--turquesa); opacity: 0.5;"></div>
+                    </div>
+                </div>
+
+                <div class="error-item" style="border-left-color: var(--coral);">
+                    <div style="font-size: 0.7rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--coral);">COR E IMAGEM</div>
+                    <h4>Contraste e Resolução</h4>
+                    <p>
+                        • CMYK para impressão, RGB para digital.<br>
+                        • Mínimo de 300dpi para imagens impressas.<br>
+                        • Use negros 100% (K) para texto fino.<br>
+                        • Sempre use imagens que dialoguem com o conteúdo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Detalhes Técnicos Finais -->
+            <div class="technical-grid">
+                <div style="padding: 2.5rem; border: 1.5px solid var(--lab-border); background: #fff;">
+                    <div style="font-size: 0.75rem; font-weight: 900; color: #999; margin-bottom: 1rem; text-transform: uppercase;">Diagramação</div>
+                    <h3 style="text-transform: uppercase; margin-bottom: 1.5rem;">Refinamento Visual</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--lab-text-muted); margin-bottom: 1.5rem;">
+                        Margens bem definidas fazem a diferença. Nunca encoste texto nas bordas. Quebre blocos extensos com legendas ou respiros.
+                    </p>
+                    <div style="border: 1px dashed #ccc; padding: 10px; margin-bottom: 1.5rem;">
+                        <div style="height: 4px; background: #eee; width: 100%; margin-bottom: 5px;"></div>
+                        <div style="height: 4px; background: #eee; width: 80%;"></div>
+                    </div>
+                    <li style="list-style: none; font-weight: 900; font-size: 0.75rem; text-transform: uppercase; color: var(--lab-text);">→ Hierarquia para guiar o olhar</li>
+                </div>
+
+                <div style="padding: 2.5rem; border: 1.5px solid var(--lab-border); background: #fff;">
+                    <div style="font-size: 0.75rem; font-weight: 900; color: #999; margin-bottom: 1rem; text-transform: uppercase;">Produção</div>
+                    <h3 style="text-transform: uppercase; margin-bottom: 1.5rem;">Preparação Gráfica</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--lab-text-muted); margin-bottom: 1.5rem;">
+                        Sangria de 5mm é fundamental. Confira o modo CMYK de cada imagem. Faça provas de impressão antes de grandes tiragens.
+                    </p>
+                    <div style="width: 100%; height: 40px; border: 1.5px solid #ff4d4d; position: relative; margin-bottom: 1rem; opacity: 0.4;">
+                         <div style="position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border: 0.5px solid #ff4d4d; border-radius: 1px;"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; color: var(--lab-text); margin-top: 1rem;">→ Conferência Final de Sangria</p>
+                </div>
+
+                <div style="padding: 2.5rem; border: 1.5px solid var(--lab-border); background: #fff;">
+                    <div style="font-size: 0.75rem; font-weight: 900; color: #999; margin-bottom: 1rem; text-transform: uppercase;">Fluxo</div>
+                    <h3 style="text-transform: uppercase; margin-bottom: 1.5rem;">Gestão de Arquivo</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--lab-text-muted); margin-bottom: 1.5rem;">
+                        Salve versões diferentes. Use atalhos e camadas organizadas. Nomeie corretamente para evitar confusão no processo.
+                    </p>
+                    <div style="display: flex; gap: 5px; margin-bottom: 1rem;">
+                        <div style="width: 20px; height: 25px; border: 1px solid #999; border-radius: 2px;"></div>
+                        <div style="width: 20px; height: 25px; border: 1px solid #999; border-radius: 2px;"></div>
+                        <div style="width: 20px; height: 25px; border: 1px solid #999; border-radius: 2px; background: #eee;"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; color: var(--lab-text); margin-top: 1rem;">→ Nomeação e Versão</p>
+                </div>
+            </div>
+        </section>
+
+        <footer style="margin-top: 8rem; padding-top: 3rem; border-top: 1.5px solid var(--lab-border); padding-bottom: 3rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
                 <div>
-                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab"
-                            style="height: 120px;margin-bottom: 1.5rem; display: block;"></a>
-                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da
-                        Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
+                    <a href="lab.html"><img src="../assets/lab_logo.svg" alt="Mandalla Lab" style="height: 120px;margin-bottom: 1.5rem; display: block;"></a>
+                    <p style="font-size: 0.9rem; color: var(--lab-text-muted); line-height: 1.6;">O coração produtivo da Mandalla. Girando inteligência e sensibilidade para o impacto socioambiental.</p>
                 </div>
                 <div>
-                    <h4
-                        style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">
-                        Navegação</h4>
+                    <h4 style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">Navegação</h4>
                     <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
-                        <li><a href="../index.html"
-                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Mandalla
-                                Comunicação & Design</a></li>
-                        <li><a href="../simbolyca.html"
-                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Simbólyca</a>
-                        </li>
-                        <li><a href="lab.html"
-                                style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Dashboard
-                                Lab</a></li>
+                        <li><a href="../index.html" style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Mandalla Comunicação & Design</a></li>
+                        <li><a href="../simbolyca.html" style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Simbólyca</a></li>
+                        <li><a href="lab.html" style="text-decoration: none; color: var(--lab-text); font-size: 0.9rem; font-weight: 500;">Dashboard Lab</a></li>
                     </ul>
                 </div>
             </div>
-            <div
-                style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+            <div style="border-top: 1px solid #eee; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
                 <span>&copy; 2026 Mandalla Lab | Todos os direitos reservados.</span>
                 <span>Design Sensível & Estratégia Técnica</span>
             </div>

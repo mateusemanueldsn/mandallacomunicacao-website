@@ -160,6 +160,154 @@
                 gap: 1.5rem;
             }
         }
+        /* Official Patterns (Geometric Composition) */
+        .pattern-container {
+            height: 400px;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            border: 1px solid #f0f0f0;
+            margin: 2rem 0;
+        }
+
+        .pillar {
+            position: absolute;
+            bottom: -30px;
+            border-radius: 999px;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .p-purple {
+            width: 160px;
+            height: 380px;
+            background: var(--mandalla-purple);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .p-teal {
+            width: 150px;
+            height: 240px;
+            background: var(--mandalla-teal);
+            left: 35%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .p-orange {
+            width: 180px;
+            height: 300px;
+            background: var(--mandalla-orange);
+            left: 65%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .acc {
+            position: absolute;
+            background: #1A1A1A;
+        }
+
+        .acc-bowl {
+            width: 120px;
+            height: 60px;
+            border-radius: 0 0 60px 60px;
+            top: 15px;
+            left: 20px;
+        }
+
+        .acc-hat {
+            width: 130px;
+            height: 65px;
+            border-radius: 65px 65px 0 0;
+            top: -20px;
+            right: -30px;
+        }
+
+        .p-teal-extra {
+            width: 100px;
+            height: 50px;
+            background: var(--mandalla-teal);
+            border-radius: 50px 50px 0 0;
+            position: absolute;
+            bottom: 220px;
+            left: 25%;
+            z-index: 2;
+        }
+
+        .p-line {
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.3);
+            pointer-events: none;
+        }
+
+        .line-purple {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            top: 40px;
+            left: 15px;
+        }
+
+        .line-orange {
+            width: 140px;
+            height: 100px;
+            border-radius: 0 70px 70px 0;
+            border-left: 0;
+            top: 100px;
+            left: 0;
+        }
+
+        .pattern-container:hover .pillar {
+            transform: translateX(-50%) translateY(-10px);
+            filter: saturate(1.2);
+        }
+
+        /* Novas Variações (Baseadas na Imagem) */
+        .pillar.p-horizontal {
+            width: 240px;
+            height: 90px;
+            transform: none !important;
+            bottom: auto;
+            left: auto;
+        }
+
+        .pillar.p-outline {
+            background: transparent !important;
+            border: 1.5px solid #1A1A1A;
+        }
+
+        .p-black { background: #1A1A1A; }
+        
+        .p-semi {
+            width: 120px;
+            height: 60px;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .p-semi-bottom {
+            border-radius: 0 0 60px 60px;
+        }
+
+        .variation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .variation-card {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
     </style>
 </head>
 
@@ -296,22 +444,69 @@
 
         <!-- Seção 04: Malha Gráfica -->
         <section class="hub-section">
-            <span class="section-title">04. MALHA GRÁFICA (PATTERNS)</span>
-            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Nossos grafismos são gerados a partir da desconstrução do 'M' da Mandalla, repetidos em ângulos de 45°.</p>
+            <span class="section-title">04. MALHA GRÁFICA (OFFICIAL PATTERN)</span>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem;">Os grafismos oficiais da Mandalla utilizam uma composição de formas geométricas puras, sobrepostas para criar profundidade e dinamismo.</p>
             
-            <div style="height: 150px; border: 1px dashed #eee; display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; padding: 10px;">
-                <!-- Simulando um pattern minimalista -->
-                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
-                <div style="background: #000; transform: rotate(45deg);"></div>
-                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
-                <div style="background: var(--mandalla-purple); transform: rotate(45deg);"></div>
-                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
-                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
-                <div style="background: var(--mandalla-orange); transform: rotate(45deg);"></div>
-                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
-                <div style="background: #000; transform: rotate(45deg);"></div>
-                <div style="background: #f0f0f0; transform: rotate(45deg);"></div>
+            <div class="pattern-container" style="background: #fafafa;">
+                <!-- Purple Pillar -->
+                <div class="pillar p-purple">
+                    <div class="acc acc-bowl"></div>
+                    <div class="p-line line-purple"></div>
+                </div>
+
+                <!-- Orange Pillar -->
+                <div class="pillar p-orange">
+                    <div class="acc acc-hat"></div>
+                    <div class="p-line line-orange"></div>
+                </div>
+
+                <!-- Teal Pillar -->
+                <div class="p-teal-extra"></div>
+                <div class="pillar p-teal">
+                    <div class="acc acc-bowl" style="width: 100px; height: 50px; border-radius: 0 0 50px 50px; left: 25px;"></div>
+                </div>
             </div>
+
+            <h4 style="font-size: 0.8rem; font-weight: 900; text-transform: uppercase; margin: 4rem 0 2rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">Variações de Composição & Aplicação</h4>
+            
+            <div class="variation-carousel">
+                <!-- CARD 01: Top Left Style -->
+                <div class="variation-card">
+                    <div class="pillar p-teal p-semi-bottom" style="width: 220px; height: 110px; top: 20px; left: 20px; z-index: 1; transform: rotate(90deg);"></div>
+                    <div class="pillar p-black p-semi" style="width: 160px; height: 80px; top: 80px; left: 50px; z-index: 5;"></div>
+                </div>
+
+                <!-- CARD 02: Top Right Style -->
+                <div class="variation-card">
+                    <div class="pillar p-purple" style="width: 120px; height: 220px; top: -40px; left: 60px; z-index: 2;"></div>
+                    <div class="pillar p-teal" style="width: 110px; height: 180px; top: -30px; left: 160px; z-index: 1;">
+                        <div class="pillar p-semi-bottom" style="width: 60px; height: 30px; background: #fff; bottom: 0; left: 25px;"></div>
+                    </div>
+                    <div class="pillar p-outline white p-semi-bottom" style="width: 100px; height: 150px; top: 15px; left: 55px; z-index: 6;"></div>
+                </div>
+
+                <!-- CARD 03: Middle Right Style -->
+                <div class="variation-card">
+                    <div class="pillar p-purple p-horizontal" style="width: 320px; height: 100px; top: 140px; left: 40px; z-index: 2;"></div>
+                    <div class="pillar p-orange p-semi" style="width: 120px; height: 60px; top: 180px; left: 20px; z-index: 1; transform: rotate(180deg);"></div>
+                    <div class="pillar p-outline p-horizontal" style="width: 260px; height: 90px; top: 160px; left: 80px; z-index: 10;"></div>
+                </div>
+
+                <!-- CARD 04: Bottom Left Style -->
+                <div class="variation-card">
+                    <div class="pillar p-orange p-semi-bottom" style="width: 200px; height: 150px; bottom: 20px; left: 20px; z-index: 1;">
+                        <div class="pillar p-outline white" style="width: 180px; height: 1px; border:none; border-top: 2px solid #fff; top: 80px; left: 10px;"></div>
+                    </div>
+                    <div class="pillar p-black" style="width: 140px; height: 220px; bottom: -30px; left: 140px; z-index: 3;">
+                        <div class="pillar p-outline white p-semi" style="width: 100px; height: 100px; top: 50px; left: 20px; border-radius: 50%;"></div>
+                    </div>
+                    <div class="pillar p-outline" style="width: 80px; height: 80px; border-radius: 50%; top: 60px; left: 240px; z-index: 1;"></div>
+                </div>
+            </div>
+
+            <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <i class="ph ph-hand-pointing" style="margin-right: 5px;"></i> Deslize para ver mais variações
+            </p>
         </section>
 
         <div style="margin-top: 6rem; padding: 2rem; border: 1px solid #eee; display: flex; align-items: center; gap: 2rem;">
